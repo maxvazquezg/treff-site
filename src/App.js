@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import "bulma/css/bulma.min.css";
+import { Button } from "react-bulma-components";
+import Navbar from "./components/Navbar";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
+import { routes } from "./routes";
+import Home from "./pages/Home";
+import "./app.scss";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+]);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      
+      <Routes>
+        <Route path={routes.HOME} element={<Home />} />
+        {/* <RouterProvider router={router} /> */}
+      </Routes>
     </div>
   );
 }

@@ -155,13 +155,13 @@ export default function Navbar(props) {
           </div>
         </nav>
       </section>
-      <div id="topDesktop" className=" is-hidden-mobile is-hidden-tablet-only">
+      {/* <div id="topDesktop" className=" is-hidden-mobile is-hidden-tablet-only">
         <Carousel showThumbs={false} showIndicators={false} showStatus={false}>
           <div>
             <img src="/images/principal.png" alt="principal" width="300" />
           </div>
         </Carousel>
-      </div>
+      </div> */}
       {/* <Parallax bgImage="./images/Imagen1.png" bgImageAlt="Prekinesis" strength={100}>
                 <div style={{ height: 770 }}>
                     <div>HTML inside the parallax</div>

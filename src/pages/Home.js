@@ -178,11 +178,7 @@ const getFreelancersCards = () => {
 const Home = () => {
   return (
     <>
-      <Parallax
-        blur={0}
-        bgImageAlt="Treff"
-        strength={500}
-      >
+      <Parallax blur={0} bgImageAlt="Treff" strength={500}>
         <Background className="custom-bg">
           <div
             style={{
@@ -207,18 +203,19 @@ const Home = () => {
               <div className="column is-three-fifths is-offset-1 mt-6 has-text-left is-full-mobile">
                 <div className="columns">
                   <div className="column is-half is-four-fifths mt-6 has-text-left is-full-mobile">
-                    <h1 className="has-text-white title">
+                    <h1 className="has-text-white title has-text-centered-mobile">
                       Contrata un servicio
                     </h1>
-                    <h2 className="subtitle mt-6">
+                    <h2 className="subtitle mt-6 has-text-justified-mobile">
                       Somos una herramienta confiable desarrollada para que
                       ofrezcas tus servicios como experto independiente de una
                       forma amigable, ágil y segura.
                     </h2>
-
-                    <button className="button is-primary button-secondary mt-6 mb-6">
-                      Contratar
-                    </button>
+                    <div className="has-text-centered-mobile">
+                      <button className="button is-primary button-secondary mt-6 mb-6">
+                        Contratar
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -474,15 +471,33 @@ const Home = () => {
                       <img src="./images/Group 9.png" alt="treff" />
                     </div>
                     <div className="column">
-                      <p className="subtitle-light is-size-5">Nuestras redes sociales</p>
+                      <p className="subtitle-light is-size-5">
+                        Nuestras redes sociales
+                      </p>
                     </div>
                   </div>
                 </div>
                 <div className="column is-6 has-text-right">
-                    <img className="mr-5" src="./images/Group 46.png" alt="instagram" />
-                    <img className="mr-5" src="./images/Vector (1).png" alt="instagram" />
-                    <img className="mr-5" src="./images/Vector (2).png" alt="instagram" />
-                    <img className="mr-5" src="./images/Vector (3).png" alt="instagram" />
+                  <img
+                    className="mr-5"
+                    src="./images/Group 46.png"
+                    alt="instagram"
+                  />
+                  <img
+                    className="mr-5"
+                    src="./images/Vector (1).png"
+                    alt="instagram"
+                  />
+                  <img
+                    className="mr-5"
+                    src="./images/Vector (2).png"
+                    alt="instagram"
+                  />
+                  <img
+                    className="mr-5"
+                    src="./images/Vector (3).png"
+                    alt="instagram"
+                  />
                 </div>
               </div>
             </div>

@@ -254,7 +254,7 @@ const Home = () => {
                 Publica un servicio
               </h1>
             </div>
-            <div className="column is-3-desktop has-text-left is-full-tablet is-12-tablet has-text-centered-tablet">
+            <div className="column is-3-desktop has-text-left is-full-tablet is-12-tablet has-text-centered-mobile has-text-centered-tablet">
               <button className="button is-link button-secondary">
                 Publicar
               </button>

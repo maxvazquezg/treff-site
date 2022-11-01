@@ -53,7 +53,7 @@ function LeftArrow() {
     >
       <div className="column mt-6">
         <img
-          src="./images/atras.png"
+          src="./images/Atras.png"
           alt="adelante"
           style={{ cursor: "pointer" }}
         />
@@ -73,7 +73,7 @@ function RightArrow() {
     >
       <div className="column mt-6">
         <img
-          src="./images/adelante.png"
+          src="./images/Adelante.png"
           alt="adelante"
           style={{ cursor: "pointer" }}
         />

@@ -373,7 +373,7 @@ const Home = () => {
                 Miles de personas hacen parte de esta comunidad{" "}
               </p>
               <div className="has-text-centered">
-                <img src="./images/video.png" alt="video" />
+                <img src="./images/Video.png" alt="video" />
               </div>
             </div>
           </div>

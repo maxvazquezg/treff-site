@@ -28,6 +28,7 @@ function App() {
       
       <Routes>
         <Route path={routes.HOME} element={<Home />} />
+        <Route path="/treff-site" element={<Home />} />
         {/* <RouterProvider router={router} /> */}
       </Routes>
     </div>

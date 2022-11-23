@@ -1,5 +1,5 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Parallax, Background } from "react-parallax";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,34 +9,35 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ScrollingMenu from "../components/ScrollingMenu";
 import { Columns } from "react-bulma-components";
+import CategoryApi from "../api/CategoryApi";
 
 const services = [
   {
-    image: "url('./images/pexels-designecologist-1779487 1.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-designecologist-1779487 1.png')",
     name: "Artes graficas y diseño digital",
   },
   {
-    image: "url('./images/pexels-todoran-bogdan-783737 1.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-todoran-bogdan-783737 1.png')",
     name: "Artes graficas y diseño digital",
   },
   {
-    image: "url('./images/pexels-martin-lopez-1117132 1.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-martin-lopez-1117132 1.png')",
     name: "Artes graficas y diseño digital",
   },
   {
-    image: "url('./images/pexels-harry-cunningham-harrydigital-7383471 1.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-harry-cunningham-harrydigital-7383471 1.png')",
     name: "Artes graficas y diseño digital",
   },
   {
-    image: "url('./images/pexels-antoni-shkraba-4348403 (1) 1.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-antoni-shkraba-4348403 (1) 1.png')",
     name: "Artes graficas y diseño digital",
   },
   {
-    image: "url('./images/pexels-designecologist-1779487 1.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-designecologist-1779487 1.png')",
     name: "Artes graficas y diseño digital",
   },
   {
-    image: "url('./images/pexels-harry-cunningham-harrydigital-7383471 1.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-harry-cunningham-harrydigital-7383471 1.png')",
     name: "Artes graficas y diseño digital",
   },
 ];
@@ -45,48 +46,48 @@ const freelancers = [
   {
     name: "Karen Buitrago",
     service: "Marketing Digital",
-    image: "./images/pexels-kebs-visuals-3992656 1.png",
-    backgroundImage: "./images/pexels-dominika-roseclay-905163 1.png",
+    image: process.env.PUBLIC_URL + "/images/pexels-kebs-visuals-3992656 1.png",
+    backgroundImage: process.env.PUBLIC_URL + "/images/pexels-dominika-roseclay-905163 1.png",
   },
   {
     name: "Andres Castro",
     service: "Fotografía",
-    image: "./images/pexels-kaique-rocha-598917 1.png",
-    backgroundImage: "./images/pexels-alexander-dummer-134469 1.png",
+    image: process.env.PUBLIC_URL + "/images/pexels-kaique-rocha-598917 1.png",
+    backgroundImage: process.env.PUBLIC_URL + "/images/pexels-alexander-dummer-134469 1.png",
   },
   {
     name: "Karen Buitrago",
     service: "Marketing Digital",
-    image: "./images/pexels-pixabay-38289 1.png",
-    backgroundImage: "./images/pexels-li-sun-2294403 1.png",
+    image: process.env.PUBLIC_URL + "/images/pexels-pixabay-38289 1.png",
+    backgroundImage: process.env.PUBLIC_URL + "/images/pexels-li-sun-2294403 1.png",
   },
   {
     name: "Karen Buitrago",
     service: "Marketing Digital",
-    image: "./images/pexels-kebs-visuals-3992656 1.png",
-    backgroundImage: "./images/pexels-dominika-roseclay-905163 1.png",
+    image: process.env.PUBLIC_URL + "/images/pexels-kebs-visuals-3992656 1.png",
+    backgroundImage: process.env.PUBLIC_URL + "/images/pexels-dominika-roseclay-905163 1.png",
   },
 ];
 
 const freelancersRanking = [
   {
-    image: "url('./images/pexels-pixabay-38289 2.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-pixabay-38289 2.png')",
     name: "Andrea Mendes",
   },
   {
-    image: "url('./images/pexels-kebs-visuals-3992656 2.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-kebs-visuals-3992656 2.png')",
     name: "Karen Buitrago",
   },
   {
-    image: "url('./images/pexels-omar-lópez-1182825 1.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-omar-lópez-1182825 1.png')",
     name: "Carlos Fajardo ",
   },
   {
-    image: "url('./images/pexels-pixabay-415829 1.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-pixabay-415829 1.png')",
     name: "Maria Jose Diaz",
   },
   {
-    image: "url('./images/pexels-vinicius-wiesehofer-1130626 1.png')",
+    image: "url('"+ process.env.PUBLIC_URL +"/images/pexels-vinicius-wiesehofer-1130626 1.png')",
     name: "Tatiana Torres",
   },
 ];
@@ -176,6 +177,23 @@ const getFreelancersCards = () => {
 };
 
 const Home = () => {
+  useEffect(() => {
+    const getBadges = async () => {
+      await CategoryApi.getCategories();
+      // const badges = await BadgeApi.getBadges();
+      // let data = badges.map((b) => {
+      //   // b.name = unescape(b.name);
+      //   b.name = b.name.replace("&amp;", "&");
+      //   return b;
+      // });
+      // setData(data);
+      // // filteredItems = badges && badges.filter(
+      // //     item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
+      // // );
+    };
+    getBadges();
+  }, []);
+  
   return (
     <>
       <Parallax blur={0} bgImageAlt="Treff" strength={500}>
@@ -184,7 +202,7 @@ const Home = () => {
             style={{
               height: 2000,
               width: 2000,
-              backgroundImage: "url('./images/pexels-adil-2726478 1.png')",
+              backgroundImage: "url('"+ process.env.PUBLIC_URL +"/images/pexels-adil-2726478 1.png')",
             }}
           />
         </Background>
@@ -195,7 +213,7 @@ const Home = () => {
           <div className="hero-body">
             <div className="columns">
               <div className="column is-half is-offset-one-quarter mt-6">
-                <img src="./images/Treff_06_color_gradient 1.svg" alt="logo" />
+                <img src={process.env.PUBLIC_URL +"/images/Treff_06_color_gradient 1.svg"} alt="logo" />
               </div>
             </div>
 
@@ -272,7 +290,7 @@ const Home = () => {
               <div className="columns mt-6 is-multiline ">
                 <div className="column is-3">
                   <img
-                    src="./images/pexels-fauxels-3184611 1.png"
+                    src={process.env.PUBLIC_URL +"/images/pexels-fauxels-3184611 1.png"}
                     alt="cliente"
                   />
                 </div>
@@ -314,7 +332,7 @@ const Home = () => {
                 </div>
                 <div className="column is-3 pt-6">
                   <img
-                    src="./images/pexels-pavel-danilyuk-6764185 1.png"
+                    src={process.env.PUBLIC_URL +"/images/pexels-pavel-danilyuk-6764185 1.png"}
                     alt="freelancer"
                   />
                 </div>
@@ -361,7 +379,7 @@ const Home = () => {
                 <div className="column is-4 is-vcentered">
                   <img
                     className="pt-6"
-                    src="./images/Logo Treff blanco  2.png"
+                    src={process.env.PUBLIC_URL +"/images/Logo Treff blanco  2.png"}
                     alt="treff"
                   />
                 </div>
@@ -370,7 +388,7 @@ const Home = () => {
                 Miles de personas hacen parte de esta comunidad{" "}
               </p>
               <div className="has-text-centered">
-                <img src="./images/Video.png" alt="video" />
+                <img src={process.env.PUBLIC_URL +"/images/Video.png"} alt="video" />
               </div>
             </div>
           </div>
@@ -406,7 +424,7 @@ const Home = () => {
           <div className="columns is-multiline">
             <div className="column has-text-centered">
               <h1 className="has-text-white title" style={{ fontSize: "45px" }}>
-                <img src="./images/Logo Treff blanco  2 (1).png" alt="treff" />
+                <img src={process.env.PUBLIC_URL +"/images/Logo Treff blanco  2 (1).png"} alt="treff" />
               </h1>
             </div>
           </div>
@@ -468,7 +486,7 @@ const Home = () => {
                 <div className="column is-6">
                   <div className="columns is-vcentered">
                     <div className="column is-2">
-                      <img src="./images/Group 9.png" alt="treff" />
+                      <img src={process.env.PUBLIC_URL +"/images/Group 9.png"} alt="treff" />
                     </div>
                     <div className="column">
                       <p className="subtitle-light is-size-5">
@@ -480,22 +498,22 @@ const Home = () => {
                 <div className="column is-6 has-text-right">
                   <img
                     className="mr-5"
-                    src="./images/Group 46.png"
+                    src={process.env.PUBLIC_URL +"/images/Group 46.png"}
                     alt="instagram"
                   />
                   <img
                     className="mr-5"
-                    src="./images/Vector (1).png"
+                    src={process.env.PUBLIC_URL +"/images/Vector (1).png"}
                     alt="instagram"
                   />
                   <img
                     className="mr-5"
-                    src="./images/Vector (2).png"
+                    src={process.env.PUBLIC_URL +"/images/Vector (2).png"}
                     alt="instagram"
                   />
                   <img
                     className="mr-5"
-                    src="./images/Vector (3).png"
+                    src={process.env.PUBLIC_URL +"/images/Vector (3).png"}
                     alt="instagram"
                   />
                 </div>

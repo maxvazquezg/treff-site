@@ -13,6 +13,7 @@ import {
 import { routes } from "./routes";
 import Home from "./pages/Home";
 import "./app.scss";
+import LoadingIndicator from "./LoadingIndicator";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +23,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  
+
   return (
     <div className="App">
+      <LoadingIndicator />
       <Navbar />
       
       <Routes>

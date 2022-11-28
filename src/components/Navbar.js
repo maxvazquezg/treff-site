@@ -1,5 +1,4 @@
 import React from "react";
-import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import { routes } from "../routes";
 
@@ -135,7 +134,7 @@ export default function Navbar(props) {
                   style={{ maxHeight: "200px", marginRight: "40px" }}
                 />
               </Link>
-              <Link to={routes.HOME} className="navbar-item">
+              <Link to={routes.EXPLORE} className="navbar-item">
                 Explora
               </Link>
               <Link to={routes.PRODUCTS} className="navbar-item">

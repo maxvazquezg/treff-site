@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/treff-site/static/css/main.9185e357.css",
-    "main.js": "/treff-site/static/js/main.e5f64d43.js",
+    "main.js": "/treff-site/static/js/main.bf246084.js",
     "static/js/787.5a1beb39.chunk.js": "/treff-site/static/js/787.5a1beb39.chunk.js",
     "index.html": "/treff-site/index.html",
     "main.9185e357.css.map": "/treff-site/static/css/main.9185e357.css.map",
-    "main.e5f64d43.js.map": "/treff-site/static/js/main.e5f64d43.js.map",
+    "main.bf246084.js.map": "/treff-site/static/js/main.bf246084.js.map",
     "787.5a1beb39.chunk.js.map": "/treff-site/static/js/787.5a1beb39.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9185e357.css",
-    "static/js/main.e5f64d43.js"
+    "static/js/main.bf246084.js"
   ]
 }

@@ -1,11 +1,10 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import React, { useEffect, useState } from "react";
 import CategoryApi from "../api/CategoryApi";
+import { useNavigate } from "react-router-dom";
+import { routes } from "../routes";
+import { getURLImage } from "../utils/images";
 
-const getURLImage = (imageName) => {
-  const url = "https://localhost:44340/Images/";
-  return url + imageName;
-};
 
 const ExploreCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -19,16 +18,42 @@ const ExploreCategory = () => {
     };
     getCategories();
   }, []);
+  const navigate = useNavigate();
 
   const seeSubCategories = (category) => {
-    setCategory(category);
-    setCategories(category.subCategories);
+    if (category.subCategories && category.subCategories.length > 0) {
+      var dataBreadcrumbs = [...breadcrumb];
+      dataBreadcrumbs.push(
+        <li>
+          <a href onClick={(e) => seeSubCategories(category)}>
+            {category.name}
+          </a>
+        </li>
+      );
+
+      setBreadcrumb(dataBreadcrumbs);
+      setCategory(category);
+      setCategories(category.subCategories);
+    } else {
+      navigate(routes.EXPLORE + category.id);
+    }
   };
 
   const setDefaultCategories = (category) => {
     setCategory({});
     setCategories(allCategories);
+    setBreadcrumb(breadcrumbs);
   };
+
+  let breadcrumbs = [
+    <li>
+      <a href onClick={setDefaultCategories}>
+        Todas las categorías
+      </a>
+    </li>,
+  ];
+
+  const [breadcrumb, setBreadcrumb] = useState(breadcrumbs);
 
   const getCategoriesCards = (categories) => {
     return categories.map((s, index) => (
@@ -61,11 +86,11 @@ const ExploreCategory = () => {
   return (
     <>
       <section className="hero is-white">
-        <div className="hero-body pb-0">
+        <div className="hero-body pt-0 pb-0">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
               <section
-                className="hero is-primary  mt-6"
+                className="hero is-primary"
                 style={{
                   backgroundImage: category.coverImage
                     ? "url('" + getURLImage(category.coverImage) + "')"
@@ -112,6 +137,9 @@ const ExploreCategory = () => {
                   <div className="columns">
                     <div className="column is-12 has-text-left">
                       <p className="subtitle-dark mb-1">Categorías</p>
+                      <nav className="breadcrumb mt-3" aria-label="breadcrumbs">
+                        <ul>{breadcrumb.map((b) => b)}</ul>
+                      </nav>
                       {category.name ? (
                         <p
                           onClick={(e) => setDefaultCategories()}

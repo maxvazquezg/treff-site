@@ -4,36 +4,45 @@ import { trackPromise } from 'react-promise-tracker';
 const CATEGORY_ENDPOINT = "/Service";
 
 class ServiceApi extends BaseApi {
-    async getHighlightServices(limit){
+    async getServiceById(id){
         try{
-            const data = await trackPromise(this.get(CATEGORY_ENDPOINT+"/highlightLimit/" + limit));
+            const data = await trackPromise(this.get(CATEGORY_ENDPOINT+"/" + id));
             return data.data;
         } catch (error){
             throw new Error(error);
         }
     }
 
-    async getServices(limit){
+    async getHighlightServices(limit, byFreelancer){
         try{
-            const data = await trackPromise(this.get(CATEGORY_ENDPOINT+"/limit/" + limit));
+            const data = await trackPromise(this.post(CATEGORY_ENDPOINT+"/highlightLimit/", {limit, byFreelancer}));
             return data.data;
         } catch (error){
             throw new Error(error);
         }
     }
 
-    async getServicesByCategoryId(categoryId){
+    async getServices(limit, byFreelancer){
         try{
-            const data = await trackPromise(this.get(CATEGORY_ENDPOINT+"/category/" + categoryId));
+            const data = await trackPromise(this.post(CATEGORY_ENDPOINT+"/limit/", {limit, byFreelancer}));
             return data.data;
         } catch (error){
             throw new Error(error);
         }
     }
 
-    async getHighlightServicesByCategoryId(categoryId){
+    async getServicesByCategoryId(categoryId, byFreelancer){
         try{
-            const data = await trackPromise(this.get(CATEGORY_ENDPOINT+"/categoryPremium/" + categoryId));
+            const data = await trackPromise(this.post(CATEGORY_ENDPOINT+"/category/", {categoryId, byFreelancer}));
+            return data.data;
+        } catch (error){
+            throw new Error(error);
+        }
+    }
+
+    async getHighlightServicesByCategoryId(categoryId, byFreelancer){
+        try{
+            const data = await trackPromise(this.post(CATEGORY_ENDPOINT+"/categoryPremium/", {categoryId, byFreelancer}));
             return data.data;
         } catch (error){
             throw new Error(error);

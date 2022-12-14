@@ -47,7 +47,10 @@ export default function Navbar(props) {
           <div className="navbar-brand">
             <Link className="navbar-item" to={routes.HOME}>
               <img
-                src={process.env.PUBLIC_URL +"/images/Treff_03_color_gradient 2.png"}
+                src={
+                  process.env.PUBLIC_URL +
+                  "/images/Treff_03_color_gradient 2.png"
+                }
                 alt="Logo"
                 height={53}
                 width={48}
@@ -83,6 +86,9 @@ export default function Navbar(props) {
                 <li>
                   <Link to={routes.HOME} onClick={() => clickMenuHandler()}>
                     Inicio
+                  </Link>
+                  <Link to={routes.EXPLORE} onClick={() => clickMenuHandler()}>
+                    Explora
                   </Link>
                   <Link to={routes.HOME} onClick={() => clickMenuHandler()}>
                     Acerca de nosotros
@@ -127,7 +133,10 @@ export default function Navbar(props) {
             <div className="navbar-start">
               <Link className="navbar-item" to={routes.HOME}>
                 <img
-                  src={process.env.PUBLIC_URL +"/images/Treff_03_color_gradient 2.png"}
+                  src={
+                    process.env.PUBLIC_URL +
+                    "/images/Treff_03_color_gradient 2.png"
+                  }
                   alt="Logo"
                   height={53}
                   width={48}

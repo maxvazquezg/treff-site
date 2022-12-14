@@ -5,11 +5,16 @@ import { ServiceApi } from "../api";
 import CustomSection from "../components/CustomSection";
 import { getURLImage } from "../utils/images";
 import SectionContent from "../components/SectionContent";
+import { Link, useParams } from "react-router-dom";
+import { routes } from "../routes";
 
 const Explore = () => {
+  const { id } = useParams();
   const [categories, setCategories] = useState([]);
   const [servicesHighLight, setServicesHighLight] = useState([]);
   const [services, setServices] = useState([]);
+  const [byFreelancer, setByFreelancer] = useState(false);
+  const [categoryIdState, setCategoryIdState] = useState(null);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -18,33 +23,39 @@ const Explore = () => {
     };
 
     const getServicesHighLight = async () => {
-      await getServicesHighLightAsync();
+      await getServicesHighLightAsync(id);
     };
 
     const getServices = async () => {
-      await getServicesAsync();
+      await getServicesAsync(id);
     };
     getCategories();
     getServicesHighLight();
     getServices();
-  }, []);
+  }, [categoryIdState, byFreelancer]);
 
   const getServicesHighLightAsync = async (categoryId) => {
-    if (!categoryId) {
-      const ser = await ServiceApi.getHighlightServices(8);
+    if (!(categoryId || categoryIdState)) {
+      const ser = await ServiceApi.getHighlightServices(8, byFreelancer);
       setServicesHighLight(ser);
     } else {
-      const ser = await ServiceApi.getHighlightServicesByCategoryId(categoryId);
+      const ser = await ServiceApi.getHighlightServicesByCategoryId(
+        parseInt(categoryId || categoryIdState),
+        byFreelancer
+      );
       setServicesHighLight(ser);
     }
   };
 
   const getServicesAsync = async (categoryId) => {
-    if (!categoryId) {
-      const ser = await ServiceApi.getServices(8);
+    if (!(categoryId || categoryIdState)) {
+      const ser = await ServiceApi.getServices(8, byFreelancer);
       setServices(ser);
     } else {
-      const ser = await ServiceApi.getServicesByCategoryId(categoryId);
+      const ser = await ServiceApi.getServicesByCategoryId(
+        parseInt(categoryId || categoryIdState),
+        byFreelancer
+      );
       setServices(ser);
     }
   };
@@ -52,53 +63,84 @@ const Explore = () => {
   const getServicesOnSelect = async (e) => {
     const catId = e.target.value !== "0" ? e.target.value : null;
 
-    getServicesAsync(catId);
-    getServicesHighLightAsync(catId);
+    setCategoryIdState(catId);
+
+    await getServicesAsync(catId);
+    await getServicesHighLightAsync(catId);
+  };
+
+  const setExploreOnSelect = async (e) => {
+    const exploreOption = e.target.value === "true";
+
+    setByFreelancer(exploreOption);
+
+    await getServicesAsync();
+    await getServicesHighLightAsync();
   };
 
   const freelancerCard = (service, size) => {
     return (
-      <div className={"column is-" + (size || 4) +" has-text-centered"}>
-        <div
-          className="card"
-          style={{
-            width: "400px",
-            height: "300.04px",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "contain",
-            cursor: "pointer",
-            padding: "10px 0px 0px 0px",
-          }}
-        >
+      <div className={"column is-3-widescreen is-6-desktop is-6 has-text-centered"}>
+        <Link to={routes.SERVICE.replace(":id", service.id)}>
           <div
-            className="card-content"
+            className="card"
             style={{
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+              cursor: "pointer",
               padding: "10px 0px 0px 0px",
             }}
           >
-            <div className="content">
-              <img src={getURLImage(service.category?.image)} alt="servicio" />
-              <footer className="card-footer has-text-left">
+            <div
+              className="card-content"
+              style={{
+                padding: "10px 0px 0px 0px",
+              }}
+            >
+              <div className="content">
                 <img
-                  className="rounded ml-4 mt-2"
-                  src={getURLImage(service.freelancer?.photo)}
-                  alt="freelancer"
+                  src={getURLImage(service.category?.image)}
+                  alt="servicio"
                 />
-                <p className="ml-4">
-                  <br />
-                  <b>{service.name}</b>
-                  <br />
-                  de {service.freelancer.name}
-                </p>
-              </footer>
+                <hr className="m-2"/>
+                <div className="has-text-left">
+                  <div className="columns is-vcentered is-mobile">
+                    <div className="column is-4-tablet is-4-mobile is-3-desktop is-3-widescreen">
+                      <img
+                        className="rounded ml-4 mt-2"
+
+                        src={getURLImage(service.freelancer?.photo)}
+                        alt="freelancer"
+                      />
+                    </div>
+                    <div className="column is-8-mobile">
+                      {byFreelancer ? (
+                        <p className="ml-2">
+                          <br />
+                          {service.freelancer.name}
+                          <br />
+                          <b>{service.name}</b>
+                        </p>
+                      ) : (
+                        <p className="ml-1 pt-0 pr-4 pl-4">
+                          <b>{service.name}</b>
+                          <br />
+                          de {service.freelancer.name}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr className="m-1"/>
+            <div className="has-text-right mt-3 p-1 mb-3">
+              <div className="has-text-right">
+                <p className="has-text-right"><b>A partir de ${service.packages[0].cost} MXN</b></p>
+              </div>
             </div>
           </div>
-          <footer className="card-footer has-text-right mt-3">
-            <div className="has-text-right ml-6">
-              <b>A partir de ${service.packages[0].cost} MXN</b>
-            </div>
-          </footer>
-        </div>
+        </Link>
       </div>
     );
   };
@@ -107,7 +149,7 @@ const Explore = () => {
     <>
       <CustomSection type="white">
         <section
-          className="hero is-primary  mt-6"
+          className="hero is-primary"
           style={{
             backgroundImage:
               "url('" +
@@ -143,10 +185,25 @@ const Explore = () => {
 
       <CustomSection type="white">
         <SectionContent type="light">
-          <p className="subtitle-dark">Servicios / Marketing</p>
-          <div className="columns is-mobile mt-6 is-multiline ">
+          {byFreelancer ? (
+            <p className="subtitle-dark">Explorar freelancer </p>
+          ) : (
+            <p className="subtitle-dark">Servicios / Marketing</p>
+          )}
+          <div className="columns mt-6 is-multiline ">
+            <div className="column is-2 is-mobile">
+              <div className="select">
+                <select onChange={setExploreOnSelect}>
+                  <option value={0}>Explora por</option>
+                  {/* {categories.map((c) => ( */}
+                  <option value={false}>Explora categorias</option>
+                  <option value={true}>Explora freelancers</option>
+                  {/* ))} */}
+                </select>
+              </div>
+            </div>
             <div className="column is-2">
-              <div class="select">
+              <div className="select">
                 <select onChange={getServicesOnSelect}>
                   <option value={0}>Categorías</option>
                   {categories.map((c) => (
@@ -156,7 +213,7 @@ const Explore = () => {
               </div>
             </div>
             <div className="column is-2">
-              <div class="select">
+              <div className="select">
                 <select>
                   <option>Verificado</option>
                   <option>Si</option>
@@ -165,7 +222,7 @@ const Explore = () => {
               </div>
             </div>
             <div className="column is-2">
-              <div class="select">
+              <div className="select">
                 <select>
                   <option>Factura</option>
                   <option>Si</option>
@@ -174,7 +231,7 @@ const Explore = () => {
               </div>
             </div>
             <div className="column is-3">
-              <div class="select">
+              <div className="select">
                 <select>
                   <option>Entrega Express</option>
                   <option>Si</option>
@@ -192,10 +249,8 @@ const Explore = () => {
         </SectionContent>
         {servicesHighLight.length > 0 && (
           <SectionContent type="light">
-            <div className="columns is-mobile mt-1 is-multiline">
-              {servicesHighLight.map((s, index) => (
-                freelancerCard(s, 3)
-              ))}
+            <div className="columns mt-1 is-multiline">
+              {servicesHighLight.map((s, index) => freelancerCard(s))}
             </div>
           </SectionContent>
         )}
@@ -203,10 +258,8 @@ const Explore = () => {
 
       <CustomSection type="white">
         <SectionContent type="white">
-          <div className="columns is-mobile mt-1 is-multiline">
-            {services.map((s, index) => (
-              freelancerCard(s, 3)
-            ))}
+          <div className="columns mt-1 is-multiline">
+            {services.map((s, index) => freelancerCard(s))}
           </div>
         </SectionContent>
       </CustomSection>

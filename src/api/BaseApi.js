@@ -1,7 +1,8 @@
 import axios from "axios";
 import { trackPromise } from 'react-promise-tracker';
+import { vars } from "../utils/vars";
 
-const url = "https://localhost:44340/api/v1";
+const url = vars.BACKEND_URL + "api/v1";
 
 export default class BaseApi {
   async get(params) {

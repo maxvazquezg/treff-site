@@ -10,6 +10,7 @@ import ExploreCategory from "./pages/ExploreCategory";
 import Footer from "./components/Footer";
 import Explore from "./pages/Explore";
 import Service from "./pages/Service";
+import FreelancerProfile from "./pages/FreelancerProfile";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path={routes.EXPLORE} element={<Explore />} />
           <Route path={routes.EXPLOREID} element={<Explore />} />
           <Route path={routes.SERVICE} element={<Service />} />
+          <Route path={routes.FREELANCERPROFILE} element={<FreelancerProfile />} />
           <Route path="/treff-site" element={<Home />} />
           {/* <RouterProvider router={router} /> */}
         </Routes>

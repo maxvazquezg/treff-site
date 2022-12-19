@@ -19,14 +19,24 @@
 }
 
 .text-light {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 23px;
-  
-    color: #fff;
-  }
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #fff;
+}
+
+.text-dark {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: $primary;
+}
 
 p {
   font-weight: 400;
@@ -44,18 +54,18 @@ p {
   color: #002541;
 }
 
-.subtitle-2-dark{
+.subtitle-2-dark {
   font-weight: 700;
   font-size: 24px;
 
   color: #002541;
 }
 
-.plan-title{
+.plan-title {
   font-weight: 500;
   font-size: 20px;
-  
-  color: #9F9D9D;
+
+  color: #9f9d9d;
 }
 
 .price-dark {

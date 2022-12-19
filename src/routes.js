@@ -5,6 +5,7 @@ export const routes = {
   EXPLORE: "/Explore/",
   EXPLOREID: "/Explore/:id",
   EXPLORECATEGORY: "/ExploreCategory/:id",
+  FREELANCERPROFILE: "/FreelancerProfile/:id",
   SERVICE: "/Service/:id",
   LOGIN: "/Login",
   HOME_POST: "/Posts",

@@ -5,12 +5,13 @@ import CustomSection from "../components/CustomSection";
 import { getURLImage } from "../utils/images";
 import SectionContent from "../components/SectionContent";
 import ReactStars from "react-rating-stars-component";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import RoundedImage from "../components/RoundedImage";
 import { setDateString } from "../utils/dates";
 import Carousel from "react-gallery-carousel";
 import "react-gallery-carousel/dist/index.css";
 import ServicesByFreelancer from "../components/ServicesByFreelancer";
+import { routes } from "../routes";
 
 const Service = () => {
   const { id } = useParams();
@@ -174,12 +175,21 @@ const Service = () => {
                 <div className="column is-9">
                   <p className="subtitle-dark">{service.name}</p>
                 </div>
+
                 <div className="column is-3 has-text-centered">
-                  <RoundedImage url={getURLImage(service.freelancer?.photo)} />
-                  <p>{service.freelancer?.name}</p>
+                  <Link
+                    to={routes.FREELANCERPROFILE.replace(
+                      ":id",
+                      service.freelancerId
+                    )}
+                  >
+                    <RoundedImage
+                      url={getURLImage(service.freelancer?.photo)}
+                    />
+                    <p>{service.freelancer?.name}</p>
+                  </Link>
                 </div>
               </div>
-
               {service.serviceImages && service.serviceImages.length > 0 && (
                 // <ScrollingMenu items={showImages(service.serviceImages)} />
                 <div className="carousel-container short">
@@ -264,25 +274,32 @@ const Service = () => {
                     <div className="column is-10  is-12-tablet is-multiline">
                       <div className="columns is-multiline">
                         <div className="column is-5-widescreen is-12-tablet has-text-left-widescreen has-text-centered-mobile has-text-centered-tablet">
-                          <p>
-                            <b>{service.freelancer?.name}</b>
-                          </p>
-                          <p>{service.freelancer?.title}</p>
-                          {service.freelancer?.score && (
-                            <div className="has-text-centered-tablet has-text-centered-mobile columns">
-                              <div className="column is-full-widescreen is-5-desktop  is-offset-5-desktop is-5-tablet  is-offset-4-tablet is-5-mobile is-offset-3-mobile is-offset-0-widescreen">
-                                <ReactStars
-                                  count={5}
-                                  edit={false}
-                                  // onChange={ratingChanged}
-                                  size={24}
-                                  activeColor="#ffd700"
-                                  value={service.freelancer?.score}
-                                  isHalf={true}
-                                />
+                          <Link
+                            to={routes.FREELANCERPROFILE.replace(
+                              ":id",
+                              service.freelancerId
+                            )}
+                          >
+                            <p>
+                              <b>{service.freelancer?.name}</b>
+                            </p>
+                            <p>{service.freelancer?.title}</p>
+                            {service.freelancer?.score && (
+                              <div className="has-text-centered-tablet has-text-centered-mobile columns">
+                                <div className="column is-full-widescreen is-5-desktop  is-offset-5-desktop is-5-tablet  is-offset-4-tablet is-5-mobile is-offset-3-mobile is-offset-0-widescreen">
+                                  <ReactStars
+                                    count={5}
+                                    edit={false}
+                                    // onChange={ratingChanged}
+                                    size={24}
+                                    activeColor="#ffd700"
+                                    value={service.freelancer?.score}
+                                    isHalf={true}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
+                          </Link>
                         </div>
                         <div className="column is-7-widescreen is-12-tablet">
                           <button
@@ -325,8 +342,10 @@ const Service = () => {
       </CustomSection>
       <CustomSection type="white">
         <SectionContent type="white">
-          <p className="subtitle-2-dark mt-6">Más servicios de {service.freelancer?.name}</p>
-          <br/>
+          <p className="subtitle-2-dark mt-6">
+            Más servicios de {service.freelancer?.name}
+          </p>
+          <br />
           <ServicesByFreelancer freelancerId={service.freelancer?.id} />
         </SectionContent>
       </CustomSection>

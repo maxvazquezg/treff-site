@@ -8,6 +8,7 @@ export const routes = {
   FREELANCERPROFILE: "/FreelancerProfile/:id",
   SERVICE: "/Service/:id",
   LOGIN: "/Login",
+  LOGOUT: "/Logout",
   HOME_POST: "/Posts",
   CREATE_POST: "/NewPost",
   EDIT_POST: "/EditPost/:id",

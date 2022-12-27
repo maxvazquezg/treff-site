@@ -14,13 +14,15 @@ import FreelancerProfile from "./pages/FreelancerProfile";
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.css';
+import Logout from "./pages/Logout";
+import LoadingIndicator from "./LoadingIndicator";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
 function App() {
   return (
     <div className="App">
-      {/* <LoadingIndicator /> */}
+      <LoadingIndicator />
       <Navbar />
 
       <div>
@@ -31,6 +33,7 @@ function App() {
           <Route path={routes.EXPLOREID} element={<Explore />} />
           <Route path={routes.SERVICE} element={<Service />} />
           <Route path={routes.FREELANCERPROFILE} element={<FreelancerProfile />} />
+          <Route path={routes.LOGOUT} element={<Logout />} />
           <Route path="/treff-site" element={<Home />} />
           {/* <RouterProvider router={router} /> */}
         </Routes>

@@ -5,6 +5,25 @@ import ScrollingMenu from "../components/ScrollingMenu";
 import CategoryApi from "../api/CategoryApi";
 import { Link } from "react-router-dom";
 import { routes } from "../routes";
+import { Carousel } from 'primereact/carousel';
+
+const responsiveOptions = [
+  {
+      breakpoint: '1024px',
+      numVisible: 3,
+      numScroll: 1
+  },
+  {
+      breakpoint: '600px',
+      numVisible: 2,
+      numScroll: 1
+  },
+  {
+      breakpoint: '480px',
+      numVisible: 1,
+      numScroll: 1
+  }
+];
 
 const services = [
   {
@@ -79,6 +98,13 @@ const freelancers = [
     image: process.env.PUBLIC_URL + "/images/pexels-pixabay-38289 1.png",
     backgroundImage:
       process.env.PUBLIC_URL + "/images/pexels-li-sun-2294403 1.png",
+  },
+  {
+    name: "Karen Buitrago",
+    service: "Marketing Digital",
+    image: process.env.PUBLIC_URL + "/images/pexels-kebs-visuals-3992656 1.png",
+    backgroundImage:
+      process.env.PUBLIC_URL + "/images/pexels-dominika-roseclay-905163 1.png",
   },
   {
     name: "Karen Buitrago",
@@ -170,6 +196,45 @@ const getFreelancersRankingCards = () => {
     </div>
   ));
 };
+
+const getFreelancersCardsTheme = (s) => {
+  return (
+      <div
+        className="card ml-3"
+        style={{
+          // width: "400px",
+          // height: "280px",
+
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          cursor: "pointer",
+          padding: "10px 0px 0px 0px",
+        }}
+      >
+        <div
+          className="card-content"
+          style={{
+            padding: "0px 0px 0px 0px",
+          }}
+        >
+          <div className="content">
+            <img src={s.backgroundImage} style={{width: "100%"}} alt="servicio" />
+          </div>
+        </div>
+        <footer className="card-footer has-text-left" style={{
+          // width: "400px",
+          height: "110px",
+        }}>
+          <img className="rounded ml-4 mt-2" src={s.image} alt="freelancer" />
+          <p className="ml-4">
+            <br />
+            <b>{s.service}</b>
+            <br />
+            de {s.name}
+          </p>
+        </footer>
+      </div>);
+}
 
 const getFreelancersCards = () => {
   return freelancers.map((s, index) => (
@@ -414,7 +479,11 @@ const Home = () => {
             <div className="column is-10 is-offset-1 has-text-left">
               <p className="subtitle-dark mb-6">Servicios a explorar</p>
 
-              <ScrollingMenu items={getFreelancersCards()} />
+              {/* <ScrollingMenu items={getFreelancersCards()} /> */}
+              <div className="card">
+                <Carousel value={freelancers} numVisible={3} numScroll={1} showIndicators={false} responsiveOptions={responsiveOptions}
+                    itemTemplate={getFreelancersCardsTheme} onTouchMove={() => {}}/>
+            </div>
             </div>
           </div>
         </div>

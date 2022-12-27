@@ -11,6 +11,7 @@ import { setDateString } from "../utils/dates";
 import ServicesByFreelancer from "../components/ServicesByFreelancer";
 import Carousel from "react-gallery-carousel";
 import "react-gallery-carousel/dist/index.css";
+import { Avatar } from "primereact/avatar";
 
 const FreelancerProfile = () => {
   const { id } = useParams();
@@ -83,8 +84,14 @@ const FreelancerProfile = () => {
               <p className="subtitle-dark">Perfil</p>
               <div className="columns mt-4 is-vcentered">
                 <div className="column is-3 is-3-widescreen">
-                  {/* <RoundedImage url={getURLImage(freelancer?.photo)} /> */}
-                  <img className="rounded mt-2" style={{width: "100px", height: "100px"}} src={getURLImage(freelancer?.photo)} alt="freelancer" />
+               
+                  {freelancer?.photo && <Avatar
+                    className="ml-4 mt-2"
+                    image={getURLImage(freelancer?.photo)}
+                    style={{ width: "100px", height: "100px" }}
+                    size="xlarge"
+                    shape="circle"
+                  />}
                 </div>
                 <div className="column is-3">
                   <p>
@@ -124,14 +131,26 @@ const FreelancerProfile = () => {
               <br />
 
               <div className="columns tags are-medium">
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">Habilidad 1</div>
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">Habilidad 2</div>
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">Habilidad 3</div>
+                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
+                  Habilidad 1
+                </div>
+                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
+                  Habilidad 2
+                </div>
+                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
+                  Habilidad 3
+                </div>
               </div>
               <div className="columns tags are-medium">
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">Habilidad 4</div>
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">Habilidad 5</div>
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">Habilidad 6</div>
+                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
+                  Habilidad 4
+                </div>
+                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
+                  Habilidad 5
+                </div>
+                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
+                  Habilidad 6
+                </div>
               </div>
 
               <p className="text-dark mt-6">¿Por qué yo?</p>
@@ -213,13 +232,13 @@ const FreelancerProfile = () => {
         </SectionContent>
       </CustomSection>
       <CustomSection type="white">
-        <SectionContent type="white">
+        {/* <SectionContent type="white"> */}
           <p className="subtitle-2-dark mt-6">
             Más servicios de {freelancer?.name}
           </p>
           <br />
           <ServicesByFreelancer freelancerId={freelancer?.id} />
-        </SectionContent>
+        {/* </SectionContent> */}
       </CustomSection>
     </>
   );

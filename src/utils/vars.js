@@ -1,3 +1,3 @@
 export const vars = {
-    BACKEND_URL: "https://localhost:44340/"
+    BACKEND_URL: process.env.REACT_APP_API_URL,
 }

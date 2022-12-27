@@ -12,6 +12,7 @@ import Carousel from "react-gallery-carousel";
 import "react-gallery-carousel/dist/index.css";
 import ServicesByFreelancer from "../components/ServicesByFreelancer";
 import { routes } from "../routes";
+import { Avatar } from "primereact/avatar";
 
 const Service = () => {
   const { id } = useParams();
@@ -72,6 +73,12 @@ const Service = () => {
                   src={getURLImage(s.comment?.user?.photo)}
                   alt="freelancer"
                 />
+                {/* <Avatar
+                  className="ml-4 mt-2"
+                  image={getURLImage(s.comment?.user?.photo)}
+                  size="xlarge"
+                  shape="circle"
+                /> */}
                 <p className="ml-4">
                   <br />
                   <b>{s.comment.title}</b>
@@ -183,9 +190,18 @@ const Service = () => {
                       service.freelancerId
                     )}
                   >
-                    <RoundedImage
+                    {service.freelancer?.photo && (
+                        <Avatar
+                          className="ml-4 mt-2"
+                          image={getURLImage(service.freelancer?.photo)}
+                          size="large"
+                          shape="circle"
+                        />
+                      )}
+                   
+                    {/* <RoundedImage
                       url={getURLImage(service.freelancer?.photo)}
-                    />
+                    /> */}
                     <p>{service.freelancer?.name}</p>
                   </Link>
                 </div>
@@ -267,9 +283,17 @@ const Service = () => {
                   <p className="subtitle-2-dark mb-4">Vendedor</p>
                   <div className="columns is-multiline">
                     <div className="column is-3-widescreen is-12-tablet has-text-centered  has-text-centered-mobile">
-                      <RoundedImage
+                      {/* <RoundedImage
                         url={getURLImage(service.freelancer?.photo)}
-                      />
+                      /> */}
+                      {service.freelancer?.photo && (
+                        <Avatar
+                          className="mt-2"
+                          image={getURLImage(service.freelancer?.photo)}
+                          size="large"
+                          shape="circle"
+                        />
+                      )}
                     </div>
                     <div className="column is-10  is-12-tablet is-multiline">
                       <div className="columns is-multiline">
@@ -341,13 +365,13 @@ const Service = () => {
         </SectionContent>
       </CustomSection>
       <CustomSection type="white">
-        <SectionContent type="white">
+        {/* <SectionContent type="white"> */}
           <p className="subtitle-2-dark mt-6">
             Más servicios de {service.freelancer?.name}
           </p>
           <br />
           <ServicesByFreelancer freelancerId={service.freelancer?.id} />
-        </SectionContent>
+        {/* </SectionContent> */}
       </CustomSection>
     </>
   );

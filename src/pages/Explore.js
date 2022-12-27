@@ -7,6 +7,7 @@ import { getURLImage } from "../utils/images";
 import SectionContent from "../components/SectionContent";
 import { Link, useParams } from "react-router-dom";
 import { routes } from "../routes";
+import { Avatar } from "primereact/avatar";
 
 const Explore = () => {
   const { id } = useParams();
@@ -80,7 +81,9 @@ const Explore = () => {
 
   const freelancerCard = (service, size) => {
     return (
-      <div className={"column is-3-widescreen is-6-desktop is-6 has-text-centered"}>
+      <div
+        className={"column is-3-widescreen is-6-desktop is-6 has-text-centered"}
+      >
         <Link to={routes.SERVICE.replace(":id", service.id)}>
           <div
             className="card"
@@ -102,15 +105,20 @@ const Explore = () => {
                   src={getURLImage(service.category?.image)}
                   alt="servicio"
                 />
-                <hr className="m-2"/>
+                <hr className="m-2" />
                 <div className="has-text-left">
                   <div className="columns is-vcentered is-mobile">
-                    <div className="column is-4-tablet is-4-mobile is-3-desktop is-3-widescreen">
-                      <img
+                    <div className="column ml-4 is-4-tablet is-4-mobile is-3-desktop is-3-widescreen has-text-centered">
+                      {/* <img
                         className="rounded ml-4 mt-2"
 
                         src={getURLImage(service.freelancer?.photo)}
                         alt="freelancer"
+                      /> */}
+                      <Avatar
+                        image={getURLImage(service.freelancer?.photo)}
+                        size="large"
+                        shape="circle"
                       />
                     </div>
                     <div className="column is-8-mobile">
@@ -133,10 +141,12 @@ const Explore = () => {
                 </div>
               </div>
             </div>
-            <hr className="m-1"/>
+            <hr className="m-1" />
             <div className="has-text-right mt-3 p-1 mb-3">
               <div className="has-text-right">
-                <p className="has-text-right"><b>A partir de ${service.packages[0].cost} MXN</b></p>
+                <p className="has-text-right">
+                  <b>A partir de ${service.packages[0].cost} MXN</b>
+                </p>
               </div>
             </div>
           </div>

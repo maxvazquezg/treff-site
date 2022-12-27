@@ -232,16 +232,6 @@ export default function Navbar(props) {
                   className="ml-4"
                 />
               </Link>
-              {/* <div className="navbar-item">
-                <div className="buttons">
-                  <button
-                    className="button is-link"
-                    onClick={(e) => op.current.toggle(e)}
-                  >
-                    Usuario
-                  </button>
-                </div>
-              </div> */}
             </div>
           ) : (
             <div className="navbar-end">

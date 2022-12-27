@@ -6,7 +6,6 @@ import { getURLImage } from "../utils/images";
 import SectionContent from "../components/SectionContent";
 import ReactStars from "react-rating-stars-component";
 import { Link, useParams } from "react-router-dom";
-import RoundedImage from "../components/RoundedImage";
 import { setDateString } from "../utils/dates";
 import Carousel from "react-gallery-carousel";
 import "react-gallery-carousel/dist/index.css";
@@ -63,7 +62,6 @@ const Service = () => {
             }}
           >
             <div className="content pl-5 pr-5">
-              {/* <img src={getURLImage(service.category?.image)} alt="servicio" /> */}
               <div className="has-text-right">
                 {setDateString(s.comment.createdDate)}
               </div>
@@ -191,30 +189,24 @@ const Service = () => {
                     )}
                   >
                     {service.freelancer?.photo && (
-                        <Avatar
-                          className="ml-4 mt-2"
-                          image={getURLImage(service.freelancer?.photo)}
-                          size="large"
-                          shape="circle"
-                        />
-                      )}
-                   
-                    {/* <RoundedImage
-                      url={getURLImage(service.freelancer?.photo)}
-                    /> */}
+                      <Avatar
+                        className="ml-4 mt-2"
+                        image={getURLImage(service.freelancer?.photo)}
+                        size="large"
+                        shape="circle"
+                      />
+                    )}
                     <p>{service.freelancer?.name}</p>
                   </Link>
                 </div>
               </div>
               {service.serviceImages && service.serviceImages.length > 0 && (
-                // <ScrollingMenu items={showImages(service.serviceImages)} />
                 <div className="carousel-container short">
                   <Carousel
                     images={getGallery(service.serviceImages)}
                     hasThumbnails={false}
                     hasMediaButton={false}
                     hasSizeButton="bottomRight"
-                    // style={{ height: "25vh", width: "100%" }}
                   />
                 </div>
               )}
@@ -227,11 +219,6 @@ const Service = () => {
                       Lo que la gente resalta del freelancer
                     </p>
                     <br />
-                    {/* <ScrollingMenu
-                      items={getComments(
-                        service.freelancer?.freelancerComments
-                      )}
-                    /> */}
                     <div className="carousel-container short">
                       <Carousel
                         isLoop={false}
@@ -283,9 +270,6 @@ const Service = () => {
                   <p className="subtitle-2-dark mb-4">Vendedor</p>
                   <div className="columns is-multiline">
                     <div className="column is-3-widescreen is-12-tablet has-text-centered  has-text-centered-mobile">
-                      {/* <RoundedImage
-                        url={getURLImage(service.freelancer?.photo)}
-                      /> */}
                       {service.freelancer?.photo && (
                         <Avatar
                           className="mt-2"
@@ -365,13 +349,11 @@ const Service = () => {
         </SectionContent>
       </CustomSection>
       <CustomSection type="white">
-        {/* <SectionContent type="white"> */}
-          <p className="subtitle-2-dark mt-6">
-            Más servicios de {service.freelancer?.name}
-          </p>
-          <br />
-          <ServicesByFreelancer freelancerId={service.freelancer?.id} />
-        {/* </SectionContent> */}
+        <p className="subtitle-2-dark mt-6">
+          Más servicios de {service.freelancer?.name}
+        </p>
+        <br />
+        <ServicesByFreelancer freelancerId={service.freelancer?.id} />
       </CustomSection>
     </>
   );

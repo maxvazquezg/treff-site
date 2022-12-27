@@ -151,9 +151,7 @@ const ExploreCategory = () => {
                       ) : null}
                       {categories.length > 0 ? (
                         <div className="columns is-multiline">
-                          {/* <div className="column is-12 has-text-left"> */}
                           {getCategoriesCards(categories)}
-                          {/* </div> */}
                         </div>
                       ) : null}
                     </div>

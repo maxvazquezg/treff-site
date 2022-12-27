@@ -3,13 +3,11 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FreelancerApi } from "../api";
 import CustomSection from "../components/CustomSection";
-import RoundedImage from "../components/RoundedImage";
 import SectionContent from "../components/SectionContent";
 import { getURLImage } from "../utils/images";
 import ReactStars from "react-rating-stars-component";
 import { setDateString } from "../utils/dates";
 import ServicesByFreelancer from "../components/ServicesByFreelancer";
-import Carousel from "react-gallery-carousel";
 import "react-gallery-carousel/dist/index.css";
 import { Avatar } from "primereact/avatar";
 
@@ -41,7 +39,6 @@ const FreelancerProfile = () => {
             }}
           >
             <div className="content pl-5 pr-5">
-              {/* <img src={getURLImage(service.category?.image)} alt="servicio" /> */}
               <div className="has-text-right">
                 {setDateString(s.comment.createdDate)}
               </div>
@@ -78,7 +75,6 @@ const FreelancerProfile = () => {
     <>
       <CustomSection type="white">
         <SectionContent type="light">
-          {/* Columna izquierda */}
           <div className="columns is-multiline">
             <div className="column  is-6-widescreen is-12-tablet">
               <p className="subtitle-dark">Perfil</p>
@@ -165,33 +161,7 @@ const FreelancerProfile = () => {
               <p className="text-dark">Reseñas</p>
               <br />
               <div className="carousel-container short">
-                {/* <Carousel
-                  isLoop={false}
-                  hasIndexBoard={false}
-                  hasMediaButton={false}
-                  hasMediaButtonAtMax="bottomLeft"
-                  hasDotButtons="bottom"
-                  hasThumbnails={false}
-                  shouldSwipeOnMouse={false} // for selecting text
-                  shouldMinimizeOnSwipeDown={false} // for vertical overflow scrolling
-                  hasSizeButton={false}
-                  style={{ userSelect: "text" }}
-                  leftIcon={
-                    <img
-                      src={process.env.PUBLIC_URL + "/images/Atras.png"}
-                      alt="adelante"
-                    />
-                  }
-                  rightIcon={
-                    <img
-                      src={process.env.PUBLIC_URL + "/images/Adelante.png"}
-                      alt="adelante"
-                    />
-                  }
-                > */}
                 {getComments(freelancer?.freelancerComments)}
-                {/* </Carousel> */}
-
                 <div className="columns mt-6">
                   <div className="column is-6">
                     <p className="text-dark">Educación</p>
@@ -232,13 +202,11 @@ const FreelancerProfile = () => {
         </SectionContent>
       </CustomSection>
       <CustomSection type="white">
-        {/* <SectionContent type="white"> */}
           <p className="subtitle-2-dark mt-6">
             Más servicios de {freelancer?.name}
           </p>
           <br />
           <ServicesByFreelancer freelancerId={freelancer?.id} />
-        {/* </SectionContent> */}
       </CustomSection>
     </>
   );

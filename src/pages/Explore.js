@@ -109,12 +109,6 @@ const Explore = () => {
                 <div className="has-text-left">
                   <div className="columns is-vcentered is-mobile">
                     <div className="column ml-4 is-4-tablet is-4-mobile is-3-desktop is-3-widescreen has-text-centered">
-                      {/* <img
-                        className="rounded ml-4 mt-2"
-
-                        src={getURLImage(service.freelancer?.photo)}
-                        alt="freelancer"
-                      /> */}
                       <Avatar
                         image={getURLImage(service.freelancer?.photo)}
                         size="large"

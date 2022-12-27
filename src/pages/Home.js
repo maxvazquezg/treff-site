@@ -1,8 +1,7 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Parallax, Background } from "react-parallax";
 import ScrollingMenu from "../components/ScrollingMenu";
-import CategoryApi from "../api/CategoryApi";
 import { Link } from "react-router-dom";
 import { routes } from "../routes";
 import { Carousel } from 'primereact/carousel';
@@ -236,62 +235,8 @@ const getFreelancersCardsTheme = (s) => {
       </div>);
 }
 
-const getFreelancersCards = () => {
-  return freelancers.map((s, index) => (
-    <div key={index} className="column has-text-centered">
-      <div
-        className="card"
-        style={{
-          width: "400px",
-          height: "350.04px",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          cursor: "pointer",
-          padding: "10px 0px 0px 0px",
-        }}
-      >
-        <div
-          className="card-content"
-          style={{
-            padding: "10px 0px 0px 0px",
-          }}
-        >
-          <div className="content">
-            <img src={s.backgroundImage} alt="servicio" />
-          </div>
-        </div>
-        <footer className="card-footer has-text-left">
-          <img className="rounded ml-4 mt-2" src={s.image} alt="freelancer" />
-          <p className="ml-4">
-            <br />
-            <b>{s.service}</b>
-            <br />
-            de {s.name}
-          </p>
-        </footer>
-      </div>
-    </div>
-  ));
-};
 
 const Home = () => {
-  // useEffect(() => {
-  //   const getBadges = async () => {
-  //     await CategoryApi.getCategories();
-  //     // const badges = await BadgeApi.getBadges();
-  //     // let data = badges.map((b) => {
-  //     //   // b.name = unescape(b.name);
-  //     //   b.name = b.name.replace("&amp;", "&");
-  //     //   return b;
-  //     // });
-  //     // setData(data);
-  //     // // filteredItems = badges && badges.filter(
-  //     // //     item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
-  //     // // );
-  //   };
-  //   getBadges();
-  // }, []);
-
   return (
     <>
       <Parallax blur={0} bgImageAlt="Treff" strength={500}>

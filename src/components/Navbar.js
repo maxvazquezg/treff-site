@@ -4,7 +4,7 @@ import { routes } from "../routes";
 import { Dialog } from "primereact/dialog";
 import CreateAccountModal from "./CreateAccountModal";
 import LoginModal from "./LoginModal";
-// import {CreateAccountModal} from "./CreateAccountModal"
+import { OverlayPanel } from 'primereact/overlaypanel';
 
 export default function Navbar(props) {
   const [isActive, setIsActive] = React.useState(false);
@@ -13,7 +13,7 @@ export default function Navbar(props) {
   const clickMenuHandler = () => {
     setIsActive(!isActive);
   };
-
+  const user = JSON.parse(localStorage.getItem("user"));
   // const customStyles = {
   //   hamburguerSpans: {
   //     width: "25px",
@@ -119,7 +119,7 @@ export default function Navbar(props) {
         </div>
       </nav> */}
       {/* </section> */}
-      
+
       {/* DESKTOP */}
       {/* <section className="navbar  is-fixed-top is-hidden-mobile is-hidden-tablet-only pl-5 pt-2"> */}
       {/* <nav
@@ -204,38 +204,64 @@ export default function Navbar(props) {
           className={`navbar-menu ${isActive ? "is-active" : ""}`}
         >
           <div className="navbar-start">
-            <Link to={routes.EXPLORE} className="navbar-item" onClick={() => clickMenuHandler()}>
+            <Link
+              to={routes.EXPLORE}
+              className="navbar-item"
+              onClick={() => clickMenuHandler()}
+            >
               Explora
             </Link>
-            <Link to={routes.PRODUCTS} className="navbar-item" onClick={() => clickMenuHandler()}>
+            <Link
+              to={routes.PRODUCTS}
+              className="navbar-item"
+              onClick={() => clickMenuHandler()}
+            >
               Acerca de nosotros
             </Link>
-            <Link to={routes.TECH_DATA} className="navbar-item" onClick={() => clickMenuHandler()}>
+            <Link
+              to={routes.TECH_DATA}
+              className="navbar-item"
+              onClick={() => clickMenuHandler()}
+            >
               Contacto
             </Link>
-            <Link to={routes.POSTS} className="navbar-item" onClick={() => clickMenuHandler()}>
+            <Link
+              to={routes.POSTS}
+              className="navbar-item"
+              onClick={() => clickMenuHandler()}
+            >
               Privacidad
             </Link>
-            <Link to={routes.ABOUT_US} className="navbar-item" onClick={() => clickMenuHandler()}>
+            <Link
+              to={routes.ABOUT_US}
+              className="navbar-item"
+              onClick={() => clickMenuHandler()}
+            >
               Sobre Nosotros
             </Link>
           </div>
-
-          <div className="navbar-end">
-            <Link className="navbar-item" onClick={() => setVisibleLogin(true)}>
-              Iniciar sesión
-            </Link>
-            <div className="navbar-item">
-              <div className="buttons">
-                <button
-                  className="button is-link"
-                  onClick={() => setVisibleCreate(true)}
-                >
-                  Crea tu cuenta
-                </button>
+          {user ? (
+            "Logeado"
+          ) : (
+            <div className="navbar-end">
+              <Link
+                className="navbar-item"
+                onClick={() => setVisibleLogin(true)}
+              >
+                Iniciar sesión
+              </Link>
+              <div className="navbar-item">
+                <div className="buttons">
+                  <button
+                    className="button is-link"
+                    onClick={() => setVisibleCreate(true)}
+                  >
+                    Crea tu cuenta
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </nav>
       {!isActive && (

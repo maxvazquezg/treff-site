@@ -14,7 +14,7 @@ const CreateAccountModal = (props) => {
   const onSubmit = async(data) => {
     setIsLoading(true);
     const userResponse = await FreelancerApi.createFreelancer(data);
-    localStorage.setItem("user", userResponse);
+    localStorage.setItem("user", JSON.stringify(userResponse));
     props.onClose();
     setIsLoading(false);
   }

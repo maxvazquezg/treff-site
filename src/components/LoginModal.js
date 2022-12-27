@@ -17,7 +17,7 @@ const LoginModal = (props) => {
     setIsLoading(true);
     try {
       const userResponse = await FreelancerApi.loginFreelancer(data);
-      localStorage.setItem("user", userResponse);
+      localStorage.setItem("user", JSON.stringify(userResponse));
       props.onClose();
       setIsLoading(false);
     } catch (e) {

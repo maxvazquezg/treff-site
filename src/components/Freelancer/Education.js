@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { CountriesApi } from "../../api";
-import { InputNumber } from "primereact/inputnumber";
+import { Calendar } from 'primereact/calendar';
 
 const Education = () => {
   const [countries, setCountries] = useState([]);
-  const [value20, setValue20] = useState(50);
+  const [date10, setDate10] = useState(null);
   useEffect(() => {
     const getCountries = async () => {
       const response = await CountriesApi.getCountries();
@@ -59,20 +59,21 @@ const Education = () => {
               />
             </div>
           </div>
-          <div className="field col-12 md:col-3">
-            {/* <label htmlFor="minmax-buttons">Min-Max Boundaries</label> */}
-            <InputNumber
-              inputId="minmax-buttons"
-              value={value20}
-              onValueChange={(e) => setValue20(e.value)}
-              showButtons
-              min={1970}
-              max={new Date().getFullYear()}
+          <div className="field col-12 md:col-4">
+            <label htmlFor="yearpicker">Año</label>
+            <br/>
+            <Calendar
+              id="yearpicker"
+              value={date10}
+              onChange={(e) => setDate10(e.value)}
+              view="year"
+              dateFormat="yy"
+              maxDate={new Date()}
             />
           </div>
           <div class="control mt-6 has-text-centered">
             <button
-            //   onClick={() => update()}
+              //   onClick={() => update()}
               className="button is-success"
               style={{ width: "328px" }}
             >

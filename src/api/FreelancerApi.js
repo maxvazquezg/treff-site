@@ -30,6 +30,15 @@ class FreelancerApi extends BaseApi {
     }
   }
 
+  async updateFreelancer(id, request) {
+    try {
+      const data = await this.put(`${FREELANCER_ENDPOINT}/Update?id=${id}`, request);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async loginFreelancer(request) {
     try {
       const data = await this.post(`${FREELANCER_ENDPOINT}/login`, request);

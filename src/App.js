@@ -11,11 +11,16 @@ import Explore from "./pages/Explore";
 import Service from "./pages/Service";
 import FreelancerProfile from "./pages/FreelancerProfile";
 
-import 'primeicons/primeicons.css';
-import 'primereact/resources/themes/lara-light-indigo/theme.css';
-import 'primereact/resources/primereact.css';
+import "primeicons/primeicons.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.css";
 import Logout from "./pages/Logout";
 import LoadingIndicator from "./LoadingIndicator";
+import DashboardFreelancerProfile from "./pages/Freelancer/DashboardFreelancerProfile";
+import { ScrollTop } from "primereact/scrolltop";
+import Skills from "./components/Skills";
+import FreelancerProfileArea from "./pages/Freelancer/FreelancerProfileArea";
+import Education from "./components/Freelancer/Education";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -24,7 +29,7 @@ function App() {
     <div className="App">
       <LoadingIndicator />
       <Navbar />
-
+      <ScrollTop />
       <div>
         <Routes>
           <Route path={routes.HOME} element={<Home />} />
@@ -32,7 +37,28 @@ function App() {
           <Route path={routes.EXPLORE} element={<Explore />} />
           <Route path={routes.EXPLOREID} element={<Explore />} />
           <Route path={routes.SERVICE} element={<Service />} />
-          <Route path={routes.FREELANCERPROFILE} element={<FreelancerProfile />} />
+          <Route
+            path={routes.FREELANCERPROFILE}
+            element={<FreelancerProfile />}
+          />
+          <Route
+            path={routes.DASHBOARD_FREELANCER}
+            element={<DashboardFreelancerProfile />}
+          >
+            <Route
+              path={routes.DASHBOARD_FREELANCERPROFILE}
+              element={<FreelancerProfileArea />}
+            >
+              <Route
+                path={routes.DASHBOARD_FREELANCERSKILLS}
+                element={<Skills />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCEREDUCATION}
+                element={<Education />}
+              ></Route>
+            </Route>
+          </Route>
           <Route path={routes.LOGOUT} element={<Logout />} />
           <Route path="/treff-site" element={<Home />} />
           {/* <RouterProvider router={router} /> */}

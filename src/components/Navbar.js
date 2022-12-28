@@ -24,7 +24,11 @@ export default function Navbar(props) {
 
   const profileOption = (text, image, target, action) => {
     return (
-      <Link to={target} onClick={() => action()} className="p-18-dark is-vcentered">
+      <Link
+        to={target}
+        onClick={() => action()}
+        className="p-18-dark is-vcentered"
+      >
         <div className="columns is-mobile">
           <div className="column is-2">
             {image && (
@@ -45,7 +49,11 @@ export default function Navbar(props) {
     {
       text: "Perfil",
       image: "/images/profile.svg",
-      target: "",
+      target: routes.DASHBOARD_FREELANCERPROFILE,
+      action: () => {
+        clickMenuHandler();
+        op.current.toggle();
+      },
     },
     {
       text: "Dashboard",
@@ -83,7 +91,7 @@ export default function Navbar(props) {
       target: "",
       action: () => {
         setUserData(null);
-        clickMenuHandler()
+        clickMenuHandler();
         localStorage.clear();
         navigate(routes.HOME);
         op.current.toggle();
@@ -134,12 +142,12 @@ export default function Navbar(props) {
     },
   ];
 
-  const onCloseLogin = () =>{
+  const onCloseLogin = () => {
     setVisibleLogin(false);
     const userResponse = JSON.parse(localStorage.getItem("user"));
     setUserData(userResponse);
     clickMenuHandler();
-  }
+  };
 
   return (
     <>
@@ -150,7 +158,11 @@ export default function Navbar(props) {
         style={{ height: "64px" }}
       >
         <div className="navbar-brand">
-          <Link className="navbar-item" to={routes.HOME}>
+          <Link
+            className="navbar-item"
+            to={routes.HOME}
+            onClick={() => setIsActive(false)}
+          >
             <img
               src={
                 process.env.PUBLIC_URL + "/images/Treff_03_color_gradient 2.png"
@@ -275,7 +287,7 @@ export default function Navbar(props) {
       <Dialog
         visible={visibleLogin}
         onHide={() => setVisibleLogin(false)}
-        breakpoints={{ "960px": "75vw", "640px": "100vw" }}
+        breakpoints={{ "1024px": "75vw", "960px": "75vw", "640px": "100vw" }}
         // style={{ width: "50vw" }}
       >
         <LoginModal onClose={() => onCloseLogin()} />

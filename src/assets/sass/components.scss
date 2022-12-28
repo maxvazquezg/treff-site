@@ -11,3 +11,26 @@
 .login-form > .field > .input{
     background-color: $light;
 }
+
+.blue > .p-menubar{
+    background-color: $link !important;
+    color: #fff !important;
+    border-radius: 0px !important;
+    border: 0px !important;
+}
+
+.blue > .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text{
+    color: #fff !important;
+}
+
+.gray > .p-menubar{
+    background-color: $light !important;
+    color: #9F9D9D !important;
+    border-radius: 0px !important;
+    border: 0px !important;
+}
+
+.gray > .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text{
+    color: #9F9D9D !important;
+}
+

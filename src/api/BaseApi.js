@@ -9,6 +9,10 @@ export default class BaseApi {
     return await trackPromise(axios.get(url + params));
   }
 
+  async getWithoutUrlParent(params) {
+    return await trackPromise(axios.get(params));
+  }
+
   async post(params, request) {
     return await trackPromise(axios.post(url + params, request));
   }

@@ -1,7 +1,7 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import React, { useEffect, useState } from "react";
 import CategoryApi from "../api/CategoryApi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { routes } from "../routes";
 import { getURLImage } from "../utils/images";
 
@@ -25,9 +25,9 @@ const ExploreCategory = () => {
       var dataBreadcrumbs = [...breadcrumb];
       dataBreadcrumbs.push(
         <li>
-          <a href onClick={(e) => seeSubCategories(category)}>
+          <Link onClick={(e) => seeSubCategories(category)}>
             {category.name}
-          </a>
+          </Link>
         </li>
       );
 
@@ -47,9 +47,9 @@ const ExploreCategory = () => {
 
   let breadcrumbs = [
     <li>
-      <a href onClick={setDefaultCategories}>
+      <Link onClick={setDefaultCategories}>
         Todas las categorías
-      </a>
+      </Link>
     </li>,
   ];
 

@@ -48,7 +48,7 @@ const WhyMe = () => {
             ></textarea>
             {errors.whyMe && <span>Este campo es requerido</span>}
           </div>
-          <div class="control mt-6 has-text-centered is-mobile">
+          <div className="control mt-6 has-text-centered is-mobile">
             <input
               type={"submit"}
               className="button is-success is-responsive is-medium"

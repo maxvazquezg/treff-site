@@ -18,9 +18,9 @@ const Education = () => {
     <>
       <div className="pb-6">
         <form>
-          <div class="field">
-            {/* <label class="label">Subject</label> */}
-            <div class="control">
+          <div className="field">
+            {/* <label className="label">Subject</label> */}
+            <div className="control">
               <div className="select">
                 <select>
                   <option>País de estudios</option>
@@ -41,9 +41,9 @@ const Education = () => {
           </div>
           <div className="columns is-multiline">
             <div className="column is-3-widescreen is-full-desktop">
-              <div class="field">
-                {/* <label class="label">Subject</label> */}
-                <div class="control">
+              <div className="field">
+                {/* <label className="label">Subject</label> */}
+                <div className="control">
                   <div className="select">
                     <select>
                       <option>Titulo</option>
@@ -55,7 +55,7 @@ const Education = () => {
               </div>
             </div>
             <div className="column is-9-widescreen is-full-desktop">
-              <div class="field">
+              <div className="field">
                 <div className="control">
                   <input
                     className="input"
@@ -78,7 +78,7 @@ const Education = () => {
               maxDate={new Date()}
             />
           </div>
-          <div class="control mt-6 has-text-centered">
+          <div className="control mt-6 has-text-centered">
             <button
               //   onClick={() => update()}
               className="button is-success"

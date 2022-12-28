@@ -102,8 +102,8 @@ export default function Navbar(props) {
   const createMenuProfile = () => {
     return (
       <ul className="menu-list">
-        {menuProfile.map((o) => (
-          <li>{profileOption(o.text, o.image, o.target, o.action)}</li>
+        {menuProfile.map((o,i) => (
+          <li key={i}>{profileOption(o.text, o.image, o.target, o.action)}</li>
         ))}
       </ul>
     );
@@ -174,8 +174,8 @@ export default function Navbar(props) {
             />
           </Link>
 
-          <a
-            href={() => false}
+          <Link
+            // href={() => false}
             role="button"
             className="navbar-burger"
             aria-label="menu"
@@ -186,7 +186,7 @@ export default function Navbar(props) {
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-          </a>
+          </Link>
         </div>
 
         <div

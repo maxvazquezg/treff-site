@@ -14,6 +14,7 @@ import { Avatar } from "primereact/avatar";
 const FreelancerProfile = () => {
   const { id } = useParams();
   const [freelancer, setFreelancer] = useState([]);
+  const [skills, setSkills] = useState([]);
 
   const getComments = (comments) => {
     if (!comments) {
@@ -66,6 +67,8 @@ const FreelancerProfile = () => {
     const getFreelancer = async () => {
       const servs = await FreelancerApi.getFreelancerById(id);
       setFreelancer(servs);
+      const dataSkills = servs.skills.split("||");
+      setSkills(dataSkills);
     };
     if (id) {
       getFreelancer();
@@ -80,14 +83,15 @@ const FreelancerProfile = () => {
               <p className="subtitle-dark">Perfil</p>
               <div className="columns mt-4 is-vcentered">
                 <div className="column is-3 is-3-widescreen">
-               
-                  {freelancer?.photo && <Avatar
-                    className="ml-4 mt-2"
-                    image={getURLImage(freelancer?.photo)}
-                    style={{ width: "100px", height: "100px" }}
-                    size="xlarge"
-                    shape="circle"
-                  />}
+                  {freelancer?.photo && (
+                    <Avatar
+                      className="ml-4 mt-2"
+                      image={getURLImage(freelancer?.photo)}
+                      style={{ width: "100px", height: "100px" }}
+                      size="xlarge"
+                      shape="circle"
+                    />
+                  )}
                 </div>
                 <div className="column is-3">
                   <p>
@@ -127,26 +131,11 @@ const FreelancerProfile = () => {
               <br />
 
               <div className="columns tags are-medium">
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
-                  Habilidad 1
-                </div>
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
-                  Habilidad 2
-                </div>
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
-                  Habilidad 3
-                </div>
-              </div>
-              <div className="columns tags are-medium">
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
-                  Habilidad 4
-                </div>
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
-                  Habilidad 5
-                </div>
-                <div className="column is-3 is-full-mobile tag is-dark is-rounded">
-                  Habilidad 6
-                </div>
+                {skills.map((s, i) => (
+                  <div key={i} className="column is-3 is-full-mobile tag is-dark is-rounded">
+                    {s}
+                  </div>
+                ))}
               </div>
 
               <p className="text-dark mt-6">¿Por qué yo?</p>
@@ -202,11 +191,11 @@ const FreelancerProfile = () => {
         </SectionContent>
       </CustomSection>
       <CustomSection type="white">
-          <p className="subtitle-2-dark mt-6">
-            Más servicios de {freelancer?.name}
-          </p>
-          <br />
-          <ServicesByFreelancer freelancerId={freelancer?.id} />
+        <p className="subtitle-2-dark mt-6">
+          Más servicios de {freelancer?.name}
+        </p>
+        <br />
+        <ServicesByFreelancer freelancerId={freelancer?.id} />
       </CustomSection>
     </>
   );

@@ -18,9 +18,10 @@ import Logout from "./pages/Logout";
 import LoadingIndicator from "./LoadingIndicator";
 import DashboardFreelancerProfile from "./pages/Freelancer/DashboardFreelancerProfile";
 import { ScrollTop } from "primereact/scrolltop";
-import Skills from "./components/Skills";
+import Skills from "./components/Freelancer/Skills";
 import FreelancerProfileArea from "./pages/Freelancer/FreelancerProfileArea";
 import Education from "./components/Freelancer/Education";
+import WhyMe from "./components/Freelancer/WhyMe";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -56,6 +57,10 @@ function App() {
               <Route
                 path={routes.DASHBOARD_FREELANCEREDUCATION}
                 element={<Education />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCERWHYME}
+                element={<WhyMe />}
               ></Route>
             </Route>
           </Route>

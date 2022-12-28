@@ -10,6 +10,7 @@ export const routes = {
   DASHBOARD_FREELANCERPROFILE: "Profile",
   DASHBOARD_FREELANCERSKILLS: "Skills",
   DASHBOARD_FREELANCEREDUCATION: "Education",
+  DASHBOARD_FREELANCERWHYME: "WhyMe",
   SERVICE: "/Service/:id",
   LOGIN: "/Login",
   LOGOUT: "/Logout",

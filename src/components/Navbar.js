@@ -49,7 +49,7 @@ export default function Navbar(props) {
     {
       text: "Perfil",
       image: "/images/profile.svg",
-      target: routes.DASHBOARD_FREELANCERPROFILE,
+      target: routes.DASHBOARD_FREELANCER + "/" + routes.DASHBOARD_FREELANCERPROFILE + "/" + routes.DASHBOARD_FREELANCERSKILLS,
       action: () => {
         clickMenuHandler();
         op.current.toggle();

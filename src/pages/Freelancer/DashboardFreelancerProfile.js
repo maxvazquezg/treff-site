@@ -7,9 +7,8 @@ import { routes } from "../../routes";
 import { setDateString } from "../../utils/dates";
 import { getURLImage } from "../../utils/images";
 import { Menubar } from "primereact/menubar";
-import { Routes, Route, Link, Outlet } from 'react-router-dom';
-
-
+import { Routes, Route, Link, Outlet } from "react-router-dom";
+import treffWaves from "../../assets/images/treff_waves.png";
 
 const DashboardFreelancerProfile = () => {
   const navigate = useNavigate();
@@ -24,14 +23,46 @@ const DashboardFreelancerProfile = () => {
     checkUser();
   }, [navigate]);
 
+  const highlightElement = (e, route) => {
+    let menuItems = document.getElementsByClassName("blue-back");
+
+    for (let element of menuItems) {
+      element.classList.remove("blue-back");
+    }
+
+    e.item.className = "p-menuitem-active";
+    let span = e.originalEvent.target;
+    // navigate(routes.DASHBOARD_FREELANCERSKILLS);
+    span.classList.add("blue-back-text");
+    span.parentElement.classList.add("blue-back");
+  };
+
   const items = [
     {
       label: "Perfil",
-      command: () => {navigate(routes.DASHBOARD_FREELANCERPROFILE)},
+      command: (e) => {
+        // navigate(
+        //   routes.DASHBOARD_FREELANCERPROFILE +
+        //     "/" +
+        //     routes.DASHBOARD_FREELANCERSKILLS
+        // );
+        highlightElement(e, routes.DASHBOARD_FREELANCERPROFILE +
+          "/" +
+          routes.DASHBOARD_FREELANCERSKILLS);
+      },
+      className: "blue-back",
       // icon: "pi pi-fw pi-power-off",
     },
     {
       label: "Mensajes",
+      command: (e) => {
+        // navigate(
+        //   routes.DASHBOARD_FREELANCERPROFILE +
+        //     "/" +
+        //     routes.DASHBOARD_FREELANCERSKILLS
+        // );
+        highlightElement(e);
+      },
       // icon: "pi pi-fw pi-power-off",
     },
     {
@@ -63,12 +94,9 @@ const DashboardFreelancerProfile = () => {
   return (
     <>
       <section
-        className="hero is-primary"
+        className="hero is-info backgroud-wave-full"
         style={{
-          backgroundImage:
-            "url('" +
-            process.env.PUBLIC_URL +
-            "/images/Treff_textura02 (1) 1.png')",
+          backgroundImage: "url(" + treffWaves + ")",
           paddingBottom: "0px !important",
         }}
       >

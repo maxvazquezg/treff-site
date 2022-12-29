@@ -10,11 +10,14 @@ import { Dropdown } from "primereact/dropdown";
 import { useForm } from "react-hook-form";
 import { getUserStorage, setUserStorage } from "../../utils/session";
 import { FreelancerApi } from "../../api";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import { Link } from "react-router-dom";
 
 const Education = () => {
   //   const [countries, setCountries] = useState([]);
   const user = getUserStorage();
   const [date10, setDate10] = useState(null);
+  const [rowToDelete, setRowToDelete] = useState(null);
   const [educations, setEducations] = useState(user.educations);
   const [selectedProducts7, setSelectedProducts7] = useState(null);
   const {
@@ -26,6 +29,12 @@ const Education = () => {
   const statuses = [
     { label: "México", value: "México" },
     { label: "Colombia", value: "Colombia" },
+    // { label: "Out of Stock", value: "OUTOFSTOCK" },
+  ];
+
+  const titles = [
+    { label: "Ingeniero", value: "Ingeniero" },
+    { label: "Licenciado", value: "Licenciado" },
     // { label: "Out of Stock", value: "OUTOFSTOCK" },
   ];
   //   useEffect(() => {
@@ -77,26 +86,6 @@ const Education = () => {
     );
   };
 
-  const getStatusLabel = (status) => {
-    return status;
-    // switch (status) {
-    //   case "INSTOCK":
-    //     return "In Stock";
-
-    //   case "LOWSTOCK":
-    //     return "Low Stock";
-
-    //   case "OUTOFSTOCK":
-    //     return "Out of Stock";
-
-    //   default:
-    //     return "NA";
-    // }
-  };
-  const statusBodyTemplate = (rowData) => {
-    return getStatusLabel(rowData.country);
-  };
-
   const statusEditor = (options) => {
     return (
       <Dropdown
@@ -105,7 +94,29 @@ const Education = () => {
         optionLabel="label"
         optionValue="value"
         onChange={(e) => options.editorCallback(e.value)}
-        placeholder="Select a Status"
+        placeholder="Selecciona un país"
+        itemTemplate={(option) => {
+          return (
+            <span
+              className={`product-badge status-${option.value.toLowerCase()}`}
+            >
+              {option.label}
+            </span>
+          );
+        }}
+      />
+    );
+  };
+
+  const titleEditor = (options) => {
+    return (
+      <Dropdown
+        value={options.value}
+        options={titles}
+        optionLabel="label"
+        optionValue="value"
+        onChange={(e) => options.editorCallback(e.value)}
+        placeholder="Selecciona un título"
         itemTemplate={(option) => {
           return (
             <span
@@ -135,23 +146,34 @@ const Education = () => {
   const dateTemplate = (rowData, column) => {
     return (
       <div>
-        <a onClick={() => rowColumnClick(rowData)}>
+        <Link onClick={() => confirm(rowData)}>
           <img
             src={process.env.PUBLIC_URL + "/images/delete.png"}
             width="30"
             height={"50"}
             alt="profile"
           />
-        </a>
+        </Link>
       </div>
     );
   };
 
   const rowColumnClick = (rowData) => {
-    const educationsTemp = educations.filter(e => e.id !== rowData.id);
+    const educationsTemp = educations.filter((e) => e.id !== rowData.id);
     setEducations(educationsTemp);
-    console.log(educationsTemp);
     updateEducations(educationsTemp);
+  };
+
+  const confirm = (rowData) => {
+    // setRowToDelete(rowData);
+    confirmDialog({
+      message: "¿Deseas borrar este registro?",
+      header: "Confirmación de borrado",
+      icon: "pi pi-info-circle",
+      acceptClassName: "p-button-danger",
+      accept: () => rowColumnClick(rowData),
+      // rowColumnClick
+    });
   };
 
   return (
@@ -168,7 +190,11 @@ const Education = () => {
                   <option value={"Colombia"}>Colombia</option>
                 </select>
               </div>
-              {errors.country && <span className="error-validation">Este campo es requerido</span>}
+              {errors.country && (
+                <span className="error-validation">
+                  Este campo es requerido
+                </span>
+              )}
             </div>
           </div>
           <div className="field">
@@ -179,7 +205,11 @@ const Education = () => {
                 type="text"
                 placeholder="Nombre de universidad"
               />
-              {errors.university && <span className="error-validation">Este campo es requerido</span>}
+              {errors.university && (
+                <span className="error-validation">
+                  Este campo es requerido
+                </span>
+              )}
             </div>
           </div>
           <div className="columns is-multiline">
@@ -194,7 +224,11 @@ const Education = () => {
                       <option value={"Licenciado"}>Licenciado</option>
                     </select>
                   </div>
-                  {errors.title && <span className="error-validation">Este campo es requerido</span>}
+                  {errors.title && (
+                    <span className="error-validation">
+                      Este campo es requerido
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -208,7 +242,11 @@ const Education = () => {
                     placeholder="Nombre título"
                   />
                 </div>
-                {errors.titleName && <span className="error-validation">Este campo es requerido</span>}
+                {errors.titleName && (
+                  <span className="error-validation">
+                    Este campo es requerido
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -224,7 +262,9 @@ const Education = () => {
               maxDate={new Date()}
               {...register("year", { required: true })}
             />
-            {errors.year && <span className="error-validation">Este campo es requerido</span>}
+            {errors.year && (
+              <span className="error-validation">Este campo es requerido</span>
+            )}
           </div>
           <div className="control mt-6 has-text-centered">
             <input
@@ -273,7 +313,7 @@ const Education = () => {
             <Column
               field="title"
               header="Título"
-              editor={(options) => textEditor(options)}
+              editor={(options) => titleEditor(options)}
               style={{ width: "20%" }}
             ></Column>
 
@@ -294,6 +334,7 @@ const Education = () => {
           </DataTable>
         </div>
       </div>
+      <ConfirmDialog />
     </>
   );
 };

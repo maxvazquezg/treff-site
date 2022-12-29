@@ -18,8 +18,9 @@ const LoginModal = (props) => {
     try {
       const userResponse = await FreelancerApi.loginFreelancer(data);
       localStorage.setItem("user", JSON.stringify(userResponse));
-      props.onClose();
       setIsLoading(false);
+      toast.current.show({severity: 'success', summary: 'Bienvenido', detail: userResponse.name});
+      props.onClose();
     } catch (e) {
       setIsLoading(false);
       toast.current.show({severity: 'error', summary: 'Error', detail: 'Usuario incorrecto'});

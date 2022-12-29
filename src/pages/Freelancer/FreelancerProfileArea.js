@@ -25,7 +25,6 @@ const FreelancerProfileArea = () => {
   const highlightElement = (e, route) => {
     navigate(route);
     let menuItems = document.getElementsByClassName("gray-back");
-    console.log(menuItems);
 
     for (let element of menuItems) {
       element.classList.remove("gray-back");

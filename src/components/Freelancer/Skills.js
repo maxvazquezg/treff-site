@@ -24,25 +24,29 @@ const Skills = () => {
 
   return (
     <>
-      <div className="pb-6">
-        <div className="has-text-centered mb-4 is-hidden-desktop">
-          <p className="p-18-dark"><b>Habilidades</b></p>
+      <SectionContent type="light">
+        <div className="pb-6">
+          <div className="has-text-centered mb-4 is-hidden-desktop">
+            <p className="p-18-dark">
+              <b>Habilidades</b>
+            </p>
+          </div>
+          <p className="text-16-gray ">Selecciona tus habilidades</p>
+          <div className="card p-fluid">
+            <Chips value={values1} onChange={(e) => setValues1(e.value)} />
+          </div>
+          <div className="control mt-6 has-text-centered">
+            <button
+              onClick={() => update()}
+              className="button is-success"
+              style={{ width: "100%" }}
+            >
+              Agregar
+            </button>
+          </div>
         </div>
-        <p className="text-16-gray ">Selecciona tus habilidades</p>
-        <div className="card p-fluid">
-          <Chips value={values1} onChange={(e) => setValues1(e.value)} />
-        </div>
-        <div className="control mt-6 has-text-centered">
-          <button
-            onClick={() => update()}
-            className="button is-success"
-            style={{ width: "100%" }}
-          >
-            Agregar
-          </button>
-        </div>
-      </div>
-      <Toast ref={toast}></Toast>
+        <Toast ref={toast}></Toast>
+      </SectionContent>
     </>
   );
 };

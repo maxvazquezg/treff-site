@@ -41,7 +41,7 @@ const FreelancerProfileArea = () => {
       command: (e) => {
         highlightElement(e, routes.DASHBOARD_FREELANCERSKILLS);
       },
-      className: "gray-back"
+      className: "gray-back",
       // icon: "pi pi-fw pi-power-off",
     },
     {
@@ -49,7 +49,7 @@ const FreelancerProfileArea = () => {
       command: (e) => {
         highlightElement(e, routes.DASHBOARD_FREELANCEREDUCATION);
       },
-      
+
       // icon: "pi pi-fw pi-power-off",
     },
     {
@@ -75,7 +75,9 @@ const FreelancerProfileArea = () => {
         <div className="hero-body pb-0 pt-0 gray">
           <Menubar model={items} />
           <CustomSection type="light">
-            <SectionContent type="light">{user && <Outlet />}</SectionContent>
+            {/* <SectionContent type="light"> */}
+                {user && <Outlet />}
+            {/* </SectionContent> */}
           </CustomSection>
         </div>
       </section>

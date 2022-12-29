@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { useState } from "react";
 import { FreelancerApi } from "../../api";
 import { useForm } from "react-hook-form";
+import SectionContent from "../SectionContent";
 
 const WhyMe = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -12,11 +13,11 @@ const WhyMe = () => {
     watch,
     formState: { errors },
   } = useForm({
-    defaultValues:{
-        whyMe: user.whyMe
-    }
+    defaultValues: {
+      whyMe: user.whyMe,
+    },
   });
-  
+
   const toast = useRef(null);
 
   const update = async (formData) => {
@@ -32,33 +33,35 @@ const WhyMe = () => {
 
   return (
     <>
-      <div className="pb-6">
-        <div className="has-text-centered mb-4 is-hidden-desktop">
-          <p className="p-18-dark">
-            <b>¿Por qué yo?</b>
-          </p>
+      <SectionContent type="light">
+        <div className="pb-6">
+          <div className="has-text-centered mb-4 is-hidden-desktop">
+            <p className="p-18-dark">
+              <b>¿Por qué yo?</b>
+            </p>
+          </div>
+          <form onSubmit={handleSubmit(update)}>
+            <div className="card p-fluid">
+              {/* <Chips value={values1} onChange={(e) => setValues1(e.value)} /> */}
+              <textarea
+                {...register("whyMe", { required: true, maxLength: 2000 })}
+                className="textarea"
+                placeholder="Breve descripción de mi persona"
+              ></textarea>
+              {errors.whyMe && <span>Este campo es requerido</span>}
+            </div>
+            <div className="control mt-6 has-text-centered is-mobile">
+              <input
+                type={"submit"}
+                className="button is-success"
+                style={{ width: "100%" }}
+                value="Agregar"
+              ></input>
+            </div>
+          </form>
         </div>
-        <form onSubmit={handleSubmit(update)}>
-          <div className="card p-fluid">
-            {/* <Chips value={values1} onChange={(e) => setValues1(e.value)} /> */}
-            <textarea
-              {...register("whyMe", { required: true, maxLength: 2000 })}
-              className="textarea"
-              placeholder="Breve descripción de mi persona"
-            ></textarea>
-            {errors.whyMe && <span>Este campo es requerido</span>}
-          </div>
-          <div className="control mt-6 has-text-centered is-mobile">
-            <input
-              type={"submit"}
-              className="button is-success"
-              style={{ width: "100%" }}
-              value="Agregar"
-            ></input>
-          </div>
-        </form>
-      </div>
-      <Toast ref={toast}></Toast>
+        <Toast ref={toast}></Toast>
+      </SectionContent>
     </>
   );
 };

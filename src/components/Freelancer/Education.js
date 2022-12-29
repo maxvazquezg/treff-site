@@ -14,6 +14,7 @@ import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { Toast } from "primereact/toast";
+import SectionContent from "../SectionContent";
 
 const Education = () => {
   //   const [countries, setCountries] = useState([]);
@@ -67,10 +68,10 @@ const Education = () => {
     setEducations(educationsTemp);
     await updateEducations(educationsTemp);
     reset();
-    toast.current.show({severity: 'success', summary: 'Registro agregado'});
+    toast.current.show({ severity: "success", summary: "Registro agregado" });
   };
 
-  const onRowEditComplete1 = async(e) => {
+  const onRowEditComplete1 = async (e) => {
     let educationsTemp = [...educations];
     let { newData, index } = e;
 
@@ -78,7 +79,7 @@ const Education = () => {
 
     setEducations(educationsTemp);
     await updateEducations(educationsTemp);
-    toast.current.show({severity: 'success', summary: 'Registro modificado'});
+    toast.current.show({ severity: "success", summary: "Registro modificado" });
   };
   const textEditor = (options) => {
     return (
@@ -166,7 +167,7 @@ const Education = () => {
     const educationsTemp = educations.filter((e) => e.id !== rowData.id);
     setEducations(educationsTemp);
     updateEducations(educationsTemp);
-    toast.current.show({severity: 'success', summary: 'Registro borrado'});
+    toast.current.show({ severity: "success", summary: "Registro borrado" });
   };
 
   const confirm = (rowData) => {
@@ -183,58 +184,77 @@ const Education = () => {
 
   return (
     <>
-      <div className="pb-6">
-      <div className="has-text-centered mb-4 is-hidden-desktop">
-          <p className="p-18-dark">
-            <b>Educación</b>
-          </p>
-        </div>
-        <form onSubmit={handleSubmit(update)}>
-          <div className="field">
-            {/* <label className="label">Subject</label> */}
-            <div className="control">
-              <div className="select">
-                <select {...register("country", { required: true })}>
-                  <option>País de estudios</option>
-                  <option value={"México"}>México</option>
-                  <option value={"Colombia"}>Colombia</option>
-                </select>
+      <SectionContent type="light">
+        <div className="pb-6">
+          <div className="has-text-centered is-hidden-desktop">
+            <p className="p-18-dark">
+              <b>Educación</b>
+            </p>
+          </div>
+          <form onSubmit={handleSubmit(update)}>
+            <div className="field">
+              {/* <label className="label">Subject</label> */}
+              <div className="control">
+                <div className="select">
+                  <select {...register("country", { required: true })}>
+                    <option>País de estudios</option>
+                    <option value={"México"}>México</option>
+                    <option value={"Colombia"}>Colombia</option>
+                  </select>
+                </div>
+                {errors.country && (
+                  <span className="error-validation">
+                    Este campo es requerido
+                  </span>
+                )}
               </div>
-              {errors.country && (
-                <span className="error-validation">
-                  Este campo es requerido
-                </span>
-              )}
             </div>
-          </div>
-          <div className="field">
-            <div className="control">
-              <input
-                {...register("university", { required: true })}
-                className="input"
-                type="text"
-                placeholder="Nombre de universidad"
-              />
-              {errors.university && (
-                <span className="error-validation">
-                  Este campo es requerido
-                </span>
-              )}
+            <div className="field">
+              <div className="control">
+                <input
+                  {...register("university", { required: true })}
+                  className="input"
+                  type="text"
+                  placeholder="Nombre de universidad"
+                />
+                {errors.university && (
+                  <span className="error-validation">
+                    Este campo es requerido
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
-          <div className="columns is-multiline">
-            <div className="column is-3-widescreen is-full-desktop">
-              <div className="field">
-                {/* <label className="label">Subject</label> */}
-                <div className="control">
-                  <div className="select">
-                    <select {...register("title", { required: true })}>
-                      <option>Titulo</option>
-                      <option value={"Ingeniero"}>Ingeniero</option>
-                      <option value={"Licenciado"}>Licenciado</option>
-                    </select>
+            <div className="columns is-multiline">
+              <div className="column is-3-widescreen is-full-desktop">
+                <div className="field">
+                  {/* <label className="label">Subject</label> */}
+                  <div className="control">
+                    <div className="select">
+                      <select {...register("title", { required: true })}>
+                        <option>Titulo</option>
+                        <option value={"Ingeniero"}>Ingeniero</option>
+                        <option value={"Licenciado"}>Licenciado</option>
+                      </select>
+                    </div>
+                    {errors.title && (
+                      <span className="error-validation">
+                        Este campo es requerido
+                      </span>
+                    )}
                   </div>
-                  {errors.title && (
+                </div>
+              </div>
+              <div className="column is-9-widescreen is-full-desktop">
+                <div className="field">
+                  <div className="control">
+                    <input
+                      {...register("titleName", { required: true })}
+                      className="input"
+                      type="text"
+                      placeholder="Nombre título"
+                    />
+                  </div>
+                  {errors.titleName && (
                     <span className="error-validation">
                       Este campo es requerido
                     </span>
@@ -242,107 +262,92 @@ const Education = () => {
                 </div>
               </div>
             </div>
-            <div className="column is-9-widescreen is-full-desktop">
-              <div className="field">
-                <div className="control">
-                  <input
-                    {...register("titleName", { required: true })}
-                    className="input"
-                    type="text"
-                    placeholder="Nombre título"
-                  />
-                </div>
-                {errors.titleName && (
-                  <span className="error-validation">
-                    Este campo es requerido
-                  </span>
-                )}
-              </div>
+            <div className="field col-12 md:col-4">
+              <label htmlFor="yearpicker">Año</label>
+              <br />
+              <Calendar
+                id="yearpicker"
+                value={date10}
+                onChange={(e) => setDate10(e.value)}
+                view="year"
+                dateFormat="yy"
+                maxDate={new Date()}
+                {...register("year", { required: true })}
+              />
+              {errors.year && (
+                <span className="error-validation">
+                  Este campo es requerido
+                </span>
+              )}
             </div>
-          </div>
-          <div className="field col-12 md:col-4">
-            <label htmlFor="yearpicker">Año</label>
-            <br />
-            <Calendar
-              id="yearpicker"
-              value={date10}
-              onChange={(e) => setDate10(e.value)}
-              view="year"
-              dateFormat="yy"
-              maxDate={new Date()}
-              {...register("year", { required: true })}
-            />
-            {errors.year && (
-              <span className="error-validation">Este campo es requerido</span>
-            )}
-          </div>
-          <div className="control mt-6 has-text-centered">
-            <input
-              type={"submit"}
-              // onClick={() => update()}
-              className="button is-success"
-              style={{ width: "100%" }}
-              value="Agregar"
-            />
-          </div>
-        </form>
-        <div className="card p-fluid mt-6">
-          <DataTable
-            selectionMode="checkbox"
-            value={educations}
-            selection={selectedProducts7}
-            onSelectionChange={(e) => setSelectedProducts7(e.value)}
-            editMode="row"
-            dataKey="id"
-            onRowEditComplete={onRowEditComplete1}
-            responsiveLayout="scroll"
-          >
-            {/* <Column
+            <div className="control mt-6 has-text-centered">
+              <input
+                type={"submit"}
+                // onClick={() => update()}
+                className="button is-success"
+                style={{ width: "100%" }}
+                value="Agregar"
+              />
+            </div>
+          </form>
+        </div>
+      </SectionContent>
+      <div className="card p-fluid mb-4">
+        <DataTable
+          selectionMode="checkbox"
+          value={educations}
+          selection={selectedProducts7}
+          onSelectionChange={(e) => setSelectedProducts7(e.value)}
+          editMode="row"
+          dataKey="id"
+          onRowEditComplete={onRowEditComplete1}
+          responsiveLayout="scroll"
+        >
+          {/* <Column
               selectionMode="multiple"
               headerStyle={{ width: "3em" }}
             ></Column> */}
-            <Column
-              rowEditor
-              headerStyle={{ width: "8%", minWidth: "8rem" }}
-              bodyStyle={{ textAlign: "center" }}
-            ></Column>
-            <Column header="Borrar" body={dateTemplate} />
-            <Column
-              field="country"
-              header="País"
-              // body={statusBodyTemplate}
-              editor={(options) => statusEditor(options)}
-              style={{ width: "20%" }}
-            ></Column>
-            <Column
-              field="university"
-              header="Universidad"
-              editor={(options) => textEditor(options)}
-              style={{ width: "20%" }}
-            ></Column>
-            <Column
-              field="title"
-              header="Título"
-              editor={(options) => titleEditor(options)}
-              style={{ width: "20%" }}
-            ></Column>
+          <Column
+            rowEditor
+            headerStyle={{ width: "8%", minWidth: "8rem" }}
+            bodyStyle={{ textAlign: "center" }}
+          ></Column>
+          <Column header="Borrar" body={dateTemplate} />
+          <Column
+            field="country"
+            header="País"
+            // body={statusBodyTemplate}
+            editor={(options) => statusEditor(options)}
+            style={{ width: "20%" }}
+          ></Column>
+          <Column
+            field="university"
+            header="Universidad"
+            editor={(options) => textEditor(options)}
+            style={{ width: "20%" }}
+          ></Column>
+          <Column
+            field="title"
+            header="Título"
+            editor={(options) => titleEditor(options)}
+            style={{ width: "20%" }}
+          ></Column>
 
-            <Column
-              field="titleName"
-              header="Nombre de Título"
-              editor={(options) => textEditor(options)}
-              style={{ width: "20%" }}
-            ></Column>
+          <Column
+            field="titleName"
+            header="Nombre de Título"
+            editor={(options) => textEditor(options)}
+            style={{ width: "20%" }}
+          ></Column>
 
-            <Column
-              field="year"
-              header="Año"
-              body={priceBodyTemplate}
-              editor={(options) => priceEditor(options)}
-              style={{ width: "20%" }}
-            ></Column>
-          </DataTable>
-        </div>
+          <Column
+            field="year"
+            header="Año"
+            body={priceBodyTemplate}
+            editor={(options) => priceEditor(options)}
+            style={{ width: "20%" }}
+          ></Column>
+        </DataTable>
       </div>
       <ConfirmDialog />
       <Toast ref={toast}></Toast>

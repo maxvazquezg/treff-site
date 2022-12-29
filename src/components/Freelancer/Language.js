@@ -15,7 +15,7 @@ import SectionContent from "../SectionContent";
 
 const Language = () => {
   const user = getUserStorage();
-  const [languages, setLanguages] = useState(user.languages);
+  const [languages, setLanguages] = useState(user.languages || []);
   const [selectedProducts7, setSelectedProducts7] = useState(null);
   const {
     register,

@@ -20,7 +20,7 @@ const Education = () => {
   //   const [countries, setCountries] = useState([]);
   const user = getUserStorage();
   const [date10, setDate10] = useState(null);
-  const [educations, setEducations] = useState(user.educations);
+  const [educations, setEducations] = useState(user.educations || []);
   const [selectedProducts7, setSelectedProducts7] = useState(null);
   const {
     register,

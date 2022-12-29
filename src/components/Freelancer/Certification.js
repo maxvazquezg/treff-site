@@ -19,7 +19,7 @@ const Certification = () => {
   //   const [countries, setCountries] = useState([]);
   const user = getUserStorage();
   const [date10, setDate10] = useState(null);
-  const [certifications, setCertifications] = useState(user.certifications);
+  const [certifications, setCertifications] = useState(user.certifications || []);
   const [selectedProducts7, setSelectedProducts7] = useState(null);
   const {
     register,

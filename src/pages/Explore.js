@@ -33,6 +33,7 @@ const Explore = () => {
     getCategories();
     getServicesHighLight();
     getServices();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryIdState, byFreelancer]);
 
   const getServicesHighLightAsync = async (categoryId) => {

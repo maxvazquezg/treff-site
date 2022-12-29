@@ -2,12 +2,11 @@ import { Avatar } from "primereact/avatar";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomSection from "../../components/CustomSection";
-import SectionContent from "../../components/SectionContent";
 import { routes } from "../../routes";
 import { setDateString } from "../../utils/dates";
 import { getURLImage } from "../../utils/images";
 import { Menubar } from "primereact/menubar";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import treffWaves from "../../assets/images/treff_waves.png";
 
 const DashboardFreelancerProfile = () => {

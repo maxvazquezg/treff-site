@@ -1,6 +1,5 @@
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
-import { useState } from "react";
 import { FreelancerApi } from "../../api";
 import { useForm } from "react-hook-form";
 import SectionContent from "../SectionContent";
@@ -10,7 +9,6 @@ const WhyMe = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {

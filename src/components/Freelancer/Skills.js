@@ -1,10 +1,10 @@
 import { Chips } from "primereact/chips";
 import { useState } from "react";
 import { FreelancerApi } from "../../api";
-import CustomSection from "../CustomSection";
 import SectionContent from "../SectionContent";
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
+
 const Skills = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const skills = user.skills?.split("||");

@@ -6,7 +6,6 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
-import { Dropdown } from "primereact/dropdown";
 import { useForm } from "react-hook-form";
 import { getUserStorage, setUserStorage } from "../../utils/session";
 import { FreelancerApi } from "../../api";
@@ -16,11 +15,11 @@ import { useRef } from "react";
 import { Toast } from "primereact/toast";
 import SectionContent from "../SectionContent";
 
-const Education = () => {
+const Certification = () => {
   //   const [countries, setCountries] = useState([]);
   const user = getUserStorage();
   const [date10, setDate10] = useState(null);
-  const [educations, setEducations] = useState(user.educations);
+  const [certifications, setCertifications] = useState(user.certifications);
   const [selectedProducts7, setSelectedProducts7] = useState(null);
   const {
     register,
@@ -28,32 +27,15 @@ const Education = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const statuses = [
-    { label: "México", value: "México" },
-    { label: "Colombia", value: "Colombia" },
-    // { label: "Out of Stock", value: "OUTOFSTOCK" },
-  ];
 
-  const titles = [
-    { label: "Ingeniero", value: "Ingeniero" },
-    { label: "Licenciado", value: "Licenciado" },
-    // { label: "Out of Stock", value: "OUTOFSTOCK" },
-  ];
-  //   useEffect(() => {
-  //     const getCountries = async () => {
-  //       const response = await CountriesApi.getCountries();
-  //       setCountries(response);
-  //     };
-  //     // getCountries();
-  //   }, []);
   const toast = useRef(null);
-  const updateEducations = async (educationsRequest) => {
+  const updateEducations = async (certificationsRequest) => {
     const request = {
-      educations: educationsRequest,
+      certifications: certificationsRequest,
       id: user.id,
     };
-    const educationResponse = await FreelancerApi.updateEducations(request);
-    user.educations = educationResponse;
+    const certificationsResponse = await FreelancerApi.updateCertifications(request);
+    user.certifications = certificationsResponse;
     setUserStorage(user);
   };
 
@@ -61,22 +43,22 @@ const Education = () => {
     data.freelancerId = user.id;
     data.year = data.year.getFullYear();
 
-    const educationsTemp = [...educations];
+    const educationsTemp = [...certifications];
     educationsTemp.push(data);
 
-    setEducations(educationsTemp);
+    setCertifications(educationsTemp);
     await updateEducations(educationsTemp);
     reset();
     toast.current.show({ severity: "success", summary: "Registro agregado" });
   };
 
   const onRowEditComplete1 = async (e) => {
-    let educationsTemp = [...educations];
+    let educationsTemp = [...certifications];
     let { newData, index } = e;
 
     educationsTemp[index] = newData;
 
-    setEducations(educationsTemp);
+    setCertifications(educationsTemp);
     await updateEducations(educationsTemp);
     toast.current.show({ severity: "success", summary: "Registro modificado" });
   };
@@ -86,50 +68,6 @@ const Education = () => {
         type="text"
         value={options.value}
         onChange={(e) => options.editorCallback(e.target.value)}
-      />
-    );
-  };
-
-  const statusEditor = (options) => {
-    return (
-      <Dropdown
-        value={options.value}
-        options={statuses}
-        optionLabel="label"
-        optionValue="value"
-        onChange={(e) => options.editorCallback(e.value)}
-        placeholder="Selecciona un país"
-        itemTemplate={(option) => {
-          return (
-            <span
-              className={`product-badge status-${option.value.toLowerCase()}`}
-            >
-              {option.label}
-            </span>
-          );
-        }}
-      />
-    );
-  };
-
-  const titleEditor = (options) => {
-    return (
-      <Dropdown
-        value={options.value}
-        options={titles}
-        optionLabel="label"
-        optionValue="value"
-        onChange={(e) => options.editorCallback(e.value)}
-        placeholder="Selecciona un título"
-        itemTemplate={(option) => {
-          return (
-            <span
-              className={`product-badge status-${option.value.toLowerCase()}`}
-            >
-              {option.label}
-            </span>
-          );
-        }}
       />
     );
   };
@@ -163,21 +101,19 @@ const Education = () => {
   };
 
   const rowColumnClick = (rowData) => {
-    const educationsTemp = educations.filter((e) => e.id !== rowData.id);
-    setEducations(educationsTemp);
+    const educationsTemp = certifications.filter((e) => e.id !== rowData.id);
+    setCertifications(educationsTemp);
     updateEducations(educationsTemp);
     toast.current.show({ severity: "success", summary: "Registro borrado" });
   };
 
   const confirm = (rowData) => {
-    // setRowToDelete(rowData);
     confirmDialog({
       message: "¿Deseas borrar este registro?",
       header: "Confirmación de borrado",
       icon: "pi pi-info-circle",
       acceptClassName: "p-button-danger",
       accept: () => rowColumnClick(rowData),
-      // rowColumnClick
     });
   };
 
@@ -187,80 +123,42 @@ const Education = () => {
         <div className="pb-6">
           <div className="has-text-centered is-hidden-desktop">
             <p className="p-18-dark">
-              <b>Educación</b>
+              <b>Certificación</b>
             </p>
           </div>
           <form onSubmit={handleSubmit(update)}>
-            <div className="field">
-              {/* <label className="label">Subject</label> */}
+          <div className="field">
               <div className="control">
-                <div className="select">
-                  <select {...register("country", { required: true })}>
-                    <option>País de estudios</option>
-                    <option value={"México"}>México</option>
-                    <option value={"Colombia"}>Colombia</option>
-                  </select>
-                </div>
-                {errors.country && (
+                <input
+                  {...register("name", { required: true })}
+                  className="input"
+                  type="text"
+                  placeholder="Título de certificación"
+                />
+                {errors.name && (
                   <span className="error-validation">
                     Este campo es requerido
                   </span>
                 )}
               </div>
             </div>
+
             <div className="field">
               <div className="control">
                 <input
-                  {...register("university", { required: true })}
+                  {...register("institute", { required: true })}
                   className="input"
                   type="text"
-                  placeholder="Nombre de universidad"
+                  placeholder="Institución que certifica"
                 />
-                {errors.university && (
+                {errors.institute && (
                   <span className="error-validation">
                     Este campo es requerido
                   </span>
                 )}
               </div>
             </div>
-            <div className="columns is-multiline">
-              <div className="column is-3-widescreen is-full-desktop">
-                <div className="field">
-                  {/* <label className="label">Subject</label> */}
-                  <div className="control">
-                    <div className="select">
-                      <select {...register("title", { required: true })}>
-                        <option>Titulo</option>
-                        <option value={"Ingeniero"}>Ingeniero</option>
-                        <option value={"Licenciado"}>Licenciado</option>
-                      </select>
-                    </div>
-                    {errors.title && (
-                      <span className="error-validation">
-                        Este campo es requerido
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="column is-9-widescreen is-full-desktop">
-                <div className="field">
-                  <div className="control">
-                    <input
-                      {...register("titleName", { required: true })}
-                      className="input"
-                      type="text"
-                      placeholder="Nombre título"
-                    />
-                  </div>
-                  {errors.titleName && (
-                    <span className="error-validation">
-                      Este campo es requerido
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
+            
             <div className="field col-12 md:col-4">
               <label htmlFor="yearpicker">Año</label>
               <br />
@@ -294,7 +192,7 @@ const Education = () => {
       <div className="card p-fluid mb-4">
         <DataTable
           selectionMode="checkbox"
-          value={educations}
+          value={certifications}
           selection={selectedProducts7}
           onSelectionChange={(e) => setSelectedProducts7(e.value)}
           editMode="row"
@@ -302,43 +200,25 @@ const Education = () => {
           onRowEditComplete={onRowEditComplete1}
           responsiveLayout="scroll"
         >
-          {/* <Column
-              selectionMode="multiple"
-              headerStyle={{ width: "3em" }}
-            ></Column> */}
           <Column
             rowEditor
             headerStyle={{ width: "8%", minWidth: "8rem" }}
             bodyStyle={{ textAlign: "center" }}
           ></Column>
           <Column header="Borrar" body={dateTemplate} />
+          {/* CAMPOS */}
           <Column
-            field="country"
-            header="País"
-            // body={statusBodyTemplate}
-            editor={(options) => statusEditor(options)}
-            style={{ width: "20%" }}
-          ></Column>
-          <Column
-            field="university"
-            header="Universidad"
-            editor={(options) => textEditor(options)}
-            style={{ width: "20%" }}
-          ></Column>
-          <Column
-            field="title"
+            field="name"
             header="Título"
-            editor={(options) => titleEditor(options)}
-            style={{ width: "20%" }}
-          ></Column>
-
-          <Column
-            field="titleName"
-            header="Nombre de Título"
             editor={(options) => textEditor(options)}
             style={{ width: "20%" }}
           ></Column>
-
+          <Column
+            field="institute"
+            header="Institución"
+            editor={(options) => textEditor(options)}
+            style={{ width: "20%" }}
+          ></Column>
           <Column
             field="year"
             header="Año"
@@ -354,4 +234,4 @@ const Education = () => {
   );
 };
 
-export default Education;
+export default Certification;

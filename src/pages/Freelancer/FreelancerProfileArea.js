@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { FreelancerApi } from "../../api";
 import CustomSection from "../../components/CustomSection";
-import SectionContent from "../../components/SectionContent";
 import { routes } from "../../routes";
 import { getUserStorage, setUserStorage } from "../../utils/session";
 
@@ -54,7 +53,9 @@ const FreelancerProfileArea = () => {
     },
     {
       label: "Certificación",
-      // icon: "pi pi-fw pi-power-off",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_FREELANCERCERTIFICATION);
+      },
     },
     {
       label: "¿Por qué yo?",
@@ -76,7 +77,7 @@ const FreelancerProfileArea = () => {
           <Menubar model={items} />
           <CustomSection type="light">
             {/* <SectionContent type="light"> */}
-                {user && <Outlet />}
+            {user && <Outlet />}
             {/* </SectionContent> */}
           </CustomSection>
         </div>

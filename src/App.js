@@ -22,6 +22,7 @@ import Skills from "./components/Freelancer/Skills";
 import FreelancerProfileArea from "./pages/Freelancer/FreelancerProfileArea";
 import Education from "./components/Freelancer/Education";
 import WhyMe from "./components/Freelancer/WhyMe";
+import Certification from "./components/Freelancer/Certification";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -57,6 +58,10 @@ function App() {
               <Route
                 path={routes.DASHBOARD_FREELANCEREDUCATION}
                 element={<Education />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCERCERTIFICATION}
+                element={<Certification />}
               ></Route>
               <Route
                 path={routes.DASHBOARD_FREELANCERWHYME}

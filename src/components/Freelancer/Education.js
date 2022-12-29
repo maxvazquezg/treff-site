@@ -12,6 +12,8 @@ import { getUserStorage, setUserStorage } from "../../utils/session";
 import { FreelancerApi } from "../../api";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
+import { Toast } from "primereact/toast";
 
 const Education = () => {
   //   const [countries, setCountries] = useState([]);
@@ -44,7 +46,7 @@ const Education = () => {
   //     };
   //     // getCountries();
   //   }, []);
-
+  const toast = useRef(null);
   const updateEducations = async (educationsRequest) => {
     const request = {
       educations: educationsRequest,
@@ -63,18 +65,20 @@ const Education = () => {
     educationsTemp.push(data);
 
     setEducations(educationsTemp);
-    updateEducations(educationsTemp);
+    await updateEducations(educationsTemp);
     reset();
+    toast.current.show({severity: 'success', summary: 'Registro agregado'});
   };
 
-  const onRowEditComplete1 = (e) => {
+  const onRowEditComplete1 = async(e) => {
     let educationsTemp = [...educations];
     let { newData, index } = e;
 
     educationsTemp[index] = newData;
 
     setEducations(educationsTemp);
-    updateEducations(educationsTemp);
+    await updateEducations(educationsTemp);
+    toast.current.show({severity: 'success', summary: 'Registro modificado'});
   };
   const textEditor = (options) => {
     return (
@@ -162,6 +166,7 @@ const Education = () => {
     const educationsTemp = educations.filter((e) => e.id !== rowData.id);
     setEducations(educationsTemp);
     updateEducations(educationsTemp);
+    toast.current.show({severity: 'success', summary: 'Registro borrado'});
   };
 
   const confirm = (rowData) => {
@@ -179,6 +184,11 @@ const Education = () => {
   return (
     <>
       <div className="pb-6">
+      <div className="has-text-centered mb-4 is-hidden-desktop">
+          <p className="p-18-dark">
+            <b>Educación</b>
+          </p>
+        </div>
         <form onSubmit={handleSubmit(update)}>
           <div className="field">
             {/* <label className="label">Subject</label> */}
@@ -335,6 +345,7 @@ const Education = () => {
         </div>
       </div>
       <ConfirmDialog />
+      <Toast ref={toast}></Toast>
     </>
   );
 };

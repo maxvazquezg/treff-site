@@ -20,7 +20,7 @@ const Education = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
   const statuses = [
@@ -55,6 +55,7 @@ const Education = () => {
 
     setEducations(educationsTemp);
     updateEducations(educationsTemp);
+    reset();
   };
 
   const onRowEditComplete1 = (e) => {

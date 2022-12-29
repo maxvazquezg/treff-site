@@ -39,6 +39,31 @@ class FreelancerApi extends BaseApi {
     }
   }
 
+  async updateEducations(request) {
+    try {
+      const data = await this.post(`${FREELANCER_ENDPOINT}/educations`, request);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  async updateCertifications(request) {
+    try {
+      const data = await this.post(`${FREELANCER_ENDPOINT}/certifications`, request);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  async updateLanguages(request) {
+    try {
+      const data = await this.post(`${FREELANCER_ENDPOINT}/languages`, request);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async loginFreelancer(request) {
     try {
       const data = await this.post(`${FREELANCER_ENDPOINT}/login`, request);

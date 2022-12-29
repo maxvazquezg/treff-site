@@ -132,7 +132,10 @@ const FreelancerProfile = () => {
 
               <div className="columns tags are-medium">
                 {skills.map((s, i) => (
-                  <div key={i} className="column is-3 is-full-mobile tag is-dark is-rounded">
+                  <div
+                    key={i}
+                    className="column is-3 is-full-mobile tag is-dark is-rounded"
+                  >
                     {s}
                   </div>
                 ))}
@@ -155,35 +158,30 @@ const FreelancerProfile = () => {
                   <div className="column is-6">
                     <p className="text-dark">Educación</p>
                     <ul className="mt-4">
-                      <li>
-                        Escuela Universidad Tecnológica Politécnica Autónoma{" "}
-                      </li>
-                      <li className="mt-4">
-                        Escuela Universidad Tecnológica Politécnica Autónoma{" "}
-                      </li>
+                      {freelancer?.educations?.map((e, i) => (
+                        <li key={i} className="mb-4">{e.title} {e.titleName} - {e.university}</li>
+                      ))}
                     </ul>
                   </div>
                   <div className="column is-6">
                     <p className="text-dark">Idiomas</p>
                     <ul className="mt-4">
-                      <li>Español - Fluído </li>
-                      <li className="mt-4">Inglés - Nativo/Bilingüe </li>
+                      {freelancer?.languages?.map((e, i) => (
+                        <li key={i} className="mb-4">
+                          {e.name} - {e.level}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
 
                 <p className="text-dark mt-6">Certificados</p>
                 <ul className="mt-4">
-                  <li>
-                    M.A. - Publicación
-                    <br />
-                    UNIVERSITY OF THE ARTS, United Kingdom, Graduado 2020
-                  </li>
-                  <li className="mt-4">
-                    B.A. - Diseño Gráfico
-                    <br />
-                    Academy of Fine Arts Venice, Italy, Graduado 2017
-                  </li>
+                  {freelancer?.certifications?.map((e, i) => (
+                    <li key={i} className="mb-4">
+                      {e.name}<br/>{e.institute}, Graduado en {e.year}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

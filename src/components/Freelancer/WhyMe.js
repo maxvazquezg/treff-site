@@ -51,7 +51,7 @@ const WhyMe = () => {
           <div className="control mt-6 has-text-centered is-mobile">
             <input
               type={"submit"}
-              className="button is-success is-responsive is-medium"
+              className="button is-success"
               style={{ width: "100%" }}
               value="Agregar"
             ></input>

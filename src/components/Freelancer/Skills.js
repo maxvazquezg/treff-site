@@ -32,10 +32,10 @@ const Skills = () => {
         <div className="card p-fluid">
           <Chips value={values1} onChange={(e) => setValues1(e.value)} />
         </div>
-        <div className="control mt-6 has-text-centered is-mobile">
+        <div className="control mt-6 has-text-centered">
           <button
             onClick={() => update()}
-            className="button is-success is-responsive is-medium"
+            className="button is-success"
             style={{ width: "100%" }}
           >
             Agregar

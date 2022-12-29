@@ -23,6 +23,7 @@ import FreelancerProfileArea from "./pages/Freelancer/FreelancerProfileArea";
 import Education from "./components/Freelancer/Education";
 import WhyMe from "./components/Freelancer/WhyMe";
 import Certification from "./components/Freelancer/Certification";
+import Language from "./components/Freelancer/Language";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -66,6 +67,10 @@ function App() {
               <Route
                 path={routes.DASHBOARD_FREELANCERWHYME}
                 element={<WhyMe />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCERLANGUAGE}
+                element={<Language />}
               ></Route>
             </Route>
           </Route>

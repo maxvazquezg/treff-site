@@ -12,6 +12,7 @@ export const routes = {
   DASHBOARD_FREELANCEREDUCATION: "Education",
   DASHBOARD_FREELANCERCERTIFICATION: "Certification",
   DASHBOARD_FREELANCERWHYME: "WhyMe",
+  DASHBOARD_FREELANCERLANGUAGE: "Language",
   SERVICE: "/Service/:id",
   LOGIN: "/Login",
   LOGOUT: "/Logout",

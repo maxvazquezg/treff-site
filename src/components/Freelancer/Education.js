@@ -311,7 +311,10 @@ const Education = () => {
             headerStyle={{ width: "8%", minWidth: "8rem" }}
             bodyStyle={{ textAlign: "center" }}
           ></Column>
-          <Column header="Borrar" body={dateTemplate} />
+          <Column
+            headerStyle={{ width: "6%", minWidth: "5rem" }}
+            body={dateTemplate}
+          />
           <Column
             field="country"
             header="País"

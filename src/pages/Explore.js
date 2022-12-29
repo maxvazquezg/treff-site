@@ -33,7 +33,7 @@ const Explore = () => {
     getCategories();
     getServicesHighLight();
     getServices();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryIdState, byFreelancer]);
 
   const getServicesHighLightAsync = async (categoryId) => {
@@ -80,9 +80,10 @@ const Explore = () => {
     await getServicesHighLightAsync();
   };
 
-  const freelancerCard = (service, size) => {
+  const freelancerCard = (service, index) => {
     return (
       <div
+        key={index}
         className={"column is-3-widescreen is-6-desktop is-6 has-text-centered"}
       >
         <Link to={routes.SERVICE.replace(":id", service.id)}>
@@ -211,8 +212,10 @@ const Explore = () => {
               <div className="select">
                 <select onChange={getServicesOnSelect}>
                   <option value={0}>Categorías</option>
-                  {categories.map((c) => (
-                    <option value={c.id}>{c.name}</option>
+                  {categories.map((c, i) => (
+                    <option key={i} value={c.id}>
+                      {c.name}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -255,7 +258,7 @@ const Explore = () => {
         {servicesHighLight.length > 0 && (
           <SectionContent type="light">
             <div className="columns mt-1 is-multiline">
-              {servicesHighLight.map((s, index) => freelancerCard(s))}
+              {servicesHighLight.map((s, index) => freelancerCard(s, index))}
             </div>
           </SectionContent>
         )}
@@ -264,7 +267,7 @@ const Explore = () => {
       <CustomSection type="white">
         <SectionContent type="white">
           <div className="columns mt-1 is-multiline">
-            {services.map((s, index) => freelancerCard(s))}
+            {services.map((s, index) => freelancerCard(s, index))}
           </div>
         </SectionContent>
       </CustomSection>

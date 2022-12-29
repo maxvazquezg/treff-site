@@ -66,6 +66,9 @@ const FreelancerProfileArea = () => {
     },
     {
       label: "Idiomas",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_FREELANCERLANGUAGE);
+      },
       // icon: "pi pi-fw pi-power-off",
     },
   ];

@@ -8,17 +8,20 @@ import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { Dropdown } from "primereact/dropdown";
 import { useForm } from "react-hook-form";
-import { getUserStorage, setUserStorage } from "../../utils/session";
 import { FreelancerApi } from "../../api";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { Toast } from "primereact/toast";
 import SectionContent from "../SectionContent";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "../../redux/reducer";
 
 const Education = () => {
   //   const [countries, setCountries] = useState([]);
-  const user = getUserStorage();
+  const dispatch = useDispatch();
+  const userRedux = useSelector((state) => state.user.value);
+  const user = {...userRedux};
   const [date10, setDate10] = useState(null);
   const [educations, setEducations] = useState(user.educations || []);
   const [selectedProducts7, setSelectedProducts7] = useState(null);
@@ -54,7 +57,7 @@ const Education = () => {
     };
     const educationResponse = await FreelancerApi.updateEducations(request);
     user.educations = educationResponse;
-    setUserStorage(user);
+    dispatch(addUser(user));
   };
 
   const update = async (data) => {

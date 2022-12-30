@@ -2,6 +2,11 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FreelancerApi } from "../api";
 import { Toast } from 'primereact/toast';
+import { connect, useDispatch } from 'react-redux'
+import { addUser } from '../redux/reducer'
+// import { addUser } from "../redux/actions";
+// import { addUser } from '../redux/actions'
+
 
 const LoginModal = (props) => {
   const {
@@ -12,12 +17,15 @@ const LoginModal = (props) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const toast = useRef(null);
+  const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
       const userResponse = await FreelancerApi.loginFreelancer(data);
       localStorage.setItem("user", JSON.stringify(userResponse));
+      // props.addUser(userResponse);
+      dispatch(addUser(userResponse));
       setIsLoading(false);
       toast.current.show({severity: 'success', summary: 'Bienvenido', detail: userResponse.name});
       props.onClose();
@@ -85,5 +93,11 @@ const LoginModal = (props) => {
     </>
   );
 };
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addUser: user => dispatch(addUser(user))
+  }
+}
 
 export default LoginModal;

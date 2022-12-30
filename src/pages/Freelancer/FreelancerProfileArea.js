@@ -5,21 +5,29 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { FreelancerApi } from "../../api";
 import CustomSection from "../../components/CustomSection";
 import { routes } from "../../routes";
-import { getUserStorage, setUserStorage } from "../../utils/session";
+import { getUserStorage } from "../../utils/session";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { addUser, getUser, getUserAsync } from "../../redux/reducer";
 
-const FreelancerProfileArea = () => {
+const FreelancerProfileArea = (props) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const userRedux = useSelector((state) => state.user.value);
+  const [user, setUser] = useState(userRedux);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const userData = getUserStorage();
-      const userResponse = await FreelancerApi.getFreelancerById(userData.id);
-      setUser(userResponse);
-      setUserStorage(userResponse);
+      const userData = { ...userRedux };
+      dispatch(getUser(userData.id));
     };
     getUserInfo();
   }, []);
+  // const updateUser = () => {
+  //   // const userResponse = await FreelancerApi.getFreelancerById(userData.id);
+  //   // setUser(userResponse);
+  //   // setUserStorage(userResponse);
+  //   GetUser(userData.id);
+  // };
 
   const highlightElement = (e, route) => {
     navigate(route);

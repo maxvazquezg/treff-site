@@ -3,9 +3,12 @@ import { useRef } from "react";
 import { FreelancerApi } from "../../api";
 import { useForm } from "react-hook-form";
 import SectionContent from "../SectionContent";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "../../redux/reducer";
 
 const WhyMe = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
   const {
     register,
     handleSubmit,
@@ -19,9 +22,11 @@ const WhyMe = () => {
   const toast = useRef(null);
 
   const update = async (formData) => {
-    user.whyMe = formData.whyMe;
-    const data = await FreelancerApi.updateFreelancer(user.id, user);
-    localStorage.setItem("user", JSON.stringify(data));
+    const userData = {...user};
+    userData.whyMe = formData.whyMe;
+    const data = await FreelancerApi.updateFreelancer(userData.id, userData);
+    dispatch(addUser(data));
+    // localStorage.setItem("user", JSON.stringify(data));
     toast.current.show({
       severity: "success",
       summary: "Actualización correcta",

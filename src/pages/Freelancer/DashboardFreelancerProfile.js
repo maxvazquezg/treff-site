@@ -17,7 +17,7 @@ const DashboardFreelancerProfile = () => {
   useEffect(() => {
     const checkUser = () => {
       const user = { ...userRedux };
-      if (!user) {
+      if (!user.id) {
         navigate(routes.HOME);
       }
     };

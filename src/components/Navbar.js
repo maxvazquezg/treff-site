@@ -31,8 +31,6 @@ export default function Navbar(props) {
     getUser();
   }, [userRedux]);
 
-  console.log(userRedux);
-  // const user = { ...userRedux };
   const op = useRef(null);
   const menu = useRef(null);
   const navigate = useNavigate();

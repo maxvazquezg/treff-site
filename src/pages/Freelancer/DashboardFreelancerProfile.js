@@ -8,19 +8,21 @@ import { getURLImage } from "../../utils/images";
 import { Menubar } from "primereact/menubar";
 import { Outlet } from "react-router-dom";
 import treffWaves from "../../assets/images/treff_waves.png";
+import { useSelector } from "react-redux";
 
 const DashboardFreelancerProfile = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const userRedux = useSelector((state) => state.user.value);
+  const user = { ...userRedux };
   useEffect(() => {
     const checkUser = () => {
-      const user = JSON.parse(localStorage.getItem("user"));
+      const user = { ...userRedux };
       if (!user) {
         navigate(routes.HOME);
       }
     };
     checkUser();
-  }, [navigate]);
+  }, [userRedux, navigate]);
 
   const highlightElement = (e, route) => {
     let menuItems = document.getElementsByClassName("blue-back");
@@ -45,9 +47,12 @@ const DashboardFreelancerProfile = () => {
         //     "/" +
         //     routes.DASHBOARD_FREELANCERSKILLS
         // );
-        highlightElement(e, routes.DASHBOARD_FREELANCERPROFILE +
-          "/" +
-          routes.DASHBOARD_FREELANCERSKILLS);
+        highlightElement(
+          e,
+          routes.DASHBOARD_FREELANCERPROFILE +
+            "/" +
+            routes.DASHBOARD_FREELANCERSKILLS
+        );
       },
       className: "blue-back",
       // icon: "pi pi-fw pi-power-off",

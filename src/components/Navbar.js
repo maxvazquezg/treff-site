@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { routes } from "../routes";
 import { Dialog } from "primereact/dialog";
@@ -8,16 +8,31 @@ import { OverlayPanel } from "primereact/overlaypanel";
 import { Avatar } from "primereact/avatar";
 import { Menu } from "primereact/menu";
 import { getURLImage } from "../utils/images";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUser } from "../redux/userReducer";
 
 export default function Navbar(props) {
+  const dispatch = useDispatch();
   const [isActive, setIsActive] = React.useState(false);
   const [visibleCreate, setVisibleCreate] = React.useState(false);
   const [visibleLogin, setVisibleLogin] = React.useState(false);
+  // const [user, setUser] = React.useState(false);
+  const userRedux = useSelector((state) => state.user.value);
+  const [userData, setUserData] = React.useState(userRedux);
+
   const clickMenuHandler = () => {
     setIsActive(!isActive);
   };
-  const user = JSON.parse(localStorage.getItem("user"));
-  const [userData, setUserData] = React.useState(user);
+
+  useEffect(() => {
+    const getUser = () =>{
+      setUserData(userRedux);
+    }
+    getUser();
+  }, [userRedux]);
+
+  console.log(userRedux);
+  // const user = { ...userRedux };
   const op = useRef(null);
   const menu = useRef(null);
   const navigate = useNavigate();
@@ -49,7 +64,12 @@ export default function Navbar(props) {
     {
       text: "Perfil",
       image: "/images/profile.svg",
-      target: routes.DASHBOARD_FREELANCER + "/" + routes.DASHBOARD_FREELANCERPROFILE + "/" + routes.DASHBOARD_FREELANCERSKILLS,
+      target:
+        routes.DASHBOARD_FREELANCER +
+        "/" +
+        routes.DASHBOARD_FREELANCERPROFILE +
+        "/" +
+        routes.DASHBOARD_FREELANCERSKILLS,
       action: () => {
         clickMenuHandler();
         op.current.toggle();
@@ -92,7 +112,7 @@ export default function Navbar(props) {
       action: () => {
         setUserData(null);
         clickMenuHandler();
-        localStorage.clear();
+        dispatch(removeUser(userData.id));
         navigate(routes.HOME);
         op.current.toggle();
       },
@@ -102,7 +122,7 @@ export default function Navbar(props) {
   const createMenuProfile = () => {
     return (
       <ul className="menu-list">
-        {menuProfile.map((o,i) => (
+        {menuProfile.map((o, i) => (
           <li key={i}>{profileOption(o.text, o.image, o.target, o.action)}</li>
         ))}
       </ul>
@@ -144,8 +164,6 @@ export default function Navbar(props) {
 
   const onCloseLogin = () => {
     setVisibleLogin(false);
-    const userResponse = JSON.parse(localStorage.getItem("user"));
-    setUserData(userResponse);
     clickMenuHandler();
   };
 

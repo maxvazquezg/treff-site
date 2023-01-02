@@ -4,7 +4,7 @@ import { FreelancerApi } from "../../api";
 import { useForm } from "react-hook-form";
 import SectionContent from "../SectionContent";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../../redux/reducer";
+import { addUser } from "../../redux/userReducer";
 
 const WhyMe = () => {
   const dispatch = useDispatch();
@@ -26,11 +26,9 @@ const WhyMe = () => {
     userData.whyMe = formData.whyMe;
     const data = await FreelancerApi.updateFreelancer(userData.id, userData);
     dispatch(addUser(data));
-    // localStorage.setItem("user", JSON.stringify(data));
     toast.current.show({
       severity: "success",
       summary: "Actualización correcta",
-      //   detail: "Usuario incorrecto",
     });
   };
 
@@ -45,7 +43,6 @@ const WhyMe = () => {
           </div>
           <form onSubmit={handleSubmit(update)}>
             <div className="card p-fluid">
-              {/* <Chips value={values1} onChange={(e) => setValues1(e.value)} /> */}
               <textarea
                 {...register("whyMe", { required: true, maxLength: 2000 })}
                 className="textarea"

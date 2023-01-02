@@ -5,10 +5,9 @@ import SectionContent from "../SectionContent";
 import { Toast } from "primereact/toast";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../../redux/reducer";
+import { addUser } from "../../redux/userReducer";
 
 const Skills = () => {
-  // const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   const skills = user ? user.skills?.split("||") : [];

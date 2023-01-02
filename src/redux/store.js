@@ -1,12 +1,31 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./reducer";
+import userReducer from "./userReducer";
+//persist
+import storage from "redux-persist/lib/storage";
+import { combineReducers } from "redux";
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+
+const persistConfig = {
+  key: "user",
+  storage,
+};
+const reducers = combineReducers({ user: userReducer });
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
-  reducer: {
-    user: userReducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false,
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
     }),
 });

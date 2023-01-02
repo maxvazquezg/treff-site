@@ -7,16 +7,21 @@ import { HashRouter } from "react-router-dom";
 import ScrollToTop from "./utils/ScrollToTop";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-// import store from './redux/store'
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+let persistor = persistStore(store);
 
 root.render(
   <React.StrictMode>
     <HashRouter>
       <ScrollToTop />
       <Provider store={store}>
-        <App />
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </HashRouter>
   </React.StrictMode>

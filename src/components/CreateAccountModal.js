@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { FreelancerApi } from "../api";
+import { addUser } from "../redux/userReducer";
 
 const CreateAccountModal = (props) => {
   const {
@@ -10,11 +12,12 @@ const CreateAccountModal = (props) => {
   } = useForm();
 
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const onSubmit = async(data) => {
     setIsLoading(true);
     const userResponse = await FreelancerApi.createFreelancer(data);
-    localStorage.setItem("user", JSON.stringify(userResponse));
+    dispatch(addUser(userResponse));
     props.onClose();
     setIsLoading(false);
   }

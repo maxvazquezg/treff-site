@@ -7,7 +7,7 @@ import CustomSection from "../../components/CustomSection";
 import { routes } from "../../routes";
 import { getUserStorage } from "../../utils/session";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { addUser, getUser, getUserAsync } from "../../redux/reducer";
+import { addUser, getUser, getUserAsync } from "../../redux/userReducer";
 
 const FreelancerProfileArea = (props) => {
   const navigate = useNavigate();

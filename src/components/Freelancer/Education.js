@@ -15,7 +15,7 @@ import { useRef } from "react";
 import { Toast } from "primereact/toast";
 import SectionContent from "../SectionContent";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../../redux/reducer";
+import { addUser } from "../../redux/userReducer";
 
 const Education = () => {
   //   const [countries, setCountries] = useState([]);

@@ -25,9 +25,9 @@ export default function Navbar(props) {
   };
 
   useEffect(() => {
-    const getUser = () =>{
+    const getUser = () => {
       setUserData(userRedux);
-    }
+    };
     getUser();
   }, [userRedux]);
 
@@ -112,7 +112,9 @@ export default function Navbar(props) {
         clickMenuHandler();
         dispatch(removeUser(userData.id));
         navigate(routes.HOME);
-        op.current.toggle();
+        try {
+          op.current.toggle();
+        } catch {}
       },
     },
   ];

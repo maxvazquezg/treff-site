@@ -36,6 +36,7 @@ const Service = () => {
       images.push({
         src: getURLImage(p.image),
       });
+      console.log(getURLImage(p.image));
     });
     return images;
   };

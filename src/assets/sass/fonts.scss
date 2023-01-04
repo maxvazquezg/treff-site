@@ -38,6 +38,16 @@
   color: $primary;
 }
 
+.text-black {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #4A4A4A;
+}
+
 p {
   font-weight: 400;
   font-size: 16px;
@@ -93,9 +103,17 @@ p {
 }
 
 .text-16-gray {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 16px;
   line-height: 19px;
+
+  color: #9f9d9d;
+}
+
+.text-12-gray {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
 
   color: #9f9d9d;
 }

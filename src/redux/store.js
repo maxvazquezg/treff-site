@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userReducer";
+import serviceReducer from "./serviceReducer";
 //persist
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
@@ -17,7 +18,10 @@ const persistConfig = {
   key: "user",
   storage,
 };
-const reducers = combineReducers({ user: userReducer });
+const reducers = combineReducers({
+  user: userReducer,
+  service: serviceReducer,
+});
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({

@@ -36,17 +36,13 @@ const DashboardFreelancerProfile = () => {
     // navigate(routes.DASHBOARD_FREELANCERSKILLS);
     span.classList.add("blue-back-text");
     span.parentElement.classList.add("blue-back");
+    navigate(route);
   };
 
   const items = [
     {
       label: "Perfil",
       command: (e) => {
-        // navigate(
-        //   routes.DASHBOARD_FREELANCERPROFILE +
-        //     "/" +
-        //     routes.DASHBOARD_FREELANCERSKILLS
-        // );
         highlightElement(
           e,
           routes.DASHBOARD_FREELANCERPROFILE +
@@ -55,7 +51,6 @@ const DashboardFreelancerProfile = () => {
         );
       },
       className: "blue-back",
-      // icon: "pi pi-fw pi-power-off",
     },
     {
       label: "Mensajes",
@@ -83,7 +78,15 @@ const DashboardFreelancerProfile = () => {
     },
     {
       label: "Servicios",
-      // icon: "pi pi-fw pi-power-off",
+      command: (e) => {
+        highlightElement(
+          e,
+          routes.DASHBOARD_SERVICES
+          //  +
+          //   "/" +
+          //   routes.DASHBOARD_FREELANCERSKILLS
+        );
+      },
     },
     {
       label: "Configuración de cuenta",

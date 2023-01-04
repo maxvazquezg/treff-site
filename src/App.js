@@ -24,6 +24,14 @@ import Education from "./components/Freelancer/Education";
 import WhyMe from "./components/Freelancer/WhyMe";
 import Certification from "./components/Freelancer/Certification";
 import Language from "./components/Freelancer/Language";
+import FreelancerServiceArea from "./pages/Freelancer/FreelancerServiceArea";
+import ActiveServices from "./components/Services/ActiveServices";
+import { NewService } from "./components/Services/NewService";
+import NewServiceTitle from "./components/Services/NewServiceTitle";
+import NewServicePrice from "./components/Services/NewServicePrice";
+import NewServiceDescription from "./components/Services/NewServiceDescription";
+import NewServiceFiles from "./components/Services/NewServiceFiles";
+import NewServicePublish from "./components/Services/NewServicePublish";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -71,6 +79,44 @@ function App() {
               <Route
                 path={routes.DASHBOARD_FREELANCERLANGUAGE}
                 element={<Language />}
+              ></Route>
+            </Route>
+            <Route
+              path={routes.DASHBOARD_SERVICES}
+              element={<FreelancerServiceArea />}
+            >
+              <Route
+                path={routes.DASHBOARD_SERVICESACTIVE}
+                element={<ActiveServices />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCEREDUCATION}
+                element={<Education />}
+              ></Route>
+            </Route>
+            <Route
+              path={routes.DASHBOARD_SERVICENEW}
+              element={<NewService />}
+            >
+               <Route
+                path={routes.DASHBOARD_SERVICENEW_TITLE}
+                element={<NewServiceTitle />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_SERVICENEW_PRICE}
+                element={<NewServicePrice />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_SERVICENEW_DESCRIPTION}
+                element={<NewServiceDescription />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_SERVICENEW_FILES}
+                element={<NewServiceFiles />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_SERVICENEW_PUBLISH}
+                element={<NewServicePublish />}
               ></Route>
             </Route>
           </Route>

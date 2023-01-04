@@ -1,5 +1,5 @@
 import { Menubar } from "primereact/menubar";
-import { useState } from "react";
+// import { useState } from "react";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import CustomSection from "../../components/CustomSection";
@@ -7,10 +7,10 @@ import { routes } from "../../routes";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../redux/userReducer";
 
-const FreelancerProfileArea = (props) => {
+const FreelancerServiceArea = (props) => {
   const navigate = useNavigate();
   const userRedux = useSelector((state) => state.user.value);
-  const [user] = useState(userRedux);
+  // const [user] = useState(userRedux);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const FreelancerProfileArea = (props) => {
       dispatch(getUser(userData.id));
     };
     getUserInfo();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const highlightElement = (e, route) => {
@@ -37,39 +37,19 @@ const FreelancerProfileArea = (props) => {
 
   const items = [
     {
-      label: "Habilidades",
+      label: "Servicios Activos",
       command: (e) => {
-        highlightElement(e, routes.DASHBOARD_FREELANCERSKILLS);
+        highlightElement(e, routes.DASHBOARD_SERVICESACTIVE);
       },
       className: "gray-back",
       // icon: "pi pi-fw pi-power-off",
     },
     {
-      label: "Educación",
+      label: "Borradores",
       command: (e) => {
         highlightElement(e, routes.DASHBOARD_FREELANCEREDUCATION);
       },
 
-      // icon: "pi pi-fw pi-power-off",
-    },
-    {
-      label: "Certificación",
-      command: (e) => {
-        highlightElement(e, routes.DASHBOARD_FREELANCERCERTIFICATION);
-      },
-    },
-    {
-      label: "¿Por qué yo?",
-      command: (e) => {
-        highlightElement(e, routes.DASHBOARD_FREELANCERWHYME);
-      },
-      // icon: "pi pi-fw pi-power-off",
-    },
-    {
-      label: "Idiomas",
-      command: (e) => {
-        highlightElement(e, routes.DASHBOARD_FREELANCERLANGUAGE);
-      },
       // icon: "pi pi-fw pi-power-off",
     },
   ];
@@ -80,9 +60,7 @@ const FreelancerProfileArea = (props) => {
         <div className="hero-body pb-0 pt-0 gray">
           <Menubar model={items} />
           <CustomSection type="light">
-            {/* <SectionContent type="light"> */}
-            {user && <Outlet />}
-            {/* </SectionContent> */}
+            <Outlet />
           </CustomSection>
         </div>
       </section>
@@ -90,4 +68,4 @@ const FreelancerProfileArea = (props) => {
   );
 };
 
-export default FreelancerProfileArea;
+export default FreelancerServiceArea;

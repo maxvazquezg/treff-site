@@ -2,11 +2,8 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FreelancerApi } from "../api";
 import { Toast } from 'primereact/toast';
-import { connect, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addUser } from '../redux/userReducer'
-// import { addUser } from "../redux/actions";
-// import { addUser } from '../redux/actions'
-
 
 const LoginModal = (props) => {
   const {
@@ -91,11 +88,5 @@ const LoginModal = (props) => {
     </>
   );
 };
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addUser: user => dispatch(addUser(user))
-  }
-}
 
 export default LoginModal;

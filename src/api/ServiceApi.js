@@ -49,41 +49,25 @@ class ServiceApi extends BaseApi {
         }
     }
 
-    async getBadgeById(id){
+    async uploadFilesServices(files){
         try{
-            const data = await this.get(`${CATEGORY_ENDPOINT}/${id}`);
+            const data = await trackPromise(this.post(CATEGORY_ENDPOINT+"/files/", files));
             return data.data;
         } catch (error){
             throw new Error(error);
         }
     }
 
-    async createBadges(request){
+    async createService(service){
         try{
-            const data = await this.post(`${CATEGORY_ENDPOINT}`, request);
+            const data = await trackPromise(this.post(CATEGORY_ENDPOINT, service));
             return data.data;
         } catch (error){
             throw new Error(error);
         }
     }
 
-    async updateBadges(id, request){
-        try{
-            const data = await this.put(`${CATEGORY_ENDPOINT}/Update?id=${id}`, request);
-            return data.data;
-        } catch (error){
-            throw new Error(error);
-        }
-    }
-
-    async deleteBadges(id){
-        try{
-            const data = await this.delete(`${CATEGORY_ENDPOINT}/${id}`);
-            return data.data;
-        } catch (error){
-            throw new Error(error);
-        }
-    }
+    
 }
 
 export default new ServiceApi();

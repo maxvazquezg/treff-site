@@ -8,12 +8,24 @@ import { getURLImage } from "../../utils/images";
 import { Menubar } from "primereact/menubar";
 import { Outlet } from "react-router-dom";
 import treffWaves from "../../assets/images/treff_waves.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useRef } from "react";
+import { useState } from "react";
+import ImageEditor from "../../components/ImageEditor";
+import { Dialog } from "primereact/dialog";
+import { FreelancerApi } from "../../api";
+import { addUser } from "../../redux/userReducer";
+import { Toast } from "primereact/toast";
 
 const DashboardFreelancerProfile = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const toast = useRef(null);
   const userRedux = useSelector((state) => state.user.value);
   const user = { ...userRedux };
+  const inputFile = useRef(null);
+  const [profilePhoto, setProfilePhoto] = useState();
+  const [displayProfileImage, setDisplayProfileImage] = useState(false);
   useEffect(() => {
     const checkUser = () => {
       const user = { ...userRedux };
@@ -81,10 +93,7 @@ const DashboardFreelancerProfile = () => {
       command: (e) => {
         highlightElement(
           e,
-          routes.DASHBOARD_SERVICES
-          //  +
-          //   "/" +
-          //   routes.DASHBOARD_FREELANCERSKILLS
+          routes.DASHBOARD_SERVICES + "/" + routes.DASHBOARD_SERVICESACTIVE
         );
       },
     },
@@ -97,6 +106,64 @@ const DashboardFreelancerProfile = () => {
       // icon: "pi pi-fw pi-power-off",
     },
   ];
+
+  const onCameraClick = () => {
+    // `current` points to the mounted file input element
+    inputFile.current.click();
+  };
+
+  const onChangeFile = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    var file = e.target.files[0];
+    console.log(file);
+    if (e.target.files.length > 0) {
+      setProfilePhoto(file);
+      setDisplayProfileImage(true);
+    }
+    // this.setState({file}); /// if you want to upload latter
+  };
+
+  const photo = () => {
+    return (
+      <>
+        <span
+          title="Actualizar photo de perfil"
+          className="custom-badge"
+          onClick={() => onCameraClick()}
+        >
+          <span className="p-badge p-component p-badge-lg">
+            <img src={getURLImage("images/camera.svg", true)} alt="camera" />
+          </span>
+          <input
+            type="file"
+            id="file"
+            ref={inputFile}
+            style={{ display: "none" }}
+            onChange={onChangeFile}
+          />
+        </span>
+      </>
+    );
+  };
+
+  const saveProfilePhoto = async (base64) => {
+    const request = {
+      id: user.id,
+      photo: base64,
+      fileName: profilePhoto.name,
+    };
+
+    const response = await FreelancerApi.updatePhoto(request);
+    dispatch(addUser(response));
+    setDisplayProfileImage(false);
+    toast.current.show({
+      severity: "success",
+      summary: "Operación correcta",
+      detail: "La imagen se ha actualizado correctamente",
+      life: 3000,
+    });
+  };
 
   return (
     <>
@@ -114,7 +181,9 @@ const DashboardFreelancerProfile = () => {
             size="xlarge"
             shape="circle"
             style={{ width: "150px", height: "150px" }}
-          />
+          >
+            {photo()}
+          </Avatar>
         </div>
       </section>
       <CustomSection type="primary">
@@ -134,6 +203,15 @@ const DashboardFreelancerProfile = () => {
           </div>
         </section>
       </CustomSection>
+      <Dialog
+        header="Edita tu foto de perfil"
+        visible={displayProfileImage}
+        style={{ width: "50vw" }}
+        onHide={() => setDisplayProfileImage(false)}
+      >
+        <ImageEditor image={profilePhoto} getImge={saveProfilePhoto} />
+      </Dialog>
+      <Toast ref={toast} />
     </>
   );
 };

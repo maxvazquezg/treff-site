@@ -150,7 +150,7 @@ const NewServiceFiles = () => {
           {/* <button onClick={() => setActiveIndex(1)}>Next</button> */}
         </form>
 
-        <div className="control mt-6 has-text-centered">
+        {/* <div className="control mt-6 has-text-centered">
           <button
             className="button is-success"
             style={{ width: "100%" }}
@@ -159,7 +159,7 @@ const NewServiceFiles = () => {
           >
             TEST
           </button>
-        </div>
+        </div> */}
       </SectionContent>
     </>
   );

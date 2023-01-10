@@ -38,7 +38,7 @@ const Explore = () => {
 
   const getServicesHighLightAsync = async (categoryId) => {
     if (!(categoryId || categoryIdState)) {
-      const ser = await ServiceApi.getHighlightServices(8, byFreelancer);
+      const ser = await ServiceApi.getHighlightServices(100, byFreelancer);
       setServicesHighLight(ser);
     } else {
       const ser = await ServiceApi.getHighlightServicesByCategoryId(
@@ -51,7 +51,7 @@ const Explore = () => {
 
   const getServicesAsync = async (categoryId) => {
     if (!(categoryId || categoryIdState)) {
-      const ser = await ServiceApi.getServices(8, byFreelancer);
+      const ser = await ServiceApi.getServices(100, byFreelancer);
       setServices(ser);
     } else {
       const ser = await ServiceApi.getServicesByCategoryId(

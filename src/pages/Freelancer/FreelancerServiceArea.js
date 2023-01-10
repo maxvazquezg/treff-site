@@ -56,14 +56,14 @@ const FreelancerServiceArea = (props) => {
 
   return (
     <>
-      <section className={"hero is-white"}>
-        <div className="hero-body pb-0 pt-0 gray">
+      {/* <section className={"hero is-white"}>
+        <div className="hero-body pb-0 pt-0 gray"> */}
           <Menubar model={items} />
           <CustomSection type="light">
             <Outlet />
           </CustomSection>
-        </div>
-      </section>
+        {/* </div>
+      </section> */}
     </>
   );
 };

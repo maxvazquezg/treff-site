@@ -322,9 +322,7 @@ export default function Navbar(props) {
             <div className="column is-3">
               <Avatar
                 image={getURLImage(userData?.photo)}
-                // size="large"
                 shape="circle"
-                className="ml-4"
               />
             </div>
             <div className="column pt-4">

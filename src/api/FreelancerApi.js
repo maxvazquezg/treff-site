@@ -81,6 +81,15 @@ class FreelancerApi extends BaseApi {
       throw new Error(error);
     }
   }
+
+  async updatePassword(request) {
+    try {
+      const data = await this.post(`${FREELANCER_ENDPOINT}/updatePassword`, request);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 export default new FreelancerApi();

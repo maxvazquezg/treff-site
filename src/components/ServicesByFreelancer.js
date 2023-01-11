@@ -8,17 +8,17 @@ import { Card } from "primereact/card";
 
 const responsiveOptions = [
   {
-    breakpoint: "1024px",
+    breakpoint: "1216px",
     numVisible: 3,
     numScroll: 1,
   },
   {
-    breakpoint: "768px",
+    breakpoint: "1215px",
     numVisible: 2,
     numScroll: 1,
   },
   {
-    breakpoint: "480px",
+    breakpoint: "640px",
     numVisible: 1,
     numScroll: 1,
   },
@@ -85,12 +85,13 @@ const ServicesByFreelancer = (params) => {
     <>
       <Carousel
         value={services}
-        numVisible={3}
+        // numVisible={3}
         numScroll={1}
         showIndicators={false}
         responsiveOptions={responsiveOptions}
         itemTemplate={getFreelancersCardsTheme}
-        onTouchMove={() => {}}
+        autoplayInterval={3000}
+        circular
       />
     </>
   );

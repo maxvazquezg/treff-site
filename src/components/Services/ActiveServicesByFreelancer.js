@@ -8,22 +8,23 @@ import { Card } from "primereact/card";
 
 const responsiveOptions = [
   {
-    breakpoint: "1024px",
+    breakpoint: "1581px",
     numVisible: 3,
     numScroll: 1,
   },
   {
-    breakpoint: "768px",
+    breakpoint: "1580px",
     numVisible: 2,
     numScroll: 1,
   },
   {
-    breakpoint: "480px",
+    breakpoint: "1200px",
     numVisible: 1,
     numScroll: 1,
   },
 ];
 const ActiveServicesByFreelancer = (params) => {
+  Carousel.prototype = () => {}
   const freelancerId = params.freelancerId;
   const [services, setServices] = useState([]);
 
@@ -36,22 +37,6 @@ const ActiveServicesByFreelancer = (params) => {
       getService();
     }
   }, [freelancerId]);
-
-  const header = <img alt="Card" src="images/usercard.png" />;
-  const footer = (
-    <span>
-      <button
-        label="Save"
-        icon="pi pi-check"
-        style={{ marginRight: ".25em" }}
-      />
-      <button
-        label="Cancel"
-        icon="pi pi-times"
-        className="p-button-secondary"
-      />
-    </span>
-  );
 
   const getFreelancersCardsTheme = (service) => {
     const header = (
@@ -68,8 +53,8 @@ const ActiveServicesByFreelancer = (params) => {
     );
     return (
       <>
-        <Card footer={footer} header={header} className="mr-4 mb-4">
-          <div className="has-text-left" style={{minHeight: "150px !important"}}>
+        <Card footer={footer} header={header} className="mr-1 mb-4">
+          <div className="has-text-left">
             <div className="columns is-vcentered is-mobile">
               <div className="column is-4-tablet is-4-mobile is-3-desktop is-3-widescreen">
                 {service.freelancer?.photo && (
@@ -81,7 +66,7 @@ const ActiveServicesByFreelancer = (params) => {
                   />
                 )}
               </div>
-              <div className="column is-8-mobile">
+              <div className="column is-8-mobile" style={{minHeight: "100px"}}>
                 <p className="ml-4">
                   <br />
                   {service.freelancer.name}
@@ -109,7 +94,8 @@ const ActiveServicesByFreelancer = (params) => {
             showIndicators={false}
             responsiveOptions={responsiveOptions}
             itemTemplate={getFreelancersCardsTheme}
-            onTouchMove={() => {}}
+            // circular={true}
+            
           />
           {/* </div> */}
           <div className="control mt-6 has-text-centered">

@@ -99,7 +99,12 @@ const DashboardFreelancerProfile = () => {
     },
     {
       label: "Configuración de cuenta",
-      // icon: "pi pi-fw pi-power-off",
+      command: (e) => {
+        highlightElement(
+          e,
+          routes.DASHBOARD_FREELANCER_ACCOUNT + "/" + routes.DASHBOARD_FREELANCER_ACCOUNT_BASIC
+        );
+      },
     },
     {
       label: "Verificar cuenta",
@@ -206,8 +211,9 @@ const DashboardFreelancerProfile = () => {
       <Dialog
         header="Edita tu foto de perfil"
         visible={displayProfileImage}
-        style={{ width: "50vw" }}
+        // style={{ width: "80vw" }}
         onHide={() => setDisplayProfileImage(false)}
+        breakpoints={{ "1024px": "75vw", "960px": "75vw", "640px": "100vw" }}
       >
         <ImageEditor image={profilePhoto} getImge={saveProfilePhoto} />
       </Dialog>

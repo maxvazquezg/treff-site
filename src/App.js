@@ -32,6 +32,10 @@ import NewServicePrice from "./components/Services/NewServicePrice";
 import NewServiceDescription from "./components/Services/NewServiceDescription";
 import NewServiceFiles from "./components/Services/NewServiceFiles";
 import NewServicePublish from "./components/Services/NewServicePublish";
+import FreelancerAccountArea from "./pages/Freelancer/FreelancerAccountArea";
+import BasicData from "./components/Freelancer/BasicData";
+import PasswordAdmin from "./components/Freelancer/PasswordAdmin";
+import DesactiveAccount from "./components/Freelancer/DesactiveAccount";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -79,6 +83,27 @@ function App() {
               <Route
                 path={routes.DASHBOARD_FREELANCERLANGUAGE}
                 element={<Language />}
+              ></Route>
+            </Route>
+            <Route
+              path={routes.DASHBOARD_FREELANCER_ACCOUNT}
+              element={<FreelancerAccountArea />}
+            >
+              <Route
+                path={routes.DASHBOARD_FREELANCER_ACCOUNT_BASIC}
+                element={<BasicData />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCER_ACCOUNT_PASSWORD}
+                element={<PasswordAdmin />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCER_ACCOUNT_DESACTIVE}
+                element={<DesactiveAccount />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCER_ACCOUNT_NOTIFICATIONS}
+                element={<DesactiveAccount />}
               ></Route>
             </Route>
             <Route

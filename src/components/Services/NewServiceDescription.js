@@ -14,8 +14,6 @@ const NewServiceDescription = () => {
   const {
     register,
     handleSubmit,
-    reset,
-    setError,
     formState: { errors },
   } = useForm({
     defaultValues: {

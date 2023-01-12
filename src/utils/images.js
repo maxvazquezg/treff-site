@@ -1,5 +1,3 @@
-import { vars } from "./vars";
-
 export const getURLImage = (imageName, local) => {
   if (local) {
     const url = process.env.PUBLIC_URL;

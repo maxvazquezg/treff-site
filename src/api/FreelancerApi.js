@@ -90,6 +90,24 @@ class FreelancerApi extends BaseApi {
       throw new Error(error);
     }
   }
+
+  async validateSms(request) {
+    try {
+      const data = await this.post(`${FREELANCER_ENDPOINT}/validateSms`, request);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async validateCode(request) {
+    try {
+      const data = await this.post(`${FREELANCER_ENDPOINT}/validateCode`, request);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 export default new FreelancerApi();

@@ -36,6 +36,8 @@ import FreelancerAccountArea from "./pages/Freelancer/FreelancerAccountArea";
 import BasicData from "./components/Freelancer/BasicData";
 import PasswordAdmin from "./components/Freelancer/PasswordAdmin";
 import DesactiveAccount from "./components/Freelancer/DesactiveAccount";
+import FreelancerVerificationArea from "./pages/Freelancer/FreelancerVerificationArea";
+import VerifyPhone from "./components/Freelancer/VerifyPhone";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -92,6 +94,27 @@ function App() {
               <Route
                 path={routes.DASHBOARD_FREELANCER_ACCOUNT_BASIC}
                 element={<BasicData />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCER_ACCOUNT_PASSWORD}
+                element={<PasswordAdmin />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCER_ACCOUNT_DESACTIVE}
+                element={<DesactiveAccount />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCER_ACCOUNT_NOTIFICATIONS}
+                element={<DesactiveAccount />}
+              ></Route>
+            </Route>
+            <Route
+              path={routes.DASHBOARD_FREELANCER_VERIFICATION}
+              element={<FreelancerVerificationArea />}
+            >
+              <Route
+                path={routes.DASHBOARD_FREELANCER_VERIFICATION_PHONE}
+                element={<VerifyPhone />}
               ></Route>
               <Route
                 path={routes.DASHBOARD_FREELANCER_ACCOUNT_PASSWORD}

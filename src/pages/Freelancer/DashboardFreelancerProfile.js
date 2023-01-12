@@ -108,7 +108,12 @@ const DashboardFreelancerProfile = () => {
     },
     {
       label: "Verificar cuenta",
-      // icon: "pi pi-fw pi-power-off",
+      command: (e) => {
+        highlightElement(
+          e,
+          routes.DASHBOARD_FREELANCER_VERIFICATION + "/" + routes.DASHBOARD_FREELANCER_VERIFICATION_PHONE
+        );
+      },
     },
   ];
 

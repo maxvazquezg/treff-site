@@ -47,7 +47,7 @@ const FreelancerVerificationArea = (props) => {
     {
       label: "Verificar Email",
       command: (e) => {
-        highlightElement(e, routes.DASHBOARD_FREELANCER_ACCOUNT_PASSWORD);
+        highlightElement(e, routes.DASHBOARD_FREELANCER_VERIFICATION_EMAIL);
       },
 
       // icon: "pi pi-fw pi-power-off",

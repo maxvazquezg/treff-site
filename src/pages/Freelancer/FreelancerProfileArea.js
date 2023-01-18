@@ -19,7 +19,7 @@ const FreelancerProfileArea = (props) => {
       dispatch(getUser(userData.id));
     };
     getUserInfo();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const highlightElement = (e, route) => {
@@ -37,13 +37,26 @@ const FreelancerProfileArea = (props) => {
 
   const items = [
     {
+      label: "Descripción",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_FREELANCERDESCRIPTION);
+      },
+      className: "gray-back",
+    },
+    {
+      label: "¿Por qué yo?",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_FREELANCERWHYME);
+      },
+      // icon: "pi pi-fw pi-power-off",
+    },
+    {
       label: "Habilidades",
       command: (e) => {
         highlightElement(e, routes.DASHBOARD_FREELANCERSKILLS);
       },
-      className: "gray-back",
-      // icon: "pi pi-fw pi-power-off",
     },
+
     {
       label: "Educación",
       command: (e) => {
@@ -57,13 +70,6 @@ const FreelancerProfileArea = (props) => {
       command: (e) => {
         highlightElement(e, routes.DASHBOARD_FREELANCERCERTIFICATION);
       },
-    },
-    {
-      label: "¿Por qué yo?",
-      command: (e) => {
-        highlightElement(e, routes.DASHBOARD_FREELANCERWHYME);
-      },
-      // icon: "pi pi-fw pi-power-off",
     },
     {
       label: "Idiomas",

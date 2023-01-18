@@ -7,14 +7,17 @@ import { Chips } from "primereact/chips";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewService } from "../../redux/serviceReducer";
 import { routes } from "../../routes";
+import { Editor } from "primereact/editor";
 
 const NewServiceTitle = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const [activeIndex, setActiveIndex] = useOutletContext();
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const service = useSelector((state) => state.service.new);
+  const [description, setDescription] = useState(service?.description || "");
 
   const {
     register,
@@ -37,14 +40,14 @@ const NewServiceTitle = () => {
       const cat = await CategoryApi.getCategories();
       setCategories(cat);
       loadSubCategories(service?.categoryMainId || "", cat);
-      reset({categoryId: service?.categoryId})
+      reset({ categoryId: service?.categoryId });
     };
     getCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   const loadSubCategories = (value, cats) => {
-    const categoriesData = cats ? cats : categories
+    const categoriesData = cats ? cats : categories;
     const currentCat = categoriesData.filter((c) => c.id === parseInt(value));
     if (currentCat.length > 0) {
       setCategoryMainId(parseInt(value));
@@ -53,15 +56,26 @@ const NewServiceTitle = () => {
   };
 
   const next = (data) => {
+    if (!description) {
+      return null;
+    }
     let serviceData = { ...service } || {};
     serviceData.name = data.name;
     serviceData.categoryId = data.categoryId;
     serviceData.categoryMainId = categoryMainId;
+    serviceData.description = description;
     serviceData.keyWords = values2.join(",");
 
     dispatch(addNewService(serviceData));
     setActiveIndex(1);
-    navigate("/" + routes.DASHBOARD_FREELANCER + "/" + routes.DASHBOARD_SERVICENEW + "/" + routes.DASHBOARD_SERVICENEW_PRICE);
+    navigate(
+      "/" +
+        routes.DASHBOARD_FREELANCER +
+        "/" +
+        routes.DASHBOARD_SERVICENEW +
+        "/" +
+        routes.DASHBOARD_SERVICENEW_PRICE
+    );
   };
 
   return (
@@ -69,22 +83,33 @@ const NewServiceTitle = () => {
       <SectionContent type="light">
         <form onSubmit={handleSubmit(next)}>
           <p className="plan-title">Título de tu servicio</p>
-          <div class="field">
-            <div class="control">
-              <textarea
+          <div className="field">
+            <div className="control">
+              <input
                 {...register("name", { required: true })}
-                className="textarea"
-                placeholder="e.g. Hello world"
-              ></textarea>
+                className="input"
+                // placeholder="e.g. Hello world"
+              />
             </div>
             {errors.name && (
               <span className="error-validation">Este campo es requerido</span>
             )}
           </div>
 
-          <div class="field">
-            <div class="control">
-              <div class="select">
+          <p className="plan-title mb-2 mt-4">Descripción</p>
+          <Editor
+            style={{ height: "320px" }}
+            value={description}
+            onTextChange={(e) => setDescription(e.htmlValue)}
+            placeholder="Realice brevemente una descripción de su servicio."
+          />
+          {!description && (
+            <span className="error-validation">Este campo es requerido</span>
+          )}
+
+          <div className="field mt-4">
+            <div className="control">
+              <div className="select">
                 <select
                   value={categoryMainId}
                   onChange={(e) => loadSubCategories(e.target.value)}
@@ -95,7 +120,7 @@ const NewServiceTitle = () => {
                   ))}
                 </select>
               </div>
-              <div class="select">
+              <div className="select">
                 <select {...register("categoryId", { required: true })}>
                   <option>SubCategoría</option>
                   {subcategories.map((c) => (
@@ -110,7 +135,7 @@ const NewServiceTitle = () => {
               </div>
             </div>
           </div>
-          <div className="card p-fluid">
+          <div className="card p-fluid mt-6">
             <Chips
               placeholder="Palabras clave"
               value={values2}

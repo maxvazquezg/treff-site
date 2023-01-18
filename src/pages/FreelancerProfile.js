@@ -123,9 +123,21 @@ const FreelancerProfile = () => {
               <p className="text-dark mb-4 mt-6">{freelancer?.country}</p>
               <p>Activo desde el {setDateString(freelancer?.activeDate)}</p>
               <p className="text-dark mt-6">Descripción</p>
-              <p className="mt-6 has-text-justified">
+              {/* <p className="has-text-justified">
                 {freelancer?.description}
-              </p>
+              </p> */}
+              <br />
+              <div
+                className="has-text-justified"
+                dangerouslySetInnerHTML={{ __html: freelancer?.description }}
+              />
+
+              <p className="text-dark mt-6">¿Por qué yo?</p>
+              <br />
+              <div
+                className="has-text-justified"
+                dangerouslySetInnerHTML={{ __html: freelancer?.whyMe }}
+              />
 
               <p className="text-dark mt-6">Habilidades</p>
               <br />
@@ -134,19 +146,12 @@ const FreelancerProfile = () => {
                 {skills.map((s, i) => (
                   <div
                     key={i}
-                    className="column is-3 is-full-mobile tag is-dark is-rounded"
+                    className="column is-full is-full-mobile tag is-dark is-rounded"
                   >
                     {s}
                   </div>
                 ))}
               </div>
-
-              <p className="text-dark mt-6">¿Por qué yo?</p>
-              <br />
-              <div
-                className="has-text-justified"
-                dangerouslySetInnerHTML={{ __html: freelancer?.whyMe }}
-              />
             </div>
             {/* Columna derecha */}
             <div className="column is-6-widescreen is-12-tablet">
@@ -155,44 +160,53 @@ const FreelancerProfile = () => {
               <div className="carousel-container short">
                 {getComments(freelancer?.freelancerComments)}
                 <div className="columns mt-6">
-                  <div className="column is-6">
-                    <p className="text-dark">Educación</p>
+                  {freelancer?.educations?.length > 0 && (
+                    <div className="column is-6">
+                      <p className="text-dark">Educación</p>
+                      <ul className="mt-4">
+                        {freelancer?.educations?.map((e, i) => (
+                          <li key={i} className="mb-4">
+                            {e.title} {e.titleName} - {e.university}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {freelancer?.languages?.length > 0 && (
+                    <div className="column is-6">
+                      <p className="text-dark">Idiomas</p>
+                      <ul className="mt-4">
+                        {freelancer?.languages?.map((e, i) => (
+                          <li key={i} className="mb-4">
+                            {e.name} - {e.level}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                {freelancer?.certifications?.length > 0 && (
+                  <>
+                    <p className="text-dark mt-6">Certificados</p>
                     <ul className="mt-4">
-                      {freelancer?.educations?.map((e, i) => (
-                        <li key={i} className="mb-4">{e.title} {e.titleName} - {e.university}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="column is-6">
-                    <p className="text-dark">Idiomas</p>
-                    <ul className="mt-4">
-                      {freelancer?.languages?.map((e, i) => (
+                      {freelancer?.certifications?.map((e, i) => (
                         <li key={i} className="mb-4">
-                          {e.name} - {e.level}
+                          {e.name}
+                          <br />
+                          {e.institute}, Graduado en {e.year}
                         </li>
                       ))}
                     </ul>
-                  </div>
-                </div>
-
-                <p className="text-dark mt-6">Certificados</p>
-                <ul className="mt-4">
-                  {freelancer?.certifications?.map((e, i) => (
-                    <li key={i} className="mb-4">
-                      {e.name}<br/>{e.institute}, Graduado en {e.year}
-                    </li>
-                  ))}
-                </ul>
+                  </>
+                )}
               </div>
             </div>
           </div>
         </SectionContent>
       </CustomSection>
       <CustomSection type="white">
-        <p className="subtitle-2-dark mt-6">
-          Más servicios de {freelancer?.name}
-        </p>
-        <br />
+        
         <ServicesByFreelancer freelancerId={freelancer?.id} />
       </CustomSection>
     </>

@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { CategoryApi, ServiceApi } from "../../api";
+import { ServiceApi } from "../../api";
 import SectionContent from "../SectionContent";
 import { useForm } from "react-hook-form";
-import { Chips } from "primereact/chips";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewService } from "../../redux/serviceReducer";
 import { routes } from "../../routes";
@@ -15,22 +14,21 @@ const NewServiceFiles = () => {
   const fileUpload = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const [activeIndex, setActiveIndex] = useOutletContext();
   const service = useSelector((state) => state.service.new);
 
   const {
-    register,
     handleSubmit,
-    reset,
-    setError,
-    formState: { errors },
+    // setError,
+    // formState: { errors },
   } = useForm({
     defaultValues: {
       description: service?.description || "",
     },
   });
 
-  const next = async(data) => {
+  const next = async (data) => {
     let serviceData = { ...service } || {};
 
     const files = fileUpload.current.getFiles();
@@ -73,30 +71,30 @@ const NewServiceFiles = () => {
   };
 
   const chooseOptions = { label: "Elegir", icon: "pi pi-fw pi-plus" };
-  const uploadOptions = {
-    label: "Subir",
-    icon: "pi pi-upload",
-    className: "p-button-success",
-  };
-  const cancelOptions = {
-    label: "Cancelar",
-    icon: "pi pi-times",
-    className: "p-button-danger",
-  };
+  // const uploadOptions = {
+  //   label: "Subir",
+  //   icon: "pi pi-upload",
+  //   className: "p-button-success",
+  // };
+  // const cancelOptions = {
+  //   label: "Cancelar",
+  //   icon: "pi pi-times",
+  //   className: "p-button-danger",
+  // };
 
-  const test = async () => {
-    const files = fileUpload.current.getFiles();
-    let request = [];
+  // const test = async () => {
+  //   const files = fileUpload.current.getFiles();
+  //   let request = [];
 
-    for (const element of files) {
-      const file = {
-        fileName: element.name,
-        file: await toBase64(element),
-      };
-      request.push(file);
-    }
-    await ServiceApi.uploadFilesServices({files: request});
-  };
+  //   for (const element of files) {
+  //     const file = {
+  //       fileName: element.name,
+  //       file: await toBase64(element),
+  //     };
+  //     request.push(file);
+  //   }
+  //   await ServiceApi.uploadFilesServices({files: request});
+  // };
 
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -105,6 +103,23 @@ const NewServiceFiles = () => {
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
     });
+
+  const headerTemplate = (options) => {
+    const { className, chooseButton} = options;
+
+    return (
+      <div
+        className={className}
+        style={{
+          backgroundColor: "transparent",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {chooseButton}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -127,8 +142,9 @@ const NewServiceFiles = () => {
           <FileUpload
             ref={fileUpload}
             chooseOptions={chooseOptions}
-            uploadOptions={uploadOptions}
-            cancelOptions={cancelOptions}
+            headerTemplate={headerTemplate}
+            // uploadOptions={uploadOptions}
+            // cancelOptions={cancelOptions}
             name="demo[]"
             // url="https://primefaces.org/primereact/showcase/upload.php"
             onUpload={onUpload}

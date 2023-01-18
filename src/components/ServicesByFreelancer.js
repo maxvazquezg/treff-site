@@ -5,8 +5,15 @@ import { FreelancerApi } from "../api";
 import { getURLImage } from "../utils/images";
 import { Carousel } from "primereact/carousel";
 import { Card } from "primereact/card";
+import { Link } from "react-router-dom";
+import { routes } from "../routes";
 
 const responsiveOptions = [
+  {
+    breakpoint: "10216px",
+    numVisible: 3,
+    numScroll: 1,
+  },
   {
     breakpoint: "1216px",
     numVisible: 3,
@@ -52,47 +59,60 @@ const ServicesByFreelancer = (params) => {
     );
     return (
       <>
-        <Card footer={footer} header={header} className="mr-4 mb-4">
-          <div className="has-text-left" style={{minHeight: "150px !important"}}>
-            <div className="columns is-vcentered is-mobile">
-              <div className="column is-4-tablet is-4-mobile is-3-desktop is-3-widescreen">
-                {service.freelancer?.photo && (
-                  <Avatar
-                    className="ml-3 mt-2"
-                    image={getURLImage(service.freelancer?.photo)}
-                    size="large"
-                    shape="circle"
-                  />
-                )}
-              </div>
-              <div className="column is-8-mobile">
-                <p className="ml-4">
-                  <br />
-                  {service.freelancer.name}
-                  <br />
-                  <b>{service.name}</b>
-                </p>
+        <Link to={routes.SERVICE.replace(":id", service.id)}>
+          <Card footer={footer} header={header} className="mr-4 mb-4">
+            <div
+              className="has-text-left"
+              style={{ minHeight: "150px !important" }}
+            >
+              <div className="columns is-vcentered is-mobile">
+                <div className="column is-4-tablet is-4-mobile is-3-desktop is-3-widescreen">
+                  {service.freelancer?.photo && (
+                    <Avatar
+                      className="ml-3 mt-2"
+                      image={getURLImage(service.freelancer?.photo)}
+                      size="large"
+                      shape="circle"
+                    />
+                  )}
+                </div>
+                <div className="column is-8-mobile">
+                  <p className="ml-4">
+                    <br />
+                    {service.freelancer.name}
+                    <br />
+                    <b>{service.name}</b>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <hr />
-        </Card>
+            <hr />
+          </Card>
+        </Link>
       </>
     );
   };
 
   return (
     <>
-      <Carousel
-        value={services}
-        // numVisible={3}
-        numScroll={1}
-        showIndicators={false}
-        responsiveOptions={responsiveOptions}
-        itemTemplate={getFreelancersCardsTheme}
-        autoplayInterval={3000}
-        circular
-      />
+      {services.length > 1 && (
+        <>
+          <p className="subtitle-2-dark mt-6">
+            Más servicios de {services[0]?.freelancer?.name}
+          </p>
+          <br />
+          <Carousel
+            value={services}
+            // numVisible={3}
+            numScroll={1}
+            showIndicators={false}
+            responsiveOptions={responsiveOptions}
+            itemTemplate={getFreelancersCardsTheme}
+            autoplayInterval={3000}
+            circular
+          />
+        </>
+      )}
     </>
   );
 };

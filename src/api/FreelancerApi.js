@@ -100,6 +100,15 @@ class FreelancerApi extends BaseApi {
     }
   }
 
+  async validateMail(request) {
+    try {
+      const data = await this.post(`${FREELANCER_ENDPOINT}/validateEmail`, request);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async validateCode(request) {
     try {
       const data = await this.post(`${FREELANCER_ENDPOINT}/validateCode`, request);

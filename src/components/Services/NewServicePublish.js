@@ -1,8 +1,8 @@
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SectionContent from "../SectionContent";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewService, removeNewService } from "../../redux/serviceReducer";
+import { removeNewService } from "../../redux/serviceReducer";
 import { routes } from "../../routes";
 import { ServiceApi } from "../../api";
 import { RadioButton } from "primereact/radiobutton";
@@ -12,17 +12,12 @@ import { Toast } from "primereact/toast";
 const NewServicePublish = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [activeIndex, setActiveIndex] = useOutletContext();
   const service = useSelector((state) => state.service.new);
   const userRedux = useSelector((state) => state.user.value);
   const [city, setCity] = useState(null);
   const toast = useRef(null);
   const {
-    register,
     handleSubmit,
-    reset,
-    setError,
-    formState: { errors },
   } = useForm({
     defaultValues: {
       description: service?.description || "",
@@ -34,8 +29,8 @@ const NewServicePublish = () => {
     // serviceData.description = data.description;
     serviceData.freelancerId = userRedux.id;
 
-    dispatch(removeNewService(serviceData));
     await ServiceApi.createService(serviceData);
+    dispatch(removeNewService(serviceData));
     toast.current.show({ severity: "success", summary: "Servicio agregado" });
     // setActiveIndex(4);
     navigate(
@@ -63,7 +58,7 @@ const NewServicePublish = () => {
           <p className="text-16-gray mt-4 has-text-weight-bold">
             ¿Te encuentras ubicado en MEXICO?
           </p>
-          <div class="field mt-4">
+          <div className="field mt-4">
             <div
               className="field-radiobutton"
               style={{ backgroundColor: "#fff" }}

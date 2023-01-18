@@ -1,6 +1,6 @@
 import { Avatar } from "primereact/avatar";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CustomSection from "../../components/CustomSection";
 import { routes } from "../../routes";
 import { setDateString } from "../../utils/dates";
@@ -20,6 +20,7 @@ import { Toast } from "primereact/toast";
 const DashboardFreelancerProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const toast = useRef(null);
   const userRedux = useSelector((state) => state.user.value);
   const user = { ...userRedux };
@@ -37,17 +38,17 @@ const DashboardFreelancerProfile = () => {
   }, [userRedux, navigate]);
 
   const highlightElement = (e, route) => {
-    let menuItems = document.getElementsByClassName("blue-back");
+    // let menuItems = document.getElementsByClassName("blue-back");
 
-    for (let element of menuItems) {
-      element.classList.remove("blue-back");
-    }
+    // for (let element of menuItems) {
+    //   element.classList.remove("blue-back");
+    // }
 
-    e.item.className = "p-menuitem-active";
-    let span = e.originalEvent.target;
-    // navigate(routes.DASHBOARD_FREELANCERSKILLS);
-    span.classList.add("blue-back-text");
-    span.parentElement.classList.add("blue-back");
+    // e.item.className = "p-menuitem-active";
+    // let span = e.originalEvent.target;
+    // // navigate(routes.DASHBOARD_FREELANCERSKILLS);
+    // span.classList.add("blue-back-text");
+    // span.parentElement.classList.add("blue-back");
     navigate(route);
   };
 
@@ -59,10 +60,12 @@ const DashboardFreelancerProfile = () => {
           e,
           routes.DASHBOARD_FREELANCERPROFILE +
             "/" +
-            routes.DASHBOARD_FREELANCERSKILLS
+            routes.DASHBOARD_FREELANCERDESCRIPTION
         );
       },
-      className: "blue-back",
+      className: location.pathname.includes(routes.DASHBOARD_FREELANCERPROFILE)
+        ? "blue-back"
+        : "",
     },
     {
       label: "Mensajes",
@@ -96,24 +99,39 @@ const DashboardFreelancerProfile = () => {
           routes.DASHBOARD_SERVICES + "/" + routes.DASHBOARD_SERVICESACTIVE
         );
       },
+      className: location.pathname.includes(routes.DASHBOARD_SERVICES)
+        ? "blue-back"
+        : "",
     },
     {
       label: "Configuración de cuenta",
       command: (e) => {
         highlightElement(
           e,
-          routes.DASHBOARD_FREELANCER_ACCOUNT + "/" + routes.DASHBOARD_FREELANCER_ACCOUNT_BASIC
+          routes.DASHBOARD_FREELANCER_ACCOUNT +
+            "/" +
+            routes.DASHBOARD_FREELANCER_ACCOUNT_BASIC
         );
       },
+      className: location.pathname.includes(routes.DASHBOARD_FREELANCER_ACCOUNT)
+        ? "blue-back"
+        : "",
     },
     {
       label: "Verificar cuenta",
       command: (e) => {
         highlightElement(
           e,
-          routes.DASHBOARD_FREELANCER_VERIFICATION + "/" + routes.DASHBOARD_FREELANCER_VERIFICATION_PHONE
+          routes.DASHBOARD_FREELANCER_VERIFICATION +
+            "/" +
+            routes.DASHBOARD_FREELANCER_VERIFICATION_PHONE
         );
       },
+      className: location.pathname.includes(
+        routes.DASHBOARD_FREELANCER_VERIFICATION
+      )
+        ? "blue-back"
+        : "",
     },
   ];
 

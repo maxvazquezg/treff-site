@@ -38,6 +38,9 @@ import PasswordAdmin from "./components/Freelancer/PasswordAdmin";
 import DesactiveAccount from "./components/Freelancer/DesactiveAccount";
 import FreelancerVerificationArea from "./pages/Freelancer/FreelancerVerificationArea";
 import VerifyPhone from "./components/Freelancer/VerifyPhone";
+import DescriptionFreelancer from "./components/Freelancer/DescriptionFreelancer";
+import NewServiceRequirements from "./components/Services/NewServiceRequirements";
+import VerifyMail from "./components/Freelancer/VerifyMail";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -83,6 +86,10 @@ function App() {
                 element={<WhyMe />}
               ></Route>
               <Route
+                path={routes.DASHBOARD_FREELANCERDESCRIPTION}
+                element={<DescriptionFreelancer />}
+              ></Route>
+              <Route
                 path={routes.DASHBOARD_FREELANCERLANGUAGE}
                 element={<Language />}
               ></Route>
@@ -117,8 +124,8 @@ function App() {
                 element={<VerifyPhone />}
               ></Route>
               <Route
-                path={routes.DASHBOARD_FREELANCER_ACCOUNT_PASSWORD}
-                element={<PasswordAdmin />}
+                path={routes.DASHBOARD_FREELANCER_VERIFICATION_EMAIL}
+                element={<VerifyMail />}
               ></Route>
               <Route
                 path={routes.DASHBOARD_FREELANCER_ACCOUNT_DESACTIVE}
@@ -157,6 +164,10 @@ function App() {
               <Route
                 path={routes.DASHBOARD_SERVICENEW_DESCRIPTION}
                 element={<NewServiceDescription />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_SERVICENEW_REQUIREMENTS}
+                element={<NewServiceRequirements />}
               ></Route>
               <Route
                 path={routes.DASHBOARD_SERVICENEW_FILES}

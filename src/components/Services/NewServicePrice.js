@@ -10,6 +10,7 @@ import { InputNumber } from "primereact/inputnumber";
 const NewServicePrice = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const [activeIndex, setActiveIndex] = useOutletContext();
   const service = useSelector((state) => state.service.new);
   const packages = service?.packages || [];
@@ -32,6 +33,8 @@ const NewServicePrice = () => {
   const next = (data) => {
     let serviceData = { ...service } || {};
     serviceData.packages = [];
+    data.basic.name = "Básico";
+    data.premium.name = "Premium";
     data.basic.time = time;
     data.premium.time = timePremium;
     data.basic.numReviews = numReviews;
@@ -79,9 +82,9 @@ const NewServicePrice = () => {
           <div className="column is-full">
             <p className="text-black">{title}</p>
           </div>
-          <div className="column is-full p-0">
-            <div class="field">
-              <div class="control">
+          {/* <div className="column is-full p-0">
+            <div className="field">
+              <div className="control">
                 <textarea
                   {...register(`${packageName}.name`, { required: true })}
                   className="textarea"
@@ -94,10 +97,10 @@ const NewServicePrice = () => {
                 )}
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="column is-full p-0">
-            <div class="field">
-              <div class="control">
+            <div className="field">
+              <div className="control">
                 <textarea
                   {...register(`${packageName}.description`, {
                     required: true,
@@ -176,8 +179,8 @@ const NewServicePrice = () => {
                           required: true,
                         })}
                       >
-                        <option value={"USD"}>USD</option>
                         <option value={"MXN"}>MXN</option>
+                        <option value={"USD"}>USD</option>
                       </select>
                     </div>
                     {errors[packageName]?.currency && (
@@ -204,7 +207,7 @@ const NewServicePrice = () => {
           <div className="columns">
             <div className="column is-10 is-offset-1">
               <div className="columns has-text-centered">
-                <div className="column is-4">TEST</div>
+                <div className="column is-4">Descripción</div>
                 <div className="column is-4">
                   {editPackage("basic", "Básico")}
                 </div>

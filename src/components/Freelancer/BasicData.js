@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import SectionContent from "../SectionContent";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../redux/userReducer";
+import countryCodes from "../../utils/CountryCodes.json";
 
 const BasicData = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const BasicData = () => {
     defaultValues: {
       name: user.name,
       phone: user.phone,
+      phoneCode: user.phoneCode,
       mail: user.mail,
     },
   });
@@ -27,6 +29,7 @@ const BasicData = () => {
     const userData = { ...user };
     userData.name = formData.name;
     userData.phone = formData.phone;
+    userData.phoneCode = formData.phoneCode;
     userData.mail = formData.mail;
     const data = await FreelancerApi.updateFreelancer(userData.id, userData);
     dispatch(addUser(data));
@@ -47,7 +50,7 @@ const BasicData = () => {
           </div>
           <form onSubmit={handleSubmit(update)}>
             <div className="field">
-              <label class="label">Username</label>
+              <label className="label">Username</label>
               <div className="control">
                 <input
                   {...register("name", { required: true })}
@@ -64,7 +67,7 @@ const BasicData = () => {
             </div>
 
             <div className="field">
-              <label class="label">Correo</label>
+              <label className="label">Correo</label>
               <div className="control">
                 <input
                   {...register("mail", {
@@ -87,7 +90,19 @@ const BasicData = () => {
             </div>
 
             <div className="field">
-              <label class="label">Teléfono</label>
+              <label className="label">Teléfono</label>
+              <div className="control">
+                <div className="select">
+                  <select {...register("phoneCode", { required: true })}>
+                    <option value={""}>Lada del país</option>
+                    {countryCodes.map((code, i) => (
+                      <option value={code.dial_code}>
+                        {code.name}({code.dial_code})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
               <div className="control">
                 <input
                   {...register("phone", { required: true })}

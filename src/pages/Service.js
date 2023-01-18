@@ -350,10 +350,6 @@ const Service = () => {
         </SectionContent>
       </CustomSection>
       <CustomSection type="white">
-        <p className="subtitle-2-dark mt-6">
-          Más servicios de {service.freelancer?.name}
-        </p>
-        <br />
         <ServicesByFreelancer freelancerId={service.freelancer?.id} />
       </CustomSection>
     </>

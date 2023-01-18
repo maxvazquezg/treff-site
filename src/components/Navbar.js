@@ -91,17 +91,44 @@ export default function Navbar(props) {
     {
       text: "Servicios",
       image: "/images/services.svg",
-      target: "",
+      target:
+        routes.DASHBOARD_FREELANCER +
+        "/" +
+        routes.DASHBOARD_SERVICES +
+        "/" +
+        routes.DASHBOARD_SERVICESACTIVE,
+      action: () => {
+        clickMenuHandler();
+        op.current.toggle();
+      },
     },
     {
       text: "Configuración de cuenta",
       image: "/images/configIcon.svg",
-      target: "",
+      target:
+        routes.DASHBOARD_FREELANCER +
+        "/" +
+        routes.DASHBOARD_FREELANCER_ACCOUNT +
+        "/" +
+        routes.DASHBOARD_FREELANCER_ACCOUNT_BASIC,
+      action: () => {
+        clickMenuHandler();
+        op.current.toggle();
+      },
     },
     {
       text: "Verificar cuenta",
       image: "/images/userIcon.svg",
-      target: "",
+      target:
+        routes.DASHBOARD_FREELANCER +
+        "/" +
+        routes.DASHBOARD_FREELANCER_VERIFICATION +
+        "/" +
+        routes.DASHBOARD_FREELANCER_VERIFICATION_PHONE,
+      action: () => {
+        clickMenuHandler();
+        op.current.toggle();
+      },
     },
     {
       text: "Cerrar sesión",
@@ -320,10 +347,7 @@ export default function Navbar(props) {
         <div className="container is-vcentered">
           <div className="columns">
             <div className="column is-3">
-              <Avatar
-                image={getURLImage(userData?.photo)}
-                shape="circle"
-              />
+              <Avatar image={getURLImage(userData?.photo)} shape="circle" />
             </div>
             <div className="column pt-4">
               <p className="p-18-black">{userData?.name}</p>

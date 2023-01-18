@@ -20,7 +20,7 @@ export const NewService = () => {
       },
     },
     {
-      label: "Descripción y FAQ",
+      label: "FAQ",
       command: (event) => {
         navigate(routes.DASHBOARD_SERVICENEW_DESCRIPTION);
       },
@@ -28,7 +28,7 @@ export const NewService = () => {
     {
       label: "Requerimientos",
       command: (event) => {
-        navigate(routes.DASHBOARD_SERVICENEW_TITLE);
+        navigate(routes.DASHBOARD_SERVICENEW_REQUIREMENTS);
       },
     },
     {

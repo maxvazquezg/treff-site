@@ -59,7 +59,7 @@ const PasswordAdmin = () => {
           </div>
           <form onSubmit={handleSubmit(update)}>
             <div className="field">
-              <label class="label">Contraseña actual</label>
+              <label className="label">Contraseña actual</label>
               <div className="control">
                 <input
                   {...register("password", { required: true })}
@@ -76,7 +76,7 @@ const PasswordAdmin = () => {
             </div>
 
             <div className="field">
-              <label class="label">Contraseña nueva</label>
+              <label className="label">Contraseña nueva</label>
               <div className="control">
                 <input
                   {...register("password1", {
@@ -95,7 +95,7 @@ const PasswordAdmin = () => {
             </div>
 
             <div className="field">
-              <label class="label">Repetir Contraseña</label>
+              <label className="label">Repetir Contraseña</label>
               <div className="control">
                 <input
                   {...register("password2", {

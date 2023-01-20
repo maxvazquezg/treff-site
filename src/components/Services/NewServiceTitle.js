@@ -115,16 +115,16 @@ const NewServiceTitle = () => {
                   onChange={(e) => loadSubCategories(e.target.value)}
                 >
                   <option>Categoría</option>
-                  {categories.map((c) => (
-                    <option value={c.id}>{c.name}</option>
+                  {categories.map((c, index) => (
+                    <option key={index} value={c.id}>{c.name}</option>
                   ))}
                 </select>
               </div>
               <div className="select">
                 <select {...register("categoryId", { required: true })}>
                   <option>SubCategoría</option>
-                  {subcategories.map((c) => (
-                    <option value={c.id}>{c.name}</option>
+                  {subcategories.map((c, index) => (
+                    <option key={index} value={c.id}>{c.name}</option>
                   ))}
                 </select>
                 {errors.categoryId && (

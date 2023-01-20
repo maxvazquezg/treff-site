@@ -19,6 +19,7 @@
     "react-avatar-editor": "^13.0.0",
     "react-bulma-components": "^4.1.0",
     "react-dom": "^18.2.0",
+    "react-drag-drop-files": "^2.3.8",
     "react-drag-reorder": "^1.2.0",
     "react-gallery-carousel": "^0.3.0",
     "react-hook-form": "^7.41.1",

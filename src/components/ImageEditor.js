@@ -17,7 +17,7 @@ const ImageEditor = (props) => {
       const canvasScaled = editor.getImageScaledToCanvas();
       const croppedImg = canvasScaled.toDataURL();
       //   const image = editor.getImage();
-    //   console.log(croppedImg);
+      //   console.log(croppedImg);
       props.getImge(croppedImg);
     }
   };
@@ -29,17 +29,30 @@ const ImageEditor = (props) => {
   return (
     <>
       <div className="has-text-centered">
-        <AvatarEditor
-          ref={setEditorRef}
-          image={props?.image}
-          width={250}
-          height={250}
-          border={50}
-          color={[255, 255, 255, 0.6]} // RGBA
-          scale={parseFloat(scale)}
-          rotate={0}
-          borderRadius={125}
-        />
+        {props.isAvatar ? (
+          <AvatarEditor
+            ref={setEditorRef}
+            image={props?.image}
+            width={250}
+            height={250}
+            border={50}
+            color={[255, 255, 255, 0.6]} // RGBA
+            scale={parseFloat(scale)}
+            rotate={0}
+            borderRadius={125}
+          />
+        ) : (
+          <AvatarEditor
+            ref={setEditorRef}
+            image={props?.image}
+            width={480}
+            height={320}
+            border={50}
+            color={[255, 255, 255, 0.6]} // RGBA
+            scale={parseFloat(scale)}
+            rotate={0}
+          />
+        )}
         <br />
         Zoom:
         <br />

@@ -1,45 +1,72 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { ServiceApi } from "../../api";
 import SectionContent from "../SectionContent";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewService } from "../../redux/serviceReducer";
 import { routes } from "../../routes";
-import { FileUpload } from "primereact/fileupload";
 import { Toast } from "primereact/toast";
+import Uploader from "../Uploader";
+import { useEffect } from "react";
+import { getURLImage } from "../../utils/images";
 
 const NewServiceFiles = () => {
   const toast = useRef(null);
-  const fileUpload = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
   const [activeIndex, setActiveIndex] = useOutletContext();
-  const service = useSelector((state) => state.service.new);
+  const serviceRedux = useSelector((state) => state.service.new);
+  const [files, setFiles] = useState(serviceRedux?.files || []);
+  const [service, setService] = useState(serviceRedux);
 
-  const {
-    handleSubmit,
-    // setError,
-    // formState: { errors },
-  } = useForm({
-    defaultValues: {
-      description: service?.description || "",
-    },
+  const { handleSubmit } = useForm({
+    defaultValues: {},
   });
 
-  const next = async (data) => {
-    let serviceData = { ...service } || {};
+  useEffect(() => {
+    const checkImages = () => {
+      if (
+        !service.files &&
+        service.serviceImages &&
+        service.serviceImages.length > 0
+      ) {
+        const filesData = [...files];
+        service.serviceImages.forEach((img) => {
+          const imgData = {
+            fileName: img.image,
+            file: getURLImage(img.image),
+          };
+          filesData.push(imgData);
+        });
+        setFiles(filesData);
+        let serviceData = { ...service } || {};
+        serviceData.files = filesData;
 
-    const files = fileUpload.current.getFiles();
+        dispatch(addNewService(serviceData));
+      }
+    };
+    checkImages();
+  }, []);
+
+  useEffect(() => {
+    setService(serviceRedux);
+  }, [serviceRedux]);
+
+  const next = async () => {
+    let serviceData = { ...service } || {};
     let request = [];
 
     for (const element of files) {
-      const file = {
-        fileName: element.name,
-        file: await toBase64(element),
-      };
-      request.push(file);
+      if (element.name) {
+        const file = {
+          fileName: element.name,
+          file: await toBase64(element),
+        };
+        request.push(file);
+      } else {
+        request.push(element);
+      }
     }
 
     serviceData.files = request;
@@ -56,46 +83,6 @@ const NewServiceFiles = () => {
     );
   };
 
-  const onUpload = (data) => {
-    console.log(data);
-
-    const formData = new FormData();
-    formData.append("formFiles", data.files);
-
-    ServiceApi.uploadFilesServices(formData);
-    toast.current.show({
-      severity: "info",
-      summary: "Success",
-      detail: "File Uploaded",
-    });
-  };
-
-  const chooseOptions = { label: "Elegir", icon: "pi pi-fw pi-plus" };
-  // const uploadOptions = {
-  //   label: "Subir",
-  //   icon: "pi pi-upload",
-  //   className: "p-button-success",
-  // };
-  // const cancelOptions = {
-  //   label: "Cancelar",
-  //   icon: "pi pi-times",
-  //   className: "p-button-danger",
-  // };
-
-  // const test = async () => {
-  //   const files = fileUpload.current.getFiles();
-  //   let request = [];
-
-  //   for (const element of files) {
-  //     const file = {
-  //       fileName: element.name,
-  //       file: await toBase64(element),
-  //     };
-  //     request.push(file);
-  //   }
-  //   await ServiceApi.uploadFilesServices({files: request});
-  // };
-
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -103,23 +90,6 @@ const NewServiceFiles = () => {
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
     });
-
-  const headerTemplate = (options) => {
-    const { className, chooseButton} = options;
-
-    return (
-      <div
-        className={className}
-        style={{
-          backgroundColor: "transparent",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        {chooseButton}
-      </div>
-    );
-  };
 
   return (
     <>
@@ -139,20 +109,9 @@ const NewServiceFiles = () => {
             sus servicios.
           </p>
 
-          <FileUpload
-            ref={fileUpload}
-            chooseOptions={chooseOptions}
-            headerTemplate={headerTemplate}
-            // uploadOptions={uploadOptions}
-            // cancelOptions={cancelOptions}
-            name="demo[]"
-            // url="https://primefaces.org/primereact/showcase/upload.php"
-            onUpload={onUpload}
-            multiple
-            accept="image/*"
-            maxFileSize={1000000}
-            emptyTemplate={<p className="m-0">Arrastra imágenes aquí.</p>}
-          />
+          <div className="p-4">
+            <Uploader setFiles={setFiles} files={service?.files} />
+          </div>
 
           <div className="control mt-6 has-text-centered">
             <input
@@ -162,20 +121,7 @@ const NewServiceFiles = () => {
               value="Guardar y continuar"
             />
           </div>
-
-          {/* <button onClick={() => setActiveIndex(1)}>Next</button> */}
         </form>
-
-        {/* <div className="control mt-6 has-text-centered">
-          <button
-            className="button is-success"
-            style={{ width: "100%" }}
-            value="TEST"
-            onClick={() => test()}
-          >
-            TEST
-          </button>
-        </div> */}
       </SectionContent>
     </>
   );

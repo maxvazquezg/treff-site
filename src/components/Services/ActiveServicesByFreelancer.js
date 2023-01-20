@@ -5,6 +5,7 @@ import { Carousel } from "primereact/carousel";
 import { FreelancerApi } from "../../api";
 import { getURLImage } from "../../utils/images";
 import { Card } from "primereact/card";
+import { Link, useNavigate } from "react-router-dom";
 
 const responsiveOptions = [
   {
@@ -23,10 +24,11 @@ const responsiveOptions = [
     numScroll: 1,
   },
 ];
-const ActiveServicesByFreelancer = (params) => {
-  Carousel.prototype = () => {}
-  const freelancerId = params.freelancerId;
+const ActiveServicesByFreelancer = (props) => {
+  Carousel.prototype = () => {};
+  const freelancerId = props.freelancerId;
   const [services, setServices] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getService = async () => {
@@ -53,31 +55,42 @@ const ActiveServicesByFreelancer = (params) => {
     );
     return (
       <>
-        <Card footer={footer} header={header} className="mr-1 mb-4">
-          <div className="has-text-left">
-            <div className="columns is-vcentered is-mobile">
-              <div className="column is-4-tablet is-4-mobile is-3-desktop is-3-widescreen">
-                {service.freelancer?.photo && (
-                  <Avatar
-                    className="ml-3 mt-2"
-                    image={getURLImage(service.freelancer?.photo)}
-                    size="large"
-                    shape="circle"
-                  />
-                )}
-              </div>
-              <div className="column is-8-mobile" style={{minHeight: "100px"}}>
-                <p className="ml-4">
-                  <br />
-                  {service.freelancer.name}
-                  <br />
-                  <b>{service.name}</b>
-                </p>
+        <Link
+          onClick={() => {
+            props.clickElement(service);
+            // navigate(props.redirectTo);
+          }}
+          to={props.redirectTo}
+        >
+          <Card footer={footer} header={header} className="mr-1 mb-4">
+            <div className="has-text-left">
+              <div className="columns is-vcentered is-mobile">
+                <div className="column is-4-tablet is-4-mobile is-3-desktop is-3-widescreen">
+                  {service.freelancer?.photo && (
+                    <Avatar
+                      className="ml-3 mt-2"
+                      image={getURLImage(service.freelancer?.photo)}
+                      size="large"
+                      shape="circle"
+                    />
+                  )}
+                </div>
+                <div
+                  className="column is-8-mobile"
+                  style={{ minHeight: "100px" }}
+                >
+                  <p className="ml-4">
+                    <br />
+                    {service.freelancer.name}
+                    <br />
+                    <b>{service.name}</b>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <hr />
-        </Card>
+            <hr />
+          </Card>
+        </Link>
       </>
     );
   };
@@ -95,12 +108,11 @@ const ActiveServicesByFreelancer = (params) => {
             responsiveOptions={responsiveOptions}
             itemTemplate={getFreelancersCardsTheme}
             // circular={true}
-            
           />
           {/* </div> */}
           <div className="control mt-6 has-text-centered">
             <button
-              onClick={() => params.addNew()}
+              onClick={() => props.addNew()}
               className="button is-success"
               style={{ width: "100%" }}
             >
@@ -115,7 +127,7 @@ const ActiveServicesByFreelancer = (params) => {
           </p>
           <div className="control mt-6 has-text-centered">
             <button
-              onClick={() => params.addNew()}
+              onClick={() => props.addNew()}
               className="button is-success"
               style={{ width: "100%" }}
             >

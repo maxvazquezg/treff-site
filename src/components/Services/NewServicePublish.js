@@ -14,25 +14,29 @@ const NewServicePublish = () => {
   const navigate = useNavigate();
   const service = useSelector((state) => state.service.new);
   const userRedux = useSelector((state) => state.user.value);
-  const [city, setCity] = useState(null);
+  const [city, setCity] = useState(service?.isMexico !== undefined || null);
   const toast = useRef(null);
-  const {
-    handleSubmit,
-  } = useForm({
+  const { handleSubmit } = useForm({
     defaultValues: {
       description: service?.description || "",
     },
   });
 
   const next = async (data) => {
+    if (city === null) {
+      return;
+    }
     let serviceData = { ...service } || {};
-    // serviceData.description = data.description;
     serviceData.freelancerId = userRedux.id;
+    serviceData.isMexico = city;
 
-    await ServiceApi.createService(serviceData);
+    if (serviceData.id) {
+      await ServiceApi.updateService(serviceData.id, serviceData);
+    } else {
+      await ServiceApi.createService(serviceData);
+    }
     dispatch(removeNewService(serviceData));
     toast.current.show({ severity: "success", summary: "Servicio agregado" });
-    // setActiveIndex(4);
     navigate(
       "/" +
         routes.DASHBOARD_FREELANCER +
@@ -66,9 +70,9 @@ const NewServicePublish = () => {
               <RadioButton
                 inputId="city1"
                 name="city"
-                value="Chicago"
+                value={false}
                 onChange={(e) => setCity(e.value)}
-                checked={city === "Chicago"}
+                checked={city === false}
               />
               <label htmlFor="city1">
                 No , Confirmo que todos los servicios que ofrezco son fuera de
@@ -82,15 +86,18 @@ const NewServicePublish = () => {
               <RadioButton
                 inputId="city2"
                 name="city"
-                value="Los Angeles"
+                value={true}
                 onChange={(e) => setCity(e.value)}
-                checked={city === "Los Angeles"}
+                checked={city === true}
               />
-              <label htmlFor="city2 ml-3">
+              <label htmlFor="city2">
                 Si, Confirmo que todos los servicios que ofrezco son dentro de
                 Mexico.
               </label>
             </div>
+            {city === null && (
+              <span className="error-validation">Este campo es requerido</span>
+            )}
           </div>
 
           <div className="control mt-6 has-text-centered">
@@ -101,8 +108,6 @@ const NewServicePublish = () => {
               value="Guardar y continuar"
             />
           </div>
-
-          {/* <button onClick={() => setActiveIndex(1)}>Next</button> */}
         </form>
       </SectionContent>
     </>

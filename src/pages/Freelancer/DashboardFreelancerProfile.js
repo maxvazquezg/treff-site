@@ -238,7 +238,7 @@ const DashboardFreelancerProfile = () => {
         onHide={() => setDisplayProfileImage(false)}
         breakpoints={{ "1024px": "75vw", "960px": "75vw", "640px": "100vw" }}
       >
-        <ImageEditor image={profilePhoto} getImge={saveProfilePhoto} />
+        <ImageEditor image={profilePhoto} getImge={saveProfilePhoto} isAvatar={true} />
       </Dialog>
       <Toast ref={toast} />
     </>

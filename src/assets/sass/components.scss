@@ -201,3 +201,8 @@
   background: #FBFBFB;
   border: 1px solid #BFBFBF; 
 }
+
+.image-editor > canvas{
+  width: 100% !important;
+  height: auto !important;
+}

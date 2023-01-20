@@ -28,7 +28,7 @@ const ImageEditor = (props) => {
 
   return (
     <>
-      <div className="has-text-centered">
+      <div className="has-text-centered image-editor">
         {props.isAvatar ? (
           <AvatarEditor
             ref={setEditorRef}

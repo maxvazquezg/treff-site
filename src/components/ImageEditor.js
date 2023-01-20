@@ -41,6 +41,17 @@ const ImageEditor = (props) => {
             rotate={0}
             borderRadius={125}
           />
+        ) : props.isCover ? (
+          <AvatarEditor
+            ref={setEditorRef}
+            image={props?.image}
+            width={820}
+            height={312}
+            border={50}
+            color={[255, 255, 255, 0.6]} // RGBA
+            scale={parseFloat(scale)}
+            rotate={0}
+          />
         ) : (
           <AvatarEditor
             ref={setEditorRef}

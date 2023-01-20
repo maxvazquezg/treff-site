@@ -16,6 +16,7 @@ import { Dialog } from "primereact/dialog";
 import { FreelancerApi } from "../../api";
 import { addUser } from "../../redux/userReducer";
 import { Toast } from "primereact/toast";
+import { getUser } from "../../redux/serviceReducer";
 
 const DashboardFreelancerProfile = () => {
   const dispatch = useDispatch();
@@ -25,8 +26,14 @@ const DashboardFreelancerProfile = () => {
   const userRedux = useSelector((state) => state.user.value);
   const user = { ...userRedux };
   const inputFile = useRef(null);
+  const inputFileCover = useRef(null);
   const [profilePhoto, setProfilePhoto] = useState();
+  const [coverPhoto, setCoverPhoto] = useState();
   const [displayProfileImage, setDisplayProfileImage] = useState(false);
+  const [displayCoverImage, setDisplayCoverImage] = useState(false);
+  const coverUrl = user?.cover
+    ? getURLImage(user.cover)
+    : getURLImage("images/treff_waves.png", true);
   useEffect(() => {
     const checkUser = () => {
       const user = { ...userRedux };
@@ -36,6 +43,17 @@ const DashboardFreelancerProfile = () => {
     };
     checkUser();
   }, [userRedux, navigate]);
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      const userData = { ...userRedux };
+      if (userData) {
+        dispatch(getUser(userData.id));
+      }
+    };
+    getUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const highlightElement = (e, route) => {
     // let menuItems = document.getElementsByClassName("blue-back");
@@ -139,6 +157,10 @@ const DashboardFreelancerProfile = () => {
     // `current` points to the mounted file input element
     inputFile.current.click();
   };
+  const onCameraCoverClick = () => {
+    // `current` points to the mounted file input element
+    inputFileCover.current.click();
+  };
 
   const onChangeFile = (e) => {
     e.stopPropagation();
@@ -148,6 +170,18 @@ const DashboardFreelancerProfile = () => {
     if (e.target.files.length > 0) {
       setProfilePhoto(file);
       setDisplayProfileImage(true);
+    }
+    // this.setState({file}); /// if you want to upload latter
+  };
+
+  const onChangeFileCover = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    var file = e.target.files[0];
+    console.log(file);
+    if (e.target.files.length > 0) {
+      setCoverPhoto(file);
+      setDisplayCoverImage(true);
     }
     // this.setState({file}); /// if you want to upload latter
   };
@@ -180,6 +214,7 @@ const DashboardFreelancerProfile = () => {
       id: user.id,
       photo: base64,
       fileName: profilePhoto.name,
+      profile: true,
     };
 
     const response = await FreelancerApi.updatePhoto(request);
@@ -193,12 +228,46 @@ const DashboardFreelancerProfile = () => {
     });
   };
 
+  const saveCoverPhoto = async (base64) => {
+    const request = {
+      id: user.id,
+      photo: base64,
+      fileName: coverPhoto.name,
+      cover: true,
+    };
+
+    const response = await FreelancerApi.updatePhoto(request);
+    dispatch(addUser(response));
+    setDisplayCoverImage(false);
+    toast.current.show({
+      severity: "success",
+      summary: "Operación correcta",
+      detail: "La imagen se ha actualizado correctamente",
+      life: 3000,
+    });
+  };
+
+  const removeCoverPhoto = async (base64) => {
+    const userData = { ...user };
+    userData.cover = null;
+    const data = await FreelancerApi.updateFreelancer(userData.id, userData);
+    dispatch(addUser(data));
+    toast.current.show({
+      severity: "success",
+      summary: "Actualización correcta",
+    });
+  };
+  console.log(
+    !user?.cover
+      ? getURLImage(user.cover)
+      : getURLImage("images/treff_waves.png", true)
+  );
   return (
     <>
       <section
-        className="hero is-info backgroud-wave-full"
+        className="hero is-info backgroud-wave-full has-text-right"
         style={{
-          backgroundImage: "url(" + treffWaves + ")",
+          backgroundImage: "url(" + coverUrl + ")",
           paddingBottom: "0px !important",
         }}
       >
@@ -213,6 +282,64 @@ const DashboardFreelancerProfile = () => {
             {photo()}
           </Avatar>
         </div>
+        <span
+          title="Actualizar photo de portada"
+          // className="custom-badge"
+          style={{
+            position: "absolute",
+            right: "0px",
+            marginTop: "5px",
+            backgroundColor: "rgba(0,0,0,0.0)",
+          }}
+          onClick={() => onCameraCoverClick()}
+        >
+          <span
+            className="p-badge p-component p-badge-lg"
+            style={{
+              backgroundColor: "rgba(0,0,0,0.3)",
+              paddingTop: "4px",
+              cursor: "pointer",
+            }}
+          >
+            <img src={getURLImage("images/camera.svg", true)} alt="camera" />
+          </span>
+
+          <input
+            type="file"
+            id="file"
+            ref={inputFileCover}
+            style={{ display: "none" }}
+            onChange={onChangeFileCover}
+          />
+        </span>
+        {user?.cover && (
+          <span
+            title="Borrar photo de portada"
+            // className="custom-badge"
+            style={{
+              position: "absolute",
+              right: "45px",
+              marginTop: "5px",
+              backgroundColor: "rgba(0,0,0,0.0)",
+            }}
+            onClick={() => removeCoverPhoto()}
+          >
+            <span
+              className="p-badge p-component p-badge-lg"
+              style={{
+                backgroundColor: "rgba(0,0,0,0.3)",
+                paddingTop: "5px",
+                cursor: "pointer",
+              }}
+            >
+              <img
+                src={getURLImage("images/delete.png", true)}
+                width="25"
+                alt="camera"
+              />
+            </span>
+          </span>
+        )}
       </section>
       <CustomSection type="primary">
         <div className="has-text-centered p-4">
@@ -238,7 +365,24 @@ const DashboardFreelancerProfile = () => {
         onHide={() => setDisplayProfileImage(false)}
         breakpoints={{ "1024px": "75vw", "960px": "75vw", "640px": "100vw" }}
       >
-        <ImageEditor image={profilePhoto} getImge={saveProfilePhoto} isAvatar={true} />
+        <ImageEditor
+          image={profilePhoto}
+          getImge={saveProfilePhoto}
+          isAvatar={true}
+        />
+      </Dialog>
+      <Dialog
+        header="Edita tu foto de perfil"
+        visible={displayCoverImage}
+        // style={{ width: "80vw" }}
+        onHide={() => setDisplayCoverImage(false)}
+        breakpoints={{ "1024px": "75vw", "960px": "75vw", "640px": "100vw" }}
+      >
+        <ImageEditor
+          image={coverPhoto}
+          getImge={saveCoverPhoto}
+          isCover={true}
+        />
       </Dialog>
       <Toast ref={toast} />
     </>

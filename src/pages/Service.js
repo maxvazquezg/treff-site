@@ -5,17 +5,25 @@ import CustomSection from "../components/CustomSection";
 import { getURLImage } from "../utils/images";
 import SectionContent from "../components/SectionContent";
 import ReactStars from "react-rating-stars-component";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { setDateString } from "../utils/dates";
 import Carousel from "react-gallery-carousel";
 import "react-gallery-carousel/dist/index.css";
 import ServicesByFreelancer from "../components/ServicesByFreelancer";
 import { routes } from "../routes";
 import { Avatar } from "primereact/avatar";
+import { Dialog } from "primereact/dialog";
+import LoginModal from "../components/LoginModal";
+import { useDispatch, useSelector } from "react-redux";
+import { setIdsChat, toggleChat } from "../redux/chatReducer";
 
 const Service = () => {
   const { id } = useParams();
   const [service, setService] = useState([]);
+  const [visibleLogin, setVisibleLogin] = useState(false);
+  const userRedux = useSelector((state) => state.user.value);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getService = async () => {
@@ -39,6 +47,37 @@ const Service = () => {
       console.log(getURLImage(p.image));
     });
     return images;
+  };
+
+  const startProject = (packageData) => {
+    if (userRedux?.id) {
+      const url = routes.NEWPROJECT.replace(":idService", id).replace(
+        ":idPackage",
+        packageData.id
+      );
+      navigate(url);
+    } else {
+      setVisibleLogin(true);
+    }
+  };
+
+  const onCloseLogin = () => {
+    setVisibleLogin(false);
+    // clickMenuHandler();
+  };
+
+  const contact = () => {
+    if (userRedux?.id) {
+      dispatch(toggleChat());
+      dispatch(
+        setIdsChat({
+          currentUserId: userRedux.id,
+          userId: service.freelancerId,
+        })
+      );
+    } else {
+      setVisibleLogin(true);
+    }
   };
 
   const getComments = (comments) => {
@@ -154,13 +193,15 @@ const Service = () => {
                         </div>
                       </div>
                     </article>
-
-                    <button
-                      className="button is-success"
-                      style={{ width: "100%" }}
-                    >
-                      Contrata servicio {p.premium ? "Premium" : "Básico"}
-                    </button>
+                    {userRedux?.id !== service.freelancerId && (
+                      <button
+                        className="button is-success"
+                        style={{ width: "100%" }}
+                        onClick={() => startProject(p)}
+                      >
+                        Contrata servicio {p.premium ? "Premium" : "Básico"}
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -311,12 +352,15 @@ const Service = () => {
                           </Link>
                         </div>
                         <div className="column is-7-widescreen is-12-tablet">
-                          <button
-                            className="button is-link"
-                            style={{ width: "100%" }}
-                          >
-                            Contáctame
-                          </button>
+                          {userRedux?.id !== service.freelancerId && (
+                            <button
+                              className="button is-link"
+                              style={{ width: "100%" }}
+                              onClick={() => contact()}
+                            >
+                              Contáctame
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -335,16 +379,23 @@ const Service = () => {
             </div>
             <div className="column is-6-widescreen is-12-tablet">
               {showPackages(service.packages)}
-              <div className="has-text-centered">
-                <button className="button is-primary" style={{ width: "70%" }}>
-                  Solicitar cotización especial
-                </button>
-              </div>
-              <div className="has-text-centered mt-4">
-                <button className="button" style={{ width: "70%" }}>
-                  Contactar vendedor
-                </button>
-              </div>
+              {userRedux?.id !== service.freelancerId && (
+                <>
+                  <div className="has-text-centered">
+                    <button
+                      className="button is-primary"
+                      style={{ width: "70%" }}
+                    >
+                      Solicitar cotización especial
+                    </button>
+                  </div>
+                  <div className="has-text-centered mt-4">
+                    <button className="button" style={{ width: "70%" }}>
+                      Contactar vendedor
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </SectionContent>
@@ -352,6 +403,14 @@ const Service = () => {
       <CustomSection type="white">
         <ServicesByFreelancer freelancerId={service.freelancer?.id} />
       </CustomSection>
+      <Dialog
+        visible={visibleLogin}
+        onHide={() => setVisibleLogin(false)}
+        breakpoints={{ "1024px": "75vw", "960px": "75vw", "640px": "100vw" }}
+        // style={{ width: "50vw" }}
+      >
+        <LoginModal onClose={() => onCloseLogin()} />
+      </Dialog>
     </>
   );
 };

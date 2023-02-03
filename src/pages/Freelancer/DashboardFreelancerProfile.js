@@ -7,7 +7,7 @@ import { setDateString } from "../../utils/dates";
 import { getURLImage } from "../../utils/images";
 import { Menubar } from "primereact/menubar";
 import { Outlet } from "react-router-dom";
-import treffWaves from "../../assets/images/treff_waves.png";
+// import treffWaves from "../../assets/images/treff_waves.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
 import { useState } from "react";

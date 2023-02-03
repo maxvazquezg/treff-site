@@ -45,7 +45,7 @@
   font-size: 20px;
   line-height: 23px;
 
-  color: #4A4A4A;
+  color: #4a4a4a;
 }
 
 p {
@@ -116,4 +116,45 @@ p {
   line-height: 15px;
 
   color: #9f9d9d;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #5d73c7;
+}
+
+.description-total {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #727272;
+}
+
+.total {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #2c2c2c;
+}
+
+.price-from {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+
+  color: #303030;
+}
+
+.price-from-value {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #002541;
 }

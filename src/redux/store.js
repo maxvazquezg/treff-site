@@ -13,6 +13,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import chatReducer from "./chatReducer";
 
 const persistConfig = {
   key: "user",
@@ -21,6 +22,7 @@ const persistConfig = {
 const reducers = combineReducers({
   user: userReducer,
   service: serviceReducer,
+  chat: chatReducer
 });
 const persistedReducer = persistReducer(persistConfig, reducers);
 

@@ -32,6 +32,7 @@ export const routes = {
   DASHBOARD_SERVICENEW_FILES: "Files",
   DASHBOARD_SERVICENEW_PUBLISH: "Publish",
   SERVICE: "/Service/:id",
+  NEWPROJECT: "/NewProject/:idService/:idPackage",
   LOGIN: "/Login",
   LOGOUT: "/Logout",
   HOME_POST: "/Posts",

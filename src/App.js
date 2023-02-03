@@ -10,7 +10,6 @@ import Footer from "./components/Footer";
 import Explore from "./pages/Explore";
 import Service from "./pages/Service";
 import FreelancerProfile from "./pages/FreelancerProfile";
-
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
@@ -41,6 +40,8 @@ import VerifyPhone from "./components/Freelancer/VerifyPhone";
 import DescriptionFreelancer from "./components/Freelancer/DescriptionFreelancer";
 import NewServiceRequirements from "./components/Services/NewServiceRequirements";
 import VerifyMail from "./components/Freelancer/VerifyMail";
+import ProjectPayment from "./pages/ProjectPayment";
+import ChatComponent from "./components/Chat/ChatComponent";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -51,12 +52,14 @@ function App() {
       <Navbar />
       <ScrollTop />
       <div>
+        <ChatComponent />
         <Routes>
           <Route path={routes.HOME} element={<Home />} />
           <Route path={routes.EXPLORECATEGORY} element={<ExploreCategory />} />
           <Route path={routes.EXPLORE} element={<Explore />} />
           <Route path={routes.EXPLOREID} element={<Explore />} />
           <Route path={routes.SERVICE} element={<Service />} />
+          <Route path={routes.NEWPROJECT} element={<ProjectPayment />} />
           <Route
             path={routes.FREELANCERPROFILE}
             element={<FreelancerProfile />}
@@ -149,11 +152,8 @@ function App() {
                 element={<Education />}
               ></Route>
             </Route>
-            <Route
-              path={routes.DASHBOARD_SERVICENEW}
-              element={<NewService />}
-            >
-               <Route
+            <Route path={routes.DASHBOARD_SERVICENEW} element={<NewService />}>
+              <Route
                 path={routes.DASHBOARD_SERVICENEW_TITLE}
                 element={<NewServiceTitle />}
               ></Route>

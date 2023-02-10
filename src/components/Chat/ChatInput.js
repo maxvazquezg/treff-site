@@ -10,6 +10,7 @@ const ChatInput = (props) => {
 
     if (isMessageProvided) {
       props.sendMessage(message);
+      setMessage("");
     } else {
       alert("Please insert an user and a message.");
     }
@@ -24,7 +25,7 @@ const ChatInput = (props) => {
       <br />
       <input id="user" name="user" value={user} onChange={onUserUpdate} />
       <br /> */}
-      <label htmlFor="message">Message:</label>
+      {/* <label htmlFor="message">Message:</label> */}
       <br />
       <input
         type="text"
@@ -32,6 +33,13 @@ const ChatInput = (props) => {
         name="message"
         value={message}
         onChange={onMessageUpdate}
+        placeholder="Escribir un comentario"
+        style={{
+          width: "100%",
+          height: "46px",
+          paddingLeft: "20px",
+          paddingRight: "20px",
+        }}
       />
       {/* <br />
       <label htmlFor="message">Group:</label>
@@ -45,7 +53,7 @@ const ChatInput = (props) => {
       /> */}
       <br />
       <br />
-      <button>Submit</button>
+      {/* {<button>Submit</button>} */}
     </form>
   );
 };

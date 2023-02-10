@@ -13,7 +13,7 @@ const meses = [
   "diciembre",
 ];
 export const setDateString = (dateString) => {
-const date = new Date(dateString);
+  const date = new Date(dateString);
   if (date) {
     return (
       date.getDate() +
@@ -21,6 +21,22 @@ const date = new Date(dateString);
       meses[date.getMonth()] +
       " de " +
       date.getUTCFullYear()
+    );
+  }
+};
+
+export const setDateTimeString = (dateString) => {
+  const date = new Date(dateString);
+  if (date) {
+    return (
+      date.getDate() +
+      " de " +
+      meses[date.getMonth()] +
+      " de " +
+      date.getUTCFullYear()+ " a las "+
+      date.getHours() +
+      ":" +
+      date.getMinutes()
     );
   }
 };

@@ -26,6 +26,7 @@ const Chat = (props) => {
 
         connection.on("UsersAdded", (message) => {
           const updatedChat = [...latestChat.current];
+          message.date = new Date();
           updatedChat.push(message);
 
           setChat(updatedChat);
@@ -42,6 +43,7 @@ const Chat = (props) => {
         connection.on("Message", (message) => {
           if (message.user) {
             const updatedChat = [...latestChat.current];
+            message.date = new Date();
             updatedChat.push(message);
 
             setChat(updatedChat);
@@ -61,10 +63,11 @@ const Chat = (props) => {
 
   useEffect(() => {
     const messages = [];
-    props.chat.chatMessages.forEach((element) => {
+    props.chat?.chatMessages.forEach((element) => {
       messages.push({
         user: element?.user?.name,
         message: element?.message,
+        date: element?.date
       });
     });
     setChat(messages);

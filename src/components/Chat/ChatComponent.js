@@ -31,7 +31,7 @@ const ChatComponent = () => {
   return (
     <>
       <Dialog
-        header="Header"
+        header="Chat"
         visible={visible}
         style={{ width: "50vw" }}
         onHide={() => dispatch(toggleChat())}

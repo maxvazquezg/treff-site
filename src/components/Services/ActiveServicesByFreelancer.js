@@ -5,7 +5,7 @@ import { Carousel } from "primereact/carousel";
 import { FreelancerApi } from "../../api";
 import { getURLImage } from "../../utils/images";
 import { Card } from "primereact/card";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const responsiveOptions = [
   {
@@ -28,7 +28,7 @@ const ActiveServicesByFreelancer = (props) => {
   Carousel.prototype = () => {};
   const freelancerId = props.freelancerId;
   const [services, setServices] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const getService = async () => {

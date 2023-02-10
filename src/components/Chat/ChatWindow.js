@@ -1,21 +1,29 @@
-
-import React from 'react';
-import Message from './Message';
+import React, { useEffect, useRef } from "react";
+import Message from "./Message";
 
 // import Message from './Message/Message';
 
 const ChatWindow = (props) => {
-    const chat = props.chat
-        .map(m => <Message
-            key={Date.now() * Math.random()}
-            user={m.user}
-            message={m.message}/>);
+  const element = useRef(null);
 
-    return(
-        <div>
-            {chat}
-        </div>
-    )
+  useEffect(()=>{
+    document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight
+  }, [props.chat])
+
+  const chat = props.chat.map((m) => (
+    <Message
+      key={Date.now() * Math.random()}
+      user={m.user}
+      message={m.message}
+      date={m.date}
+    />
+  ));
+
+  return (
+    <div id="chat" ref={element} style={{ maxHeight: "300px", overflowY: "auto" }}>
+      {chat}
+    </div>
+  );
 };
 
 export default ChatWindow;

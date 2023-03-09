@@ -188,7 +188,7 @@ const Education = () => {
     <>
       <SectionContent type="light">
         <div className="pb-6">
-          <div className="has-text-centered is-hidden-desktop">
+          <div className="has-text-centered is-hidden-widescreen">
             <p className="p-18-dark">
               <b>Educación</b>
             </p>

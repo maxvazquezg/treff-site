@@ -54,7 +54,7 @@ const DesactiveAccount = () => {
       <SectionContent type="light">
         {user.active ? (
           <div className="pb-6">
-            <div className="has-text-centered mb-4 is-hidden-desktop">
+            <div className="has-text-centered mb-4 is-hidden-widescreen">
               <p className="p-18-dark">
                 <b>Desactivar cuenta</b>
               </p>
@@ -105,7 +105,7 @@ const DesactiveAccount = () => {
           </div>
         ) : (
           <div className="pb-6">
-            <div className="has-text-centered mb-4 is-hidden-desktop">
+            <div className="has-text-centered mb-4 is-hidden-widescreen">
               <p className="p-18-dark">
                 <b>Activar cuenta</b>
               </p>

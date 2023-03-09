@@ -42,6 +42,8 @@ import NewServiceRequirements from "./components/Services/NewServiceRequirements
 import VerifyMail from "./components/Freelancer/VerifyMail";
 import ProjectPayment from "./pages/ProjectPayment";
 import ChatComponent from "./components/Chat/ChatComponent";
+import FreelancerProjectArea from "./pages/Freelancer/FreelancerProjectArea";
+import CurrentProject from "./components/Freelancer/Projects/CurrentProject";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -137,6 +139,15 @@ function App() {
               <Route
                 path={routes.DASHBOARD_FREELANCER_ACCOUNT_NOTIFICATIONS}
                 element={<DesactiveAccount />}
+              ></Route>
+            </Route>
+            <Route
+              path={routes.DASHBOARD_FREELANCER_PROJECTS}
+              element={<FreelancerProjectArea />}
+            >
+              <Route
+                path={routes.DASHBOARD_FREELANCER_PROJECTS_INPROGRESS}
+                element={<CurrentProject />}
               ></Route>
             </Route>
             <Route

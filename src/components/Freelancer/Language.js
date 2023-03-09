@@ -141,7 +141,7 @@ const Language = () => {
     <>
       <SectionContent type="light">
         <div className="pb-6">
-          <div className="has-text-centered is-hidden-desktop mb-4">
+          <div className="has-text-centered is-hidden-widescreen mb-4">
             <p className="p-18-dark">
               <b>Idiomas</b>
             </p>

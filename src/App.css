@@ -58,3 +58,82 @@ div.overlay > div {
   text-align: center;
   vertical-align: middle;
 }
+
+/* @media (max-width: 1142px) {
+  .p-menubar {
+    flex-wrap: wrap !important;
+  }
+  
+  .p-menubar > ul {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .p-menubar > ul > li {
+    width: 100% !important;
+    text-align: center !important;
+  }
+} */
+
+@media screen and (max-width: 1216px){
+.p-menubar .p-menubar-button {
+    display: flex !important;
+    width: 2rem !important;
+    height: 2rem !important;
+    color: #6c757d !important;
+    border-radius: 50% !important;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s !important;
+}
+}
+
+@media screen and (max-width: 1216px){
+.p-menubar.p-menubar-mobile-active .p-menubar-root-list {
+    display: flex !important;
+    flex-direction: column !important;
+    top: 100% !important;
+    left: 0 !important;
+    z-index: 1 !important;
+}
+}
+
+@media screen and (max-width: 1216px){
+.p-menubar .p-menubar-root-list {
+    position: absolute !important;
+    display: none !important;
+    padding: 0.25rem 0 !important;
+    background: #ffffff !important;
+    border: 0 none !important;
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%) !important;
+    width: 100% !important;
+}
+}
+
+@media screen and (max-width: 1216px){
+.p-menubar {
+    position: relative !important;
+}
+}
+
+@media screen and (max-width: 960px){
+.p-menubar .p-menubar-root-list .p-menuitem {
+    width: 100%;
+    position: static;
+}
+}
+
+@media screen and (max-width: 1216px){
+.p-menubar .p-menubar-root-list .p-menuitem {
+    width: 100% !important;
+    position: static !important;
+}
+}
+
+@media (max-width: 1216px){
+.blue > .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text {
+    color: #9f9d9d !important;
+}
+.blue > .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text{
+  color: #9f9d9d !important;
+}
+}

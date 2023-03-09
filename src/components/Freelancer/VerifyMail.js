@@ -96,7 +96,7 @@ const VerifyMail = () => {
     <>
       <SectionContent type="light">
         <div className="pb-6">
-          <div className="has-text-centered mb-4 is-hidden-desktop">
+          <div className="has-text-centered mb-4 is-hidden-widescreen">
             <p className="p-18-dark">
               <b>Verificar Email</b>
             </p>

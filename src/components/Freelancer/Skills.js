@@ -31,7 +31,7 @@ const Skills = () => {
       {user && (
         <SectionContent type="light">
           <div className="pb-6">
-            <div className="has-text-centered mb-4 is-hidden-desktop mb-4">
+            <div className="has-text-centered mb-4 is-hidden-widescreen mb-4">
               <p className="p-18-dark">
                 <b>Habilidades</b>
               </p>

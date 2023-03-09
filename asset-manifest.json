@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/treff-site/static/css/main.08414d43.css",
-    "main.js": "/treff-site/static/js/main.c27b5eaa.js",
+    "main.css": "/treff-site/static/css/main.6f07a835.css",
+    "main.js": "/treff-site/static/js/main.dcff50a1.js",
     "static/js/921.71b9beba.chunk.js": "/treff-site/static/js/921.71b9beba.chunk.js",
     "static/js/787.5a1beb39.chunk.js": "/treff-site/static/js/787.5a1beb39.chunk.js",
     "static/media/primeicons.svg": "/treff-site/static/media/primeicons.e1441b135b3ca9ad643c.svg",
@@ -10,13 +10,13 @@
     "static/media/primeicons.ttf": "/treff-site/static/media/primeicons.ea5358601d0a3fd6670b.ttf",
     "static/media/primeicons.woff2": "/treff-site/static/media/primeicons.78172950b335ccdb94e2.woff2",
     "index.html": "/treff-site/index.html",
-    "main.08414d43.css.map": "/treff-site/static/css/main.08414d43.css.map",
-    "main.c27b5eaa.js.map": "/treff-site/static/js/main.c27b5eaa.js.map",
+    "main.6f07a835.css.map": "/treff-site/static/css/main.6f07a835.css.map",
+    "main.dcff50a1.js.map": "/treff-site/static/js/main.dcff50a1.js.map",
     "921.71b9beba.chunk.js.map": "/treff-site/static/js/921.71b9beba.chunk.js.map",
     "787.5a1beb39.chunk.js.map": "/treff-site/static/js/787.5a1beb39.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.08414d43.css",
-    "static/js/main.c27b5eaa.js"
+    "static/css/main.6f07a835.css",
+    "static/js/main.dcff50a1.js"
   ]
 }

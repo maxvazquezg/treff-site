@@ -44,6 +44,9 @@ import ProjectPayment from "./pages/ProjectPayment";
 import ChatComponent from "./components/Chat/ChatComponent";
 import FreelancerProjectArea from "./pages/Freelancer/FreelancerProjectArea";
 import CurrentProject from "./components/Freelancer/Projects/CurrentProject";
+import ProjectDetail from "./components/Freelancer/Projects/ProjectDetail";
+import FinishedProjects from "./components/Freelancer/Projects/FinishedProjects";
+import CancelledProjects from "./components/Freelancer/Projects/CancelledProjects";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -66,6 +69,10 @@ function App() {
             path={routes.FREELANCERPROFILE}
             element={<FreelancerProfile />}
           />
+          <Route
+            path={routes.DASHBOARD_FREELANCER_PROJECTS_DETAIL}
+            element={<ProjectDetail />}
+          ></Route>
           <Route
             path={routes.DASHBOARD_FREELANCER}
             element={<DashboardFreelancerProfile />}
@@ -148,6 +155,14 @@ function App() {
               <Route
                 path={routes.DASHBOARD_FREELANCER_PROJECTS_INPROGRESS}
                 element={<CurrentProject />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCER_PROJECTS_FINISHED}
+                element={<FinishedProjects />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCER_PROJECTS_CANCELLED}
+                element={<CancelledProjects />}
               ></Route>
             </Route>
             <Route

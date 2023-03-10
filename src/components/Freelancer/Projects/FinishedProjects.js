@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ProjectApi } from "../../../api";
+import { statusData } from "../../../utils/status";
 import ProjectListByStatus from "./ProjectListByStatus";
 
-const CurrentProject = (props) => {
+const FinishedProjects = (props) => {
   const user = useSelector((state) => state.user.value);
   const freelancerId = user.id;
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     const getProjects = async () => {
-      const servs = await ProjectApi.getProjectsByFreelancerId(freelancerId, 1);
+      const servs = await ProjectApi.getProjectsByFreelancerId(
+        freelancerId,
+        statusData.FINISHED.value
+      );
       setProjects(servs);
     };
     if (freelancerId) {
@@ -22,13 +26,13 @@ const CurrentProject = (props) => {
       <div className="pb-6 mt-5">
         <div className="has-text-centered mb-4 is-hidden-widescreen">
           <p className="p-18-dark">
-            <b>Proyectos en proceso</b>
+            <b>Proyectos completados</b>
           </p>
         </div>
-        <ProjectListByStatus projects={projects} />
+          <ProjectListByStatus projects={projects} />
       </div>
     </>
   );
 };
 
-export default CurrentProject;
+export default FinishedProjects;

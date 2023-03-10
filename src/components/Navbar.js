@@ -67,7 +67,7 @@ export default function Navbar(props) {
         "/" +
         routes.DASHBOARD_FREELANCERPROFILE +
         "/" +
-        routes.DASHBOARD_FREELANCERSKILLS,
+        routes.DASHBOARD_FREELANCERDESCRIPTION,
       action: () => {
         clickMenuHandler();
         op.current.toggle();
@@ -86,7 +86,16 @@ export default function Navbar(props) {
     {
       text: "Proyectos",
       image: "/images/project.svg",
-      target: "",
+      target:
+        routes.DASHBOARD_FREELANCER +
+        "/" +
+        routes.DASHBOARD_FREELANCER_PROJECTS +
+        "/" +
+        routes.DASHBOARD_FREELANCER_PROJECTS_INPROGRESS,
+      action: () => {
+        clickMenuHandler();
+        op.current.toggle();
+      },
     },
     {
       text: "Servicios",

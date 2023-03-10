@@ -39,7 +39,7 @@ const FreelancerProjectArea = (props) => {
     {
       label: "Proyectos en proceso",
       command: (e) => {
-        highlightElement(e, routes.DASHBOARD_SERVICESACTIVE);
+        highlightElement(e, routes.DASHBOARD_FREELANCER_PROJECTS_INPROGRESS);
       },
       className: "gray-back",
       // icon: "pi pi-fw pi-power-off",
@@ -47,13 +47,13 @@ const FreelancerProjectArea = (props) => {
     {
       label: "Completados",
       command: (e) => {
-        highlightElement(e, routes.DASHBOARD_FREELANCEREDUCATION);
+        highlightElement(e, routes.DASHBOARD_FREELANCER_PROJECTS_FINISHED);
       },
     },
     {
       label: "Cancelados",
       command: (e) => {
-        highlightElement(e, routes.DASHBOARD_FREELANCEREDUCATION);
+        highlightElement(e, routes.DASHBOARD_FREELANCER_PROJECTS_CANCELLED);
       },
     },
   ];
@@ -62,11 +62,13 @@ const FreelancerProjectArea = (props) => {
     <>
       {/* <section className={"hero is-white"}>
         <div className="hero-body pb-0 pt-0 gray"> */}
-          <Menubar model={items} />
-          <CustomSection type="light">
-            <Outlet />
-          </CustomSection>
-        {/* </div>
+      <div className="gray">
+        <Menubar model={items} />
+      </div>
+      <CustomSection type="light">
+        <Outlet />
+      </CustomSection>
+      {/* </div>
       </section> */}
     </>
   );

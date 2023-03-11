@@ -56,6 +56,10 @@ p {
   color: #000000;
 }
 
+.weigth {
+  font-weight: 600;
+}
+
 .p-blue {
   font-weight: 400;
   font-size: 16px;
@@ -165,4 +169,21 @@ p {
   line-height: 19px;
 
   color: #002541;
+}
+
+.p-notification {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #32477c;
+}
+
+.p-notification-time {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+
+  color: #555555;
 }

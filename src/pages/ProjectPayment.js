@@ -3,11 +3,12 @@ import { Card } from "primereact/card";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ProjectApi, ServiceApi } from "../api";
+import { NotificationApi, ProjectApi, ServiceApi } from "../api";
 import CustomSection from "../components/CustomSection";
 import SectionContent from "../components/SectionContent";
 import { routes } from "../routes";
 import { getURLImage } from "../utils/images";
+import { notificationsEnum } from "../utils/notificationsType";
 
 const ProjectPayment = () => {
   const { idService, idPackage } = useParams();
@@ -35,14 +36,20 @@ const ProjectPayment = () => {
     getServiceData();
   }, [idPackage, idService, navigate, userRedux?.id]);
 
-  const pay = async() => {
+  const pay = async () => {
     const request = {
       freelancerId: service.freelancerId,
       userId: userRedux.id,
       serviceId: service.id,
       packageId: idPackage,
     };
-    await ProjectApi.createService(request);
+    var data = await ProjectApi.createService(request);
+    await NotificationApi.createNotification(
+      service.freelancerId,
+      userRedux.id,
+      notificationsEnum.NEWPROJECT,
+      data
+    );
   };
 
   const getPackageCardTheme = () => {

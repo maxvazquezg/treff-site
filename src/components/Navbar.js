@@ -10,6 +10,14 @@ import { Menu } from "primereact/menu";
 import { getURLImage } from "../utils/images";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../redux/userReducer";
+import { Notifications } from "./Notifications/Notifications";
+import { Badge } from "primereact/badge";
+import {
+  addLastNotifications,
+  readNotifications,
+} from "../redux/notificationReducer";
+import { NotificationApi } from "../api";
+import NotificationsPanel from "./Notifications/NotificationsPanel";
 
 export default function Navbar(props) {
   const dispatch = useDispatch();
@@ -19,6 +27,10 @@ export default function Navbar(props) {
   // const [user, setUser] = React.useState(false);
   const userRedux = useSelector((state) => state.user.value);
   const [userData, setUserData] = React.useState(userRedux);
+  const notificationsRedux = useSelector(
+    (state) => state.notification.notifications
+  );
+  const [notifications, setNotifications] = React.useState(notificationsRedux);
 
   const clickMenuHandler = () => {
     setIsActive(!isActive);
@@ -31,7 +43,15 @@ export default function Navbar(props) {
     getUser();
   }, [userRedux]);
 
+  useEffect(() => {
+    const getUser = () => {
+      setNotifications(notificationsRedux);
+    };
+    getUser();
+  }, [notificationsRedux]);
+
   const op = useRef(null);
+  const opNotifications = useRef(null);
   const menu = useRef(null);
   const navigate = useNavigate();
 
@@ -227,7 +247,7 @@ export default function Navbar(props) {
               style={{ maxHeight: "200px", marginRight: "40px" }}
             />
           </Link>
-
+          <Notifications />
           <Link
             // href={() => false}
             role="button"
@@ -288,7 +308,37 @@ export default function Navbar(props) {
             <div className="navbar-end">
               <Link
                 className="navbar-item  is-vcentered"
-                onClick={(e) => op.current.toggle(e)}
+                onClick={(e) => {
+                  dispatch(addLastNotifications(notifications));
+                  dispatch(readNotifications());
+                  NotificationApi.clearNotificationsByFreelancerId(
+                    userRedux.id
+                  );
+                  opNotifications.current.toggle(e);
+                }}
+              >
+                {/* <img
+                  src={getURLImage("images/notification.png", true)}
+                  alt="Notificaciones"
+                >
+                  <Badge value="2"></Badge>
+                </img> */}
+                <i
+                  className="pi pi-bell p-overlay-badge"
+                  style={{ fontSize: "1.5rem" }}
+                >
+                  {notifications.length > 0 && (
+                    <Badge value={notifications.length}></Badge>
+                  )}
+                </i>
+              </Link>
+              <Link
+                className="navbar-item  is-vcentered"
+                onClick={(e) => {
+                  // try {
+                    op.current.toggle(e);
+                  // } catch {}
+                }}
               >
                 {userData.name}
                 <Avatar
@@ -349,7 +399,7 @@ export default function Navbar(props) {
 
       <OverlayPanel
         ref={op}
-        id="overlay_panel"
+        id="overlay_panel1"
         style={{ width: "305px" }}
         className="overlaypanel-demo"
       >
@@ -365,6 +415,14 @@ export default function Navbar(props) {
           <hr className="mt-0" />
           {createMenuProfile()}
         </div>
+      </OverlayPanel>
+      <OverlayPanel
+        ref={opNotifications}
+        id="overlay_panel"
+        style={{ width: "405px" }}
+        className="overlaypanel-demo"
+      >
+        <NotificationsPanel onClose={(e) => opNotifications.current.toggle()} />
       </OverlayPanel>
       <Menu model={items} popup ref={menu} id="popup_menu" />
     </>

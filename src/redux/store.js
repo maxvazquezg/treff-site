@@ -14,6 +14,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import chatReducer from "./chatReducer";
+import notificationReducer from "./notificationReducer";
 
 const persistConfig = {
   key: "user",
@@ -22,7 +23,8 @@ const persistConfig = {
 const reducers = combineReducers({
   user: userReducer,
   service: serviceReducer,
-  chat: chatReducer
+  chat: chatReducer,
+  notification: notificationReducer
 });
 const persistedReducer = persistReducer(persistConfig, reducers);
 

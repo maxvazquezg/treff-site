@@ -91,6 +91,19 @@ class FreelancerApi extends BaseApi {
     }
   }
 
+  async updateNotificationId(freelancerId, notificationId) {
+    const request ={
+      id: freelancerId,
+      notificationId
+    }
+    try {
+      const data = await this.postSilently(`${FREELANCER_ENDPOINT}/updateNotificationId`, request);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async validateSms(request) {
     try {
       const data = await this.post(`${FREELANCER_ENDPOINT}/validateSms`, request);

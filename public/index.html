@@ -25,16 +25,41 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Treff</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body,
       html {
-        font-family: 'Roboto', sans-serif !important;
+        font-family: "Roboto", sans-serif !important;
         -moz-osx-font-smoothing: grayscale !important;
         -webkit-font-smoothing: antialiased !important;
       }
-      </style>
-      
+    </style>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://js.openpay.mx/openpay.v1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://js.openpay.mx/openpay-data.v1.min.js"
+    ></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        OpenPay.setId("mzdtln0bmtms6o3kck8f");
+        OpenPay.setApiKey("pk_f0660ad5a39f4912872e24a7a660370c");
+        var deviceSessionId = OpenPay.deviceData.setup(
+          "payment-form",
+          "deviceIdHiddenFieldName"
+        );
+        localStorage.setItem("deviceSessionId", deviceSessionId);
+      });
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -49,8 +74,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script>
-
-    </script>
+    <script></script>
   </body>
 </html>

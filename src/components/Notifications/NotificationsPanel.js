@@ -17,9 +17,10 @@ const NotificationsPanel = (props) => {
   }
 
   const createMenuNotifications = () => {
+    let notifications = notificationsRedux.slice().sort((a,b) => new Date(b.created) - new Date(a.created));
     return (
       <ul className="menu-list">
-        {notificationsRedux.map((o, i) => (
+        {notifications.map((o, i) => (
           <Link to={getNotificationUrl(o)} onClick={e => props.onClose()}>
             <li key={i}>
               <div className="columns is-vcentered">

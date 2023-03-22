@@ -47,6 +47,7 @@ import CurrentProject from "./components/Freelancer/Projects/CurrentProject";
 import ProjectDetail from "./components/Freelancer/Projects/ProjectDetail";
 import FinishedProjects from "./components/Freelancer/Projects/FinishedProjects";
 import CancelledProjects from "./components/Freelancer/Projects/CancelledProjects";
+import ContractedProjects from "./components/Freelancer/Projects/ContractedProjects";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -163,6 +164,10 @@ function App() {
               <Route
                 path={routes.DASHBOARD_FREELANCER_PROJECTS_CANCELLED}
                 element={<CancelledProjects />}
+              ></Route>
+              <Route
+                path={routes.DASHBOARD_FREELANCER_PROJECTS_CONTRACTED}
+                element={<ContractedProjects />}
               ></Route>
             </Route>
             <Route

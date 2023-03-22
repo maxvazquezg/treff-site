@@ -110,7 +110,7 @@ const DashboardFreelancerProfile = () => {
       command: (e) => {
         highlightElement(
           e,
-          routes.DASHBOARD_FREELANCER_PROJECTS + "/" + routes.DASHBOARD_FREELANCER_PROJECTS_INPROGRESS
+          routes.DASHBOARD_FREELANCER_PROJECTS + "/" + routes.DASHBOARD_FREELANCER_PROJECTS_CONTRACTED
         );
       },
       className: location.pathname.includes(routes.DASHBOARD_FREELANCER_PROJECTS)

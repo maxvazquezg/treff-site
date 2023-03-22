@@ -8,9 +8,10 @@ import { Card } from "primereact/card";
 import { setDateString } from "../../../utils/dates";
 import { Avatar } from "primereact/avatar";
 import { getURLImage } from "../../../utils/images";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ReactStars from "react-rating-stars-component";
 import { getStatusValue, statusEnum } from "../../../utils/status";
+import { setIdsChat, toggleChat } from "../../../redux/chatReducer";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -18,6 +19,7 @@ const ProjectDetail = () => {
   const [status, setStatus] = useState(null);
   const navigate = useNavigate();
   const userRedux = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
   useEffect(() => {
     const getProject = async () => {
       const data = await ProjectApi.getProjectById(id);
@@ -138,6 +140,20 @@ const ProjectDetail = () => {
     );
   };
 
+  const contact = () => {
+    if (userRedux?.id) {
+      dispatch(toggleChat());
+      dispatch(
+        setIdsChat({
+          currentUserId: userRedux.id,
+          userId: project?.service.freelancerId,
+        })
+      );
+    } else {
+      // setVisibleLogin(true);
+    }
+  };
+
   return (
     <>
       <CustomSection type="white">
@@ -197,7 +213,7 @@ const ProjectDetail = () => {
                             <button
                               className="button is-link"
                               style={{ width: "100%" }}
-                              //   onClick={() => contact()}
+                              onClick={() => contact()}
                             >
                               Contactar
                             </button>
@@ -294,7 +310,7 @@ const ProjectDetail = () => {
                             <button
                               className="button is-link"
                               style={{ width: "100%" }}
-                              //   onClick={() => contact()}
+                              onClick={() => contact()}
                             >
                               Contactar
                             </button>

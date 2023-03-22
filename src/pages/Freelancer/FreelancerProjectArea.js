@@ -37,12 +37,17 @@ const FreelancerProjectArea = (props) => {
 
   const items = [
     {
+      label: "Proyectos contratados",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_FREELANCER_PROJECTS_CONTRACTED);
+      },
+      className: "gray-back",
+    },
+    {
       label: "Proyectos en proceso",
       command: (e) => {
         highlightElement(e, routes.DASHBOARD_FREELANCER_PROJECTS_INPROGRESS);
       },
-      className: "gray-back",
-      // icon: "pi pi-fw pi-power-off",
     },
     {
       label: "Completados",

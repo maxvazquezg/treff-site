@@ -33,6 +33,18 @@ class ProjectApi extends BaseApi {
       throw new Error(error);
     }
   }
+  async getProjectsByUserId(userId, status) {
+    const request = {
+      id: userId,
+      status
+    }
+    try {
+      const data = await trackPromise(this.post(PROJECT_ENDPOINT + "/user", request));
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 export default new ProjectApi();

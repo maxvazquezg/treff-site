@@ -111,7 +111,7 @@ export default function Navbar(props) {
         "/" +
         routes.DASHBOARD_FREELANCER_PROJECTS +
         "/" +
-        routes.DASHBOARD_FREELANCER_PROJECTS_INPROGRESS,
+        routes.DASHBOARD_FREELANCER_PROJECTS_CONTRACTED,
       action: () => {
         clickMenuHandler();
         op.current.toggle();

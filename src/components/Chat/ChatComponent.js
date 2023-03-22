@@ -30,14 +30,20 @@ const ChatComponent = () => {
 
   return (
     <>
-      <Dialog
-        header="Chat"
-        visible={visible}
-        style={{ width: "50vw" }}
-        onHide={() => dispatch(toggleChat())}
-      >
-        <Chat chat={chat.chat} user={userRedux}></Chat>
-      </Dialog>
+      {visible ? (
+        <Dialog
+          header="Chat"
+          visible={visible}
+          style={{ width: "50vw" }}
+          onHide={() => dispatch(toggleChat())}
+        >
+          <Chat chat={chat.chat} user={userRedux}></Chat>
+        </Dialog>
+      ) : (
+        <div id="hidden-chat" style={{ visibility: "hidden", height: "0px" }}>
+          <Chat chat={chat.chat} user={userRedux}></Chat>
+        </div>
+      )}
     </>
   );
 };

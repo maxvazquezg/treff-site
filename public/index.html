@@ -51,12 +51,13 @@
     ></script>
     <script type="text/javascript">
       $(document).ready(function () {
-        OpenPay.setId("mzdtln0bmtms6o3kck8f");
-        OpenPay.setApiKey("pk_f0660ad5a39f4912872e24a7a660370c");
+        OpenPay.setId("mqq6q0cywvcob5dut6in");
+        OpenPay.setApiKey("pk_e07788573c764ee6b6d0bfdd9d7ab5bc");
         var deviceSessionId = OpenPay.deviceData.setup(
           "payment-form",
           "deviceIdHiddenFieldName"
         );
+        OpenPay.setSandboxMode(true);
         localStorage.setItem("deviceSessionId", deviceSessionId);
       });
     </script>

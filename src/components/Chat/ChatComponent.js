@@ -26,7 +26,7 @@ const ChatComponent = () => {
     if (visible) {
       getChat();
     }
-  }, [dispatch, chat.currentUserId, chat.userId, visible]);
+  }, [dispatch, chat.currentUserId, chat.userId, visible, userRedux]);
 
   return (
     <>

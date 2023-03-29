@@ -9,8 +9,8 @@ const Message = (props) => {
   const freelancerRedux = useSelector((state) => state.chat.chat.freelancer);
   const userChat = useSelector((state) => state.chat.chat.user);
 
-  const currentUser = userRedux.name === props.user;
-  const isUser =  userRedux.name === userChat.name;
+  const currentUser = userRedux?.name === props.user;
+  const isUser =  userRedux?.name === userChat.name;
 
   const left = !isUser ? userChat?.photo : freelancerRedux?.photo;
 

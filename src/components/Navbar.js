@@ -327,8 +327,8 @@ export default function Navbar(props) {
                   className="pi pi-bell p-overlay-badge"
                   style={{ fontSize: "1.5rem" }}
                 >
-                  {notifications.length > 0 && (
-                    <Badge value={notifications.length}></Badge>
+                  {notifications?.length > 0 && (
+                    <Badge value={notifications?.length}></Badge>
                   )}
                 </i>
               </Link>

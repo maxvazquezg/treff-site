@@ -205,23 +205,23 @@ const ProjectPayment = () => {
             <div className="column is-7">
               <div className="columns">
                 <div className="column is-12">
-                  <div class="bkng-tb-cntnt">
-                    <div class="pymnts">
+                  <div className="bkng-tb-cntnt">
+                    <div className="pymnts">
                       <form onSubmit={handleSubmit(pay)} id="payment-form">
                         <input type="hidden" name="token_id" id="token_id" />
-                        <div class="pymnt-itm card active">
+                        <div className="pymnt-itm card active">
                           <h2>Tarjeta de crédito o débito</h2>
-                          <div class="pymnt-cntnt">
-                            <div class="card-expl">
-                              <div class="credit">
+                          <div className="pymnt-cntnt">
+                            <div className="card-expl">
+                              <div className="credit">
                                 <h4>Tarjetas de crédito</h4>
                               </div>
-                              <div class="debit">
+                              <div className="debit">
                                 <h4>Tarjetas de débito</h4>
                               </div>
                             </div>
-                            <div class="sctn-row mt-6">
-                              <div class="sctn-col l mt-6">
+                            <div className="sctn-row mt-6">
+                              <div className="sctn-col l mt-6">
                                 <label>Nombre del titular</label>
                                 <input
                                   type="text"
@@ -239,8 +239,8 @@ const ProjectPayment = () => {
                                 )}
                               </div>
                             </div>
-                            <div class="sctn-row mt-0">
-                              <div class="sctn-col mt-6">
+                            <div className="sctn-row mt-0">
+                              <div className="sctn-col mt-6">
                                 <label>Número de tarjeta</label>
                                 <input
                                   type="text"
@@ -258,10 +258,10 @@ const ProjectPayment = () => {
                                 )}
                               </div>
                             </div>
-                            <div class="sctn-row">
-                              <div class="sctn-col l">
+                            <div className="sctn-row">
+                              <div className="sctn-col l">
                                 <label>Fecha de expiración</label>
-                                <div class="sctn-col half l">
+                                <div className="sctn-col half l">
                                   <input
                                     type="text"
                                     placeholder="Mes"
@@ -272,7 +272,7 @@ const ProjectPayment = () => {
                                     })}
                                   />
                                 </div>
-                                <div class="sctn-col half l">
+                                <div className="sctn-col half l">
                                   <input
                                     type="text"
                                     placeholder="Año"
@@ -284,9 +284,9 @@ const ProjectPayment = () => {
                                   />
                                 </div>
                               </div>
-                              <div class="sctn-col cvv">
+                              <div className="sctn-col cvv">
                                 <label>Código de seguridad</label>
-                                <div class="sctn-col half l">
+                                <div className="sctn-col half l">
                                   <input
                                     type="password"
                                     placeholder="3 dígitos"
@@ -298,17 +298,17 @@ const ProjectPayment = () => {
                                 </div>
                               </div>
                             </div>
-                            <div class="openpay">
-                              <div class="logo">
+                            <div className="openpay">
+                              <div className="logo">
                                 Transacciones realizadas vía:
                               </div>
-                              <div class="shield">
+                              <div className="shield">
                                 Tus pagos se realizan de forma segura con
                                 encriptación de 256 bits
                               </div>
                             </div>
-                            {/* <div class="sctn-row">
-                              <a class="button rght" id="pay-button">
+                            {/* <div className="sctn-row">
+                              <a className="button rght" id="pay-button">
                                 Pagar
                               </a>
                             </div> */}

@@ -99,7 +99,15 @@ const DashboardFreelancerProfile = () => {
     },
     {
       label: "Dashboard",
-      // icon: "pi pi-fw pi-power-off",
+      command: (e) => {
+        highlightElement(
+          e,
+          routes.DASHBOARD_Dashboard
+        );
+      },
+      className: location.pathname.includes(routes.DASHBOARD_FREELANCER_PROJECTS)
+        ? "blue-back"
+        : "",
     },
     {
       label: "Configuración Freelancer",
@@ -174,7 +182,7 @@ const DashboardFreelancerProfile = () => {
     e.stopPropagation();
     e.preventDefault();
     var file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
     if (e.target.files.length > 0) {
       setProfilePhoto(file);
       setDisplayProfileImage(true);
@@ -265,11 +273,11 @@ const DashboardFreelancerProfile = () => {
       summary: "Actualización correcta",
     });
   };
-  console.log(
-    !user?.cover
-      ? getURLImage(user.cover)
-      : getURLImage("images/treff_waves.png", true)
-  );
+  // console.log(
+  //   !user?.cover
+  //     ? getURLImage(user.cover)
+  //     : getURLImage("images/treff_waves.png", true)
+  // );
   return (
     <>
       <section

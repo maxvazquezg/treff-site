@@ -5,7 +5,10 @@ import { useSelector } from "react-redux";
 import { FreelancerApi, NotificationApi } from "../../api";
 import { vars } from "../../utils/vars";
 import { useDispatch } from "react-redux";
-import { addNotification, addNotifications } from "../../redux/notificationReducer";
+import {
+  addNotification,
+  addNotifications,
+} from "../../redux/notificationReducer";
 
 export const Notifications = () => {
   const [connection, setConnection] = useState(null);
@@ -16,14 +19,16 @@ export const Notifications = () => {
 
   useEffect(() => {
     const getNotifications = async () => {
-      const data = await NotificationApi.getNotificationsByFreelancerId(
-        userRedux.id,
-        true
-      );
-      dispatch(addNotifications(data));
+      if (userRedux) {
+        const data = await NotificationApi.getNotificationsByFreelancerId(
+          userRedux.id,
+          true
+        );
+        dispatch(addNotifications(data));
+      }
     };
     getNotifications();
-  }, []);
+  }, [userRedux, dispatch]);
 
   useEffect(() => {
     if (userRedux?.id) {

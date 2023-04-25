@@ -48,6 +48,7 @@ import ProjectDetail from "./components/Freelancer/Projects/ProjectDetail";
 import FinishedProjects from "./components/Freelancer/Projects/FinishedProjects";
 import CancelledProjects from "./components/Freelancer/Projects/CancelledProjects";
 import ContractedProjects from "./components/Freelancer/Projects/ContractedProjects";
+import DashboardFreelancer from "./components/Freelancer/Dashboard/DashboardFreelancer";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -170,6 +171,10 @@ function App() {
                 element={<ContractedProjects />}
               ></Route>
             </Route>
+            <Route
+              path={routes.DASHBOARD_Dashboard}
+              element={<DashboardFreelancer />}
+            ></Route>
             <Route
               path={routes.DASHBOARD_SERVICES}
               element={<FreelancerServiceArea />}

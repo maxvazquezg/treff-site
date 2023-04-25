@@ -21,8 +21,8 @@ const NotificationsPanel = (props) => {
     return (
       <ul className="menu-list">
         {notifications.map((o, i) => (
-          <Link to={getNotificationUrl(o)} onClick={e => props.onClose()}>
-            <li key={i}>
+          <Link key={i} to={getNotificationUrl(o)} onClick={e => props.onClose()}>
+            <li>
               <div className="columns is-vcentered">
                 <div className="column is-2">
                   {o?.freelancer?.photo && (

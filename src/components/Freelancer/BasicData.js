@@ -96,7 +96,7 @@ const BasicData = () => {
                   <select {...register("phoneCode", { required: true })}>
                     <option value={""}>Lada del país</option>
                     {countryCodes.map((code, i) => (
-                      <option value={code.dial_code}>
+                      <option key={i} value={code.dial_code}>
                         {code.name}({code.dial_code})
                       </option>
                     ))}

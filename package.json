@@ -13,6 +13,7 @@
     "assert": "^2.0.0",
     "axios": "^1.2.0",
     "bulma": "^0.9.4",
+    "chart.js": "^4.2.1",
     "openpay": "^1.0.5",
     "primeicons": "^6.0.1",
     "primereact": "^8.7.3",

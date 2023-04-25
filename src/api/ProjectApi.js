@@ -21,6 +21,16 @@ class ProjectApi extends BaseApi {
       throw new Error(error);
     }
   }
+
+  async getProjectsGroupedByUserId(freelancerId) {
+    try {
+      const data = await trackPromise(this.get(PROJECT_ENDPOINT + `/${freelancerId}/grouped-by-user`));
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async getProjectsByFreelancerId(freelancerId, status) {
     const request = {
       id: freelancerId,

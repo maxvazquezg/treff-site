@@ -28,6 +28,10 @@ const ChatComponent = () => {
     }
   }, [dispatch, chat.currentUserId, chat.userId, visible, userRedux]);
 
+  useEffect(()=>{
+
+  },[chat])
+
   return (
     <>
       {visible ? (

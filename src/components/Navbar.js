@@ -165,6 +165,7 @@ export default function Navbar(props) {
       target: "",
       action: () => {
         setUserData(null);
+        localStorage.clear();
         clickMenuHandler();
         dispatch(removeUser(userData.id));
         navigate(routes.HOME);

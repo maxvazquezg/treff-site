@@ -318,12 +318,6 @@ export default function Navbar(props) {
                   opNotifications.current.toggle(e);
                 }}
               >
-                {/* <img
-                  src={getURLImage("images/notification.png", true)}
-                  alt="Notificaciones"
-                >
-                  <Badge value="2"></Badge>
-                </img> */}
                 <i
                   className="pi pi-bell p-overlay-badge"
                   style={{ fontSize: "1.5rem" }}

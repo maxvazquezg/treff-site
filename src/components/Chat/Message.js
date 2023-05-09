@@ -10,14 +10,14 @@ const Message = (props) => {
   const userChat = useSelector((state) => state.chat.chat.user);
 
   const currentUser = userRedux?.name === props.user;
-  const isUser =  userRedux?.name === userChat.name;
+  const isUser = userRedux?.name === userChat.name;
 
   const left = !isUser ? userChat?.photo : freelancerRedux?.photo;
 
   return (
-    <div className="columns is-vcentered mb-4">
+    <div className="columns mb-4">
       {!currentUser && (
-        <div className="column">
+        <div className="column mt-4">
           <Avatar image={getURLImage(left)} shape="circle" />
         </div>
       )}
@@ -32,7 +32,7 @@ const Message = (props) => {
               padding: "0 10px",
               // width: "50%",
               // marginLeft: currentUser ? "50%" : "0%",
-              
+
               backgroundColor: currentUser ? "#0B84EE" : "#20405C",
               color: "#fff",
             }}
@@ -41,13 +41,21 @@ const Message = (props) => {
           <strong>{props.user}</strong>:
         </p> */}
 
-            <p style={{ color: "#fff" }}>{props.message}</p>
+            <div className="chat-message"
+              style={{ color: "#fff" }}
+              dangerouslySetInnerHTML={{ __html: props.message }}
+            ></div>
           </div>
         </div>
       </div>
       {currentUser && (
-        <div className="column">
-          <Avatar image={getURLImage(!isUser ? freelancerRedux?.photo : userRedux?.photo)} shape="circle" />
+        <div className="column mt-4">
+          <Avatar
+            image={getURLImage(
+              !isUser ? freelancerRedux?.photo : userRedux?.photo
+            )}
+            shape="circle"
+          />
         </div>
       )}
     </div>

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const ChatInput = (props) => {
   const [message, setMessage] = useState("");
@@ -16,17 +18,13 @@ const ChatInput = (props) => {
     }
   };
 
-  const onMessageUpdate = (e) => {
-    setMessage(e.target.value);
+  const onMessageUpdate = (value) => {
+    // setMessage(e.target.value);
+    setMessage(value);
   };
   return (
     <form onSubmit={onSubmit}>
-      {/* <label htmlFor="user">User:</label>
-      <br />
-      <input id="user" name="user" value={user} onChange={onUserUpdate} />
-      <br /> */}
-      {/* <label htmlFor="message">Message:</label> */}
-      <br />
+      {/* <br />
       <input
         type="text"
         id="message"
@@ -41,19 +39,17 @@ const ChatInput = (props) => {
           paddingRight: "20px",
         }}
       />
-      {/* <br />
-      <label htmlFor="message">Group:</label>
       <br />
-      <input
-        type="text"
-        id="message"
-        name="message"
-        value={group}
-        onChange={onGroupUpdate}
-      /> */}
+      <br /> */}
+      <ReactQuill
+        value={message}
+        onChange={onMessageUpdate}
+        placeholder="Escribir un mensaje"
+        style={{ height: "100px" }}
+      />
       <br />
       <br />
-      {/* {<button>Submit</button>} */}
+      <button className="button is-link" type="submit">Enviar</button>
     </form>
   );
 };

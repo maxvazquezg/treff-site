@@ -20,7 +20,7 @@ const ChatWindow = (props) => {
   ));
 
   return (
-    <div id="chat" ref={element} style={{ maxHeight: "300px", overflowY: "auto" }}>
+    <div id="chat" ref={element} style={{ maxHeight: "60vh", overflowY: "auto" }}>
       {chat}
     </div>
   );

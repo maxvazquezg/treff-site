@@ -188,10 +188,18 @@ p {
   color: #555555;
 }
 
-.chat-message p{
+.chat-message p {
   color: #fff;
 }
 
-.chat-message p strong{
+.chat-message p strong {
   color: #fff;
+}
+
+@media (max-width: 767px) {
+.chat-message p img {
+  color: #fff;
+  width: 100% !important;
+  height: auto !important;
+}
 }

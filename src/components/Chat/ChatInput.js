@@ -49,6 +49,7 @@ const ChatInput = (props) => {
       />
       <br />
       <br />
+      <br />
       <button className="button is-link" type="submit">Enviar</button>
     </form>
   );

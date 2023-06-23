@@ -196,6 +196,14 @@ p {
   color: #fff;
 }
 
+.chat-message ol {
+  margin-left: 20px;
+}
+
+.chat-message ul {
+  margin-left: 20px;
+}
+
 @media (max-width: 767px) {
 .chat-message p img {
   color: #fff;

@@ -29,9 +29,17 @@ const Service = () => {
     const getService = async () => {
       await getServicesAsync(id);
     };
-
     getService();
   }, [id]);
+
+  useEffect(() => {
+    const updateView = async () => {
+      if (service.freelancer?.id && userRedux.id !== service.freelancer?.id) {
+        await ServiceApi.updateView(id, userRedux?.id);
+      }
+    };
+    updateView();
+  }, [id, userRedux?.id, service.freelancer?.id]);
 
   const getServicesAsync = async (id) => {
     const ser = await ServiceApi.getServiceById(id);
@@ -221,6 +229,17 @@ const Service = () => {
               <div className="columns">
                 <div className="column is-9">
                   <p className="subtitle-dark">{service.name}</p>
+                  {userRedux.id === service.freelancer?.id && (
+                    <p>
+                      <i
+                        className="pi pi-eye mt-3"
+                        style={{ fontSize: "1.3rem" }}
+                      />
+                      <span className="ml-3">
+                        {service?.views?.length} visita(s)
+                      </span>
+                    </p>
+                  )}
                 </div>
 
                 <div className="column is-3 has-text-centered">

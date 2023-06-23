@@ -96,6 +96,21 @@ class ServiceApi extends BaseApi {
       throw new Error(error);
     }
   }
+
+  async updateView(serviceId, userId) {
+    const request = {
+      id: serviceId,
+      userId,
+    }
+    try {
+      const data = await trackPromise(
+        this.post(CATEGORY_ENDPOINT + "/views", request)
+      );
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 export default new ServiceApi();

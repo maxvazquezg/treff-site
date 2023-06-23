@@ -49,6 +49,7 @@ import FinishedProjects from "./components/Freelancer/Projects/FinishedProjects"
 import CancelledProjects from "./components/Freelancer/Projects/CancelledProjects";
 import ContractedProjects from "./components/Freelancer/Projects/ContractedProjects";
 import DashboardFreelancer from "./components/Freelancer/Dashboard/DashboardFreelancer";
+import MessageComponent from "./components/Messages/MessageComponent";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -174,6 +175,10 @@ function App() {
             <Route
               path={routes.DASHBOARD_Dashboard}
               element={<DashboardFreelancer />}
+            ></Route>
+            <Route
+              path={routes.DASHBOARD_FREELANCER_MESSAGES}
+              element={<MessageComponent />}
             ></Route>
             <Route
               path={routes.DASHBOARD_SERVICES}

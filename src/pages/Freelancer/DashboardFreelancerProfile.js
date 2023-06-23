@@ -88,24 +88,18 @@ const DashboardFreelancerProfile = () => {
     {
       label: "Mensajes",
       command: (e) => {
-        // navigate(
-        //   routes.DASHBOARD_FREELANCERPROFILE +
-        //     "/" +
-        //     routes.DASHBOARD_FREELANCERSKILLS
-        // );
-        highlightElement(e);
+        highlightElement(e, routes.DASHBOARD_FREELANCER_MESSAGES);
       },
       // icon: "pi pi-fw pi-power-off",
     },
     {
       label: "Dashboard",
       command: (e) => {
-        highlightElement(
-          e,
-          routes.DASHBOARD_Dashboard
-        );
+        highlightElement(e, routes.DASHBOARD_Dashboard);
       },
-      className: location.pathname.includes(routes.DASHBOARD_FREELANCER_PROJECTS)
+      className: location.pathname.includes(
+        routes.DASHBOARD_FREELANCER_PROJECTS
+      )
         ? "blue-back"
         : "",
     },
@@ -118,10 +112,14 @@ const DashboardFreelancerProfile = () => {
       command: (e) => {
         highlightElement(
           e,
-          routes.DASHBOARD_FREELANCER_PROJECTS + "/" + routes.DASHBOARD_FREELANCER_PROJECTS_CONTRACTED
+          routes.DASHBOARD_FREELANCER_PROJECTS +
+            "/" +
+            routes.DASHBOARD_FREELANCER_PROJECTS_CONTRACTED
         );
       },
-      className: location.pathname.includes(routes.DASHBOARD_FREELANCER_PROJECTS)
+      className: location.pathname.includes(
+        routes.DASHBOARD_FREELANCER_PROJECTS
+      )
         ? "blue-back"
         : "",
     },

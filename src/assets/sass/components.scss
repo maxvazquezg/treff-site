@@ -8,6 +8,17 @@
   height: 100px;
 }
 
+.navbar-item {
+  font-weight: 600;
+  font-size: $text-18;
+  color: #002541;
+}
+
+.freelancer-card{
+  width: $text-228;
+  height: $text-350;
+}
+
 .login-form > .field > .input {
   background-color: $light;
 }
@@ -227,4 +238,9 @@
   color: #002541 !important;
 
   padding-top: 20px;
+}
+
+.img-33{
+  width:auto !important;
+  height: $text-33 !important;
 }

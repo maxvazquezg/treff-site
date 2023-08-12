@@ -12,12 +12,6 @@ code {
     monospace;
 }
 
-.navbar-item {
-  font-weight: 600;
-  font-size: 18px;
-  color: #002541;
-}
-
 .button-home {
   width: 350px;
   height: 64px;

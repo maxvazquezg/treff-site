@@ -4,24 +4,24 @@ import { Parallax, Background } from "react-parallax";
 import ScrollingMenu from "../components/ScrollingMenu";
 import { Link } from "react-router-dom";
 import { routes } from "../routes";
-import { Carousel } from 'primereact/carousel';
+import { Carousel } from "primereact/carousel";
 
 const responsiveOptions = [
   {
-      breakpoint: '1024px',
-      numVisible: 3,
-      numScroll: 1
+    breakpoint: "1024px",
+    numVisible: 3,
+    numScroll: 1,
   },
   {
-      breakpoint: '600px',
-      numVisible: 2,
-      numScroll: 1
+    breakpoint: "600px",
+    numVisible: 2,
+    numScroll: 1,
   },
   {
-      breakpoint: '480px',
-      numVisible: 1,
-      numScroll: 1
-  }
+    breakpoint: "480px",
+    numVisible: 1,
+    numScroll: 1,
+  },
 ];
 
 const services = [
@@ -154,12 +154,12 @@ const getServiceCards = () => {
   return services.map((s, index) => (
     <div key={index} className="column has-text-centered">
       <div
+        className="service-card"
         style={{
           backgroundImage: s.image,
-          width: "253.54px",
-          height: "350.04px",
+
           backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
+          backgroundSize: "cover",
           cursor: "pointer",
         }}
       ></div>
@@ -177,17 +177,17 @@ const getFreelancersRankingCards = () => {
   return freelancersRanking.map((s, index) => (
     <div key={index} className="column has-text-centered">
       <div
+      className="freelancer-card"
         style={{
           backgroundImage: s.image,
-          width: "253.54px",
-          height: "350.04px",
+          
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
           cursor: "pointer",
         }}
       ></div>
       <div
-        className="button-ranking has-text-centered"
+        className="button-ranking has-text-centered size-18"
         style={{ cursor: "pointer" }}
       >
         {s.name}
@@ -198,43 +198,50 @@ const getFreelancersRankingCards = () => {
 
 const getFreelancersCardsTheme = (s) => {
   return (
-      <div
-        className="card ml-3"
-        style={{
-          // width: "400px",
-          // height: "280px",
+    <div
+      className="card ml-3"
+      style={{
+        // width: "400px",
+        // height: "280px",
 
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          cursor: "pointer",
-          padding: "10px 0px 0px 0px",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        cursor: "pointer",
+        padding: "10px 0px 0px 0px",
+      }}
+    >
+      <div
+        className="card-content"
+        style={{
+          padding: "0px 0px 0px 0px",
         }}
       >
-        <div
-          className="card-content"
-          style={{
-            padding: "0px 0px 0px 0px",
-          }}
-        >
-          <div className="content">
-            <img src={s.backgroundImage} style={{width: "100%"}} alt="servicio" />
-          </div>
+        <div className="content">
+          <img
+            src={s.backgroundImage}
+            style={{ width: "100%" }}
+            alt="servicio"
+          />
         </div>
-        <footer className="card-footer has-text-left" style={{
+      </div>
+      <footer
+        className="card-footer has-text-left"
+        style={{
           // width: "400px",
           height: "110px",
-        }}>
-          <img className="rounded ml-4 mt-2" src={s.image} alt="freelancer" />
-          <p className="ml-4">
-            <br />
-            <b>{s.service}</b>
-            <br />
-            de {s.name}
-          </p>
-        </footer>
-      </div>);
-}
-
+        }}
+      >
+        <img className="rounded ml-4 mt-2" src={s.image} alt="freelancer" />
+        <p className="ml-4">
+          <br />
+          <b>{s.service}</b>
+          <br />
+          de {s.name}
+        </p>
+      </footer>
+    </div>
+  );
+};
 
 const Home = () => {
   return (
@@ -310,7 +317,7 @@ const Home = () => {
                   to={routes.EXPLORECATEGORY}
                   className="p-blue mb-2 has-text-right mr-5"
                 >
-                  <b>Ver categorías</b>
+                  <b>Ver todas las categorías</b>
                 </Link>
               </p>
 
@@ -333,13 +340,13 @@ const Home = () => {
       >
         <div className="hero-body">
           <div className="columns is-multiline">
-            <div className="column is-7-desktop is-offset-1-desktop has-text-left has-text-centered-mobile  has-text-centered-tablet is-12-tablet">
-              <h1 className="has-text-white title" style={{ fontSize: "45px" }}>
+            <div className="column is-7-desktop is-offset-1-desktop has-text-left-desktop has-text-centered-mobile  has-text-centered-tablet is-12-tablet">
+              <h1 className="has-text-white title size-45">
                 Publica un servicio
               </h1>
             </div>
             <div className="column is-3-desktop has-text-left is-full-tablet is-12-tablet has-text-centered-mobile has-text-centered-tablet">
-              <button className="button is-link button-secondary">
+              <button className="button is-link button-publish size-25">
                 Publicar
               </button>
             </div>
@@ -369,12 +376,12 @@ const Home = () => {
                 <div className="column is-6">
                   <div>
                     <p className="subtitle-dark">Cliente</p>
-                    <p className="has-text-justified mt-6">
+                    <p className="has-text-justified mt-6 size-16">
                       Somos una plataforma donde encontraras una amplia gama de
                       servicios ofrecidos por freelancers comprometidos a
                       resolver tus necesidades.{" "}
                     </p>
-                    <p className="has-text-justified mt-5">
+                    <p className="has-text-justified mt-5 size-16">
                       Con TREFF evitaras la contratación de grandes empresas,
                       encontraras beneficios de precios competitivos, trato
                       personal y TREFF actuando como un mediador entre tus
@@ -383,18 +390,18 @@ const Home = () => {
                   </div>
                   <div className="mt-6 pt-6">
                     <p className="subtitle-dark has-text-right ">Freelancer</p>
-                    <p className="has-text-justified mt-6">
+                    <p className="has-text-justified mt-6 size-16">
                       Somos una herramienta confiable desarrollada para que
                       ofrezcas tus servicios como experto independiente de una
                       forma amigable, ágil y segura.
                     </p>
-                    <p className="has-text-justified mt-6">
+                    <p className="has-text-justified mt-6 size-16">
                       {" "}
                       Siempre contaras con el respaldo de TREFF, garantizando
                       tus pagos por los trabajos realizados ajustado a tus
                       tiempos, capacidades y precios. (*)
                     </p>
-                    <p className="has-text-justified mt-6">
+                    <p className="has-text-justified mt-6 size-16">
                       La plataforma reconoce la calidad y puntualidad de los
                       servicios que realizas por lo que el crecimiento de tus
                       ventas y tu exposición será consecuencia de la valoración
@@ -418,29 +425,12 @@ const Home = () => {
         <br />
       </section>
 
-      <section className="hero is-white">
-        <div className="hero-body">
-          <div className="columns">
-            <div className="column is-10 is-offset-1 has-text-left">
-              <p className="subtitle-dark mb-6">Servicios a explorar</p>
-
-              {/* <ScrollingMenu items={getFreelancersCards()} /> */}
-              <div className="card">
-                <Carousel value={freelancers} numVisible={3} numScroll={1} showIndicators={false} responsiveOptions={responsiveOptions}
-                    itemTemplate={getFreelancersCardsTheme} onTouchMove={() => {}}/>
-            </div>
-            </div>
-          </div>
-        </div>
-        <br />
-      </section>
-
       <section className="hero is-primary">
         <div className="hero-body">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
               <p className="subtitle-light mb-6">Ranking</p>
-              <p className="text-light mb-6">Nuestros mejores freenlancer </p>
+              <p className="text-light mb-6 size-20">Nuestros mejores freenlancer </p>
               <ScrollingMenu items={getFreelancersRankingCards()} />
             </div>
           </div>
@@ -485,9 +475,33 @@ const Home = () => {
       <section className="hero is-white">
         <div className="hero-body">
           <div className="columns">
+            <div className="column is-10 is-offset-1 has-text-left">
+              <p className="subtitle-dark mb-6">Explorar freelancer</p>
+
+              {/* <ScrollingMenu items={getFreelancersCards()} /> */}
+              <div className="card">
+                <Carousel
+                  value={freelancers}
+                  numVisible={3}
+                  numScroll={1}
+                  showIndicators={false}
+                  responsiveOptions={responsiveOptions}
+                  itemTemplate={getFreelancersCardsTheme}
+                  onTouchMove={() => {}}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+      </section>
+
+      <section className="hero is-light">
+        <div className="hero-body">
+          <div className="columns">
             <div className="column is-10 is-offset-1 has-text-centered">
               <p className="subtitle-dark mb-4">¿Necesitas ayuda ?</p>
-              <p className="text-dark mb-5">
+              <p className="text-light mb-5">
                 Conoce aqui los centros de ayuda que tenemos disponibles para ti
               </p>
               <button className="button is-link button-secondary">

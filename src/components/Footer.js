@@ -1,14 +1,14 @@
 export default function Footer(props) {
   return (
     <>
-      <footer className="footer hero is-link">
+      <footer className="footer hero is-link pb-2">
         <div className="hero-body">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
               <div className="columns">
                 <div className="column is-3  has-text-left">
-                  <p className="subtitle-light mb-4 is-size-5">Categorías</p>
-                  <ul>
+                  <p className="subtitle-light mb-4 size-20">Categorías</p>
+                  <ul className="size-16">
                     <li>Artes graficas y diseño digital</li>
                     <li>Redacción y traducción</li>
                     <li>Video y animación </li>
@@ -20,10 +20,10 @@ export default function Footer(props) {
                   </ul>
                 </div>
                 <div className="column is-3 has-text-left">
-                  <p className="subtitle-light mb-4 is-size-5">
+                  <p className="subtitle-light mb-4 size-20">
                     Acerca de nosotros{" "}
                   </p>
-                  <ul>
+                  <ul className="size-16">
                     <li>Explora</li>
                     <li>Acerca de nosotros</li>
                     <li>Contacto</li>
@@ -31,15 +31,15 @@ export default function Footer(props) {
                   </ul>
                 </div>
                 <div className="column is-3 has-text-left">
-                  <p className="subtitle-light mb-4 is-size-5">Soporte </p>
-                  <ul>
+                  <p className="subtitle-light mb-4 size-20">Soporte </p>
+                  <ul className="size-16">
                     <li>¿Necesitas ayuda?</li>
                     <li>Centro de ayuda</li>
                   </ul>
                 </div>
                 <div className="column is-3 has-text-left">
-                  <p className="subtitle-light mb-4 is-size-5">Soporte </p>
-                  <ul>
+                  <p className="subtitle-light mb-4 size-20">Soporte </p>
+                  <ul className="size-16">
                     <li>Marketing </li>
                     <li>Artes graficas y Diseño digital </li>
                     <li>Escritura y traduccion </li>
@@ -55,37 +55,41 @@ export default function Footer(props) {
               <div className="columns">
                 <div className="column is-6">
                   <div className="columns is-vcentered">
-                    <div className="column is-2">
+                    <div className="column is-3">
                       <img
-                        src={process.env.PUBLIC_URL + "/images/Group 9.png"}
+                        src={
+                          process.env.PUBLIC_URL +
+                          "/images/Logo Treff blanco  2 (1).png"
+                        }
                         alt="treff"
+                        width={164}
                       />
                     </div>
-                    <div className="column">
+                    {/* <div className="column">
                       <p className="subtitle-light is-size-5">
                         Nuestras redes sociales
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="column is-6 has-text-right">
                   <img
-                    className="mr-5"
+                    className="mr-5 img-33"
                     src={process.env.PUBLIC_URL + "/images/Group 46.png"}
                     alt="instagram"
                   />
                   <img
-                    className="mr-5"
+                    className="mr-5 img-33"
                     src={process.env.PUBLIC_URL + "/images/Vector (1).png"}
                     alt="instagram"
                   />
                   <img
-                    className="mr-5"
+                    className="mr-5 img-33"
                     src={process.env.PUBLIC_URL + "/images/Vector (2).png"}
                     alt="instagram"
                   />
                   <img
-                    className="mr-5"
+                    className="mr-5 img-33"
                     src={process.env.PUBLIC_URL + "/images/Vector (3).png"}
                     alt="instagram"
                   />

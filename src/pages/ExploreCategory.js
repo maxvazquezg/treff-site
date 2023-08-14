@@ -103,8 +103,8 @@ const ExploreCategory = () => {
                   <div className="columns is-multiline">
                     <div className="column is-7-desktop has-text-left has-text-left-mobile  has-text-left-tablet is-12-tablet">
                       <h1
-                        className="has-text-white title"
-                        style={{ fontSize: "18px", fontWeight: 800 }}
+                        className="has-text-white title size-20 mt-3"
+                        style={{ fontWeight: 800 }}
                       >
                         {category.name ? category.name : "Nuestras categorías"}
                       </h1>

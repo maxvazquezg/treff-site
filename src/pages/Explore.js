@@ -167,8 +167,8 @@ const Explore = () => {
             <div className="columns is-multiline">
               <div className="column is-7-desktop has-text-left has-text-left-mobile  has-text-left-tablet is-12-tablet">
                 <h1
-                  className="has-text-white title ml-4"
-                  style={{ fontSize: "18px", fontWeight: 800 }}
+                  className="has-text-white title ml-4 size-18"
+                  style={{ fontWeight: 800 }}
                 >
                   Explora a nuestros servicios
                 </h1>

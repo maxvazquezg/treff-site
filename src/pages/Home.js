@@ -525,7 +525,7 @@ const Home = () => {
         <div className="hero-body is-black">
           <div className="columns is-multiline">
             <div className="column has-text-centered">
-              <h1 className="has-text-white title" style={{ fontSize: "45px" }}>
+              <h1 className="has-text-white title">
                 <img
                   src={
                     process.env.PUBLIC_URL +

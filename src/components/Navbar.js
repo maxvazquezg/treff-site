@@ -240,12 +240,11 @@ export default function Navbar(props) {
           >
             <img
               src={
-                process.env.PUBLIC_URL + "/images/Treff_03_color_gradient 2.png"
+                process.env.PUBLIC_URL + "/images/Treff_03_color_gradient 2.svg"
               }
               alt="Logo"
-              height={43}
-              width={38}
-              style={{ maxHeight: "200px", marginRight: "40px" }}
+              className="img-logo ml-2 ml-0-is-mobile"
+              style={{ maxHeight: "200px !important", marginRight: "40px" }}
             />
           </Link>
           <Notifications />

@@ -229,7 +229,7 @@ const Service = () => {
               <div className="columns">
                 <div className="column is-9">
                   <p className="subtitle-dark">{service.name}</p>
-                  {userRedux.id === service.freelancer?.id && (
+                  {userRedux?.id === service.freelancer?.id && (
                     <p>
                       <i
                         className="pi pi-eye mt-3"

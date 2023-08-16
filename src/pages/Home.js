@@ -199,7 +199,7 @@ const getFreelancersRankingCards = () => {
 const getFreelancersCardsTheme = (s) => {
   return (
     <div
-      className="card ml-3"
+      className="card ml-3 card-freelancer"
       style={{
         // width: "400px",
         // height: "280px",
@@ -225,10 +225,10 @@ const getFreelancersCardsTheme = (s) => {
         </div>
       </div>
       <footer
-        className="card-footer has-text-left"
+        className="card-footer has-text-left pb-3"
         style={{
           // width: "400px",
-          height: "110px",
+          height: "auto",
         }}
       >
         <img className="rounded ml-4 mt-2" src={s.image} alt="freelancer" />
@@ -250,8 +250,8 @@ const Home = () => {
         <Background className="custom-bg">
           <div
             style={{
-              height: 2000,
-              width: 2000,
+              height: "800px",
+              width: "100vw",
               backgroundImage:
                 "url('" +
                 process.env.PUBLIC_URL +
@@ -341,7 +341,7 @@ const Home = () => {
         <div className="hero-body">
           <div className="columns is-multiline">
             <div className="column is-7-desktop is-offset-1-desktop has-text-left-desktop has-text-centered-mobile  has-text-centered-tablet is-12-tablet">
-              <h1 className="has-text-white title size-45">
+              <h1 className="has-text-white title size-45 ">
                 Publica un servicio
               </h1>
             </div>
@@ -376,12 +376,12 @@ const Home = () => {
                 <div className="column is-6">
                   <div>
                     <p className="subtitle-dark">Cliente</p>
-                    <p className="has-text-justified mt-6 size-16">
+                    <p className="has-text-justified mt-6 size-18">
                       Somos una plataforma donde encontraras una amplia gama de
                       servicios ofrecidos por freelancers comprometidos a
                       resolver tus necesidades.{" "}
                     </p>
-                    <p className="has-text-justified mt-5 size-16">
+                    <p className="has-text-justified mt-5 size-18">
                       Con TREFF evitaras la contratación de grandes empresas,
                       encontraras beneficios de precios competitivos, trato
                       personal y TREFF actuando como un mediador entre tus
@@ -390,18 +390,18 @@ const Home = () => {
                   </div>
                   <div className="mt-6 pt-6">
                     <p className="subtitle-dark has-text-right ">Freelancer</p>
-                    <p className="has-text-justified mt-6 size-16">
+                    <p className="has-text-justified mt-6 size-18">
                       Somos una herramienta confiable desarrollada para que
                       ofrezcas tus servicios como experto independiente de una
                       forma amigable, ágil y segura.
                     </p>
-                    <p className="has-text-justified mt-6 size-16">
+                    <p className="has-text-justified mt-6 size-18">
                       {" "}
                       Siempre contaras con el respaldo de TREFF, garantizando
                       tus pagos por los trabajos realizados ajustado a tus
                       tiempos, capacidades y precios. (*)
                     </p>
-                    <p className="has-text-justified mt-6 size-16">
+                    <p className="has-text-justified mt-6 size-18">
                       La plataforma reconoce la calidad y puntualidad de los
                       servicios que realizas por lo que el crecimiento de tus
                       ventas y tu exposición será consecuencia de la valoración

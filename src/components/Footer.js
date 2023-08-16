@@ -8,7 +8,7 @@ export default function Footer(props) {
               <div className="columns">
                 <div className="column is-3  has-text-left">
                   <p className="subtitle-light mb-4 size-20">Categorías</p>
-                  <ul className="size-16">
+                  <ul className="size-18">
                     <li>Artes graficas y diseño digital</li>
                     <li>Redacción y traducción</li>
                     <li>Video y animación </li>
@@ -23,7 +23,7 @@ export default function Footer(props) {
                   <p className="subtitle-light mb-4 size-20">
                     Acerca de nosotros{" "}
                   </p>
-                  <ul className="size-16">
+                  <ul className="size-18">
                     <li>Explora</li>
                     <li>Acerca de nosotros</li>
                     <li>Contacto</li>
@@ -32,14 +32,14 @@ export default function Footer(props) {
                 </div>
                 <div className="column is-3 has-text-left">
                   <p className="subtitle-light mb-4 size-20">Soporte </p>
-                  <ul className="size-16">
+                  <ul className="size-18">
                     <li>¿Necesitas ayuda?</li>
                     <li>Centro de ayuda</li>
                   </ul>
                 </div>
                 <div className="column is-3 has-text-left">
                   <p className="subtitle-light mb-4 size-20">Soporte </p>
-                  <ul className="size-16">
+                  <ul className="size-18">
                     <li>Marketing </li>
                     <li>Artes graficas y Diseño digital </li>
                     <li>Escritura y traduccion </li>

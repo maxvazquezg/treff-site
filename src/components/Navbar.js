@@ -354,7 +354,7 @@ export default function Navbar(props) {
               <div className="navbar-item">
                 <div className="buttons">
                   <button
-                    className="button is-link"
+                    className="button is-link navbar-item"
                     onClick={() => setVisibleCreate(true)}
                   >
                     Crea tu cuenta

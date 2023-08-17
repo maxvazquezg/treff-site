@@ -155,7 +155,7 @@ const Explore = () => {
     <>
       <CustomSection type="white">
         <section
-          className="hero is-primary"
+          className="hero is-primary img-header"
           style={{
             backgroundImage:
               "url('" +
@@ -167,20 +167,19 @@ const Explore = () => {
             <div className="columns is-multiline">
               <div className="column is-7-desktop has-text-left has-text-left-mobile  has-text-left-tablet is-12-tablet">
                 <h1
-                  className="has-text-white title ml-4 size-18"
+                  className="has-text-white title ml-4 size-20"
                   style={{ fontWeight: 800 }}
                 >
                   Explora a nuestros servicios
                 </h1>
                 <div>
                   <img
-                    className="pt-0"
+                    className="pt-0 img-logo-287"
                     src={
                       process.env.PUBLIC_URL +
                       "/images/Logo Treff blanco  2 (2).png"
                     }
                     alt="treff"
-                    width={287}
                   />
                 </div>
               </div>
@@ -190,13 +189,13 @@ const Explore = () => {
       </CustomSection>
 
       <CustomSection type="white">
-        <SectionContent type="light">
+        <SectionContent type="light" className="pt-6 pl-2 pb-3">
           {byFreelancer ? (
             <p className="subtitle-dark">Explorar freelancer </p>
           ) : (
             <p className="subtitle-dark">Servicios / Marketing</p>
           )}
-          <div className="columns mt-6 is-multiline ">
+          <div className="columns mt-3 is-multiline ">
             <div className="column is-2 is-mobile">
               <div className="select">
                 <select onChange={setExploreOnSelect}>
@@ -252,11 +251,11 @@ const Explore = () => {
       </CustomSection>
 
       <CustomSection type="white">
-        <SectionContent type="white">
+        <SectionContent type="white"  className="pt-4 pl-2 pb-3">
           <p className="subtitle-dark">Destacados</p>
         </SectionContent>
         {servicesHighLight.length > 0 && (
-          <SectionContent type="light">
+          <SectionContent type="light" className="pt-3 pl-3 pb-3" style={{border: "0.5px solid #C2C2C2"}}>
             <div className="columns mt-1 is-multiline">
               {servicesHighLight.map((s, index) => freelancerCard(s, index))}
             </div>
@@ -265,7 +264,7 @@ const Explore = () => {
       </CustomSection>
 
       <CustomSection type="white">
-        <SectionContent type="white">
+        <SectionContent type="white" className="pt-4 pl-2 pb-3">
           <div className="columns mt-1 is-multiline">
             {services.map((s, index) => freelancerCard(s, index))}
           </div>

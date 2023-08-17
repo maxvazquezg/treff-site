@@ -4,7 +4,8 @@ import CategoryApi from "../api/CategoryApi";
 import { Link, useNavigate } from "react-router-dom";
 import { routes } from "../routes";
 import { getURLImage } from "../utils/images";
-
+import CustomSection from "../components/CustomSection";
+import SectionContent from "../components/SectionContent";
 
 const ExploreCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -47,9 +48,7 @@ const ExploreCategory = () => {
 
   let breadcrumbs = [
     <li>
-      <Link onClick={setDefaultCategories}>
-        Todas las categorías
-      </Link>
+      <Link onClick={setDefaultCategories}>Todas las categorías</Link>
     </li>,
   ];
 
@@ -85,84 +84,65 @@ const ExploreCategory = () => {
 
   return (
     <>
-      <section className="hero is-white">
-        <div className="hero-body pt-0 pb-0">
-          <div className="columns">
-            <div className="column is-10 is-offset-1 has-text-left">
-              <section
-                className="hero is-primary"
-                style={{
-                  backgroundImage: category.coverImage
-                    ? "url('" + getURLImage(category.coverImage) + "')"
-                    : "url('" +
+      <CustomSection type="white">
+        <section
+          className="hero is-primary img-header"
+          style={{
+            backgroundImage: category.coverImage
+              ? "url('" + getURLImage(category.coverImage) + "')"
+              : "url('" +
+                process.env.PUBLIC_URL +
+                "/images/pexels-mateusz-dach-409480 1.png')",
+          }}
+        >
+          <div className="hero-body">
+            <div className="columns is-multiline">
+              <div className="column is-7-desktop has-text-left has-text-left-mobile  has-text-left-tablet is-12-tablet">
+                <h1
+                  className="has-text-white title ml-4 size-20"
+                  style={{ fontWeight: 800 }}
+                >
+                  Explora a nuestros servicios
+                </h1>
+                <div>
+                  <img
+                    className="pt-0 img-logo-287"
+                    src={
                       process.env.PUBLIC_URL +
-                      "/images/pexels-mateusz-dach-409480 1.png')",
-                }}
-              >
-                <div className="hero-body">
-                  <div className="columns is-multiline">
-                    <div className="column is-7-desktop has-text-left has-text-left-mobile  has-text-left-tablet is-12-tablet">
-                      <h1
-                        className="has-text-white title size-20 mt-3"
-                        style={{ fontWeight: 800 }}
-                      >
-                        {category.name ? category.name : "Nuestras categorías"}
-                      </h1>
-                      <div>
-                        <img
-                          className="pt-3"
-                          src={
-                            process.env.PUBLIC_URL +
-                            "/images/Logo Treff blanco  2 (2).png"
-                          }
-                          alt="treff"
-                          height={287}
-                        />
-                      </div>
-                    </div>
-                  </div>
+                      "/images/Logo Treff blanco  2 (2).png"
+                    }
+                    alt="treff"
+                  />
                 </div>
-              </section>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </CustomSection>
 
-      <section className="hero is-white">
-        <div className="hero-body pb-1">
-          <div className="columns">
-            <div className="column is-10 is-offset-1 has-text-left">
-              <section className="hero is-light">
-                <div className="hero-body">
-                  <div className="columns">
-                    <div className="column is-12 has-text-left">
-                      <p className="subtitle-dark mb-1">Categorías</p>
-                      <nav className="breadcrumb mt-3" aria-label="breadcrumbs">
-                        <ul>{breadcrumb.map((b) => b)}</ul>
-                      </nav>
-                      {category.name ? (
-                        <p
-                          onClick={(e) => setDefaultCategories()}
-                          className="p-blue mb-2 has-text-right mr-5"
-                          style={{ cursor: "pointer" }}
-                        >
-                          <b>Ver categorías </b>
-                        </p>
-                      ) : null}
-                      {categories.length > 0 ? (
-                        <div className="columns is-multiline">
-                          {getCategoriesCards(categories)}
-                        </div>
-                      ) : null}
-                    </div>
-                  </div>
-                </div>
-                <br />
-              </section>
+      <CustomSection type="white" className="mb-6">
+        <SectionContent type="light" className="pt-6 pl-2 pb-6">
+          <p className="subtitle-dark mb-1">Categorías</p>
+          <nav className="breadcrumb mt-3" aria-label="breadcrumbs">
+            <ul>{breadcrumb.map((b) => b)}</ul>
+          </nav>
+          {category.name ? (
+            <p
+              onClick={(e) => setDefaultCategories()}
+              className="p-blue mb-2 has-text-right mr-5"
+              style={{ cursor: "pointer" }}
+            >
+              <b>Ver categorías </b>
+            </p>
+          ) : null}
+          {categories.length > 0 ? (
+            <div className="columns is-multiline pl-6 pr-6">
+              {getCategoriesCards(categories)}
             </div>
-          </div>
-        </div>
-      </section>
+          ) : null}
+        </SectionContent>
+      </CustomSection>
+      
     </>
   );
 };

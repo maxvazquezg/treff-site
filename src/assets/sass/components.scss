@@ -250,7 +250,19 @@
   height: $text-53 !important;
 }
 
+.img-logo-287{
+  width: $text-287 !important;
+  height: auto !important;
+}
+
 .img-footer{
   width: $text-350;
   height: auto;
+}
+
+.img-header{
+  height: $text-240;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

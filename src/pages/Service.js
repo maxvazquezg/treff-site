@@ -96,11 +96,11 @@ const Service = () => {
           className="card"
           style={{
             width: "100%",
-            height: "200.04px",
+            height: "auto",
             backgroundRepeat: "no-repeat",
             backgroundSize: "contain",
             cursor: "pointer",
-            padding: "10px 0px 0px 0px",
+            padding: "10px 0px 20px 0px",
           }}
         >
           <div
@@ -172,7 +172,7 @@ const Service = () => {
 
                     <p>{p.description}</p>
 
-                    <article className="message is-primary">
+                    <article className="message is-primary p-0">
                       <div
                         className="message-header"
                         style={{ color: "#FFFFFF" }}
@@ -296,6 +296,7 @@ const Service = () => {
                           <img
                             src={process.env.PUBLIC_URL + "/images/Atras.png"}
                             alt="adelante"
+                            width={50}
                           />
                         }
                         rightIcon={
@@ -304,6 +305,7 @@ const Service = () => {
                               process.env.PUBLIC_URL + "/images/Adelante.png"
                             }
                             alt="adelante"
+                            width={50}
                           />
                         }
                       >
@@ -399,21 +401,26 @@ const Service = () => {
             <div className="column is-6-widescreen is-12-tablet">
               {showPackages(service.packages)}
               {userRedux?.id !== service.freelancerId && (
-                <>
-                  <div className="has-text-centered">
-                    <button
-                      className="button is-primary"
-                      style={{ width: "70%" }}
-                    >
-                      Solicitar cotización especial
-                    </button>
+                <div className="column">
+                  <div className="column is-half is-offset-one-quarter has-text-centered">
+                    <div className="has-text-centered">
+                      <button
+                        className="button is-primary width={50}"
+                        style={{ width: "100%" }}
+                      >
+                        Solicitar cotización especial
+                      </button>
+                    </div>
+                    <div className="has-text-centered mt-4">
+                      <button
+                        className="button is-light"
+                        style={{ width: "100%" , border: "1px solid #727272" }}
+                      >
+                        Contactar vendedor
+                      </button>
+                    </div>
                   </div>
-                  <div className="has-text-centered mt-4">
-                    <button className="button" style={{ width: "70%" }}>
-                      Contactar vendedor
-                    </button>
-                  </div>
-                </>
+                </div>
               )}
             </div>
           </div>

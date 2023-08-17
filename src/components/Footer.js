@@ -1,8 +1,8 @@
 export default function Footer(props) {
   return (
     <>
-      <footer className="footer hero is-link pb-2">
-        <div className="hero-body">
+      <footer className="footer hero is-link p-0">
+        <div className="hero-body pt-5 pb-3">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
               <div className="columns">

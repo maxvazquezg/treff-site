@@ -526,7 +526,7 @@ const Home = () => {
           <div className="columns is-multiline">
             <div className="column has-text-centered">
               <h1 className="has-text-white title">
-                <img
+                <img className="img-footer"
                   src={
                     process.env.PUBLIC_URL +
                     "/images/Logo Treff blanco  2 (1).png"

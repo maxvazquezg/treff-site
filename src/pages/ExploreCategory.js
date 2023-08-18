@@ -59,12 +59,12 @@ const ExploreCategory = () => {
       <div
         onClick={(e) => seeSubCategories(s)}
         key={index}
-        className="column is-3 has-text-left"
+        className="column is-4-desktop is-6-tablet is-3-widescreen is-12-mobile has-text-left"
       >
         <div
-          // className="card"
+          className="has-text-centered"
           style={{
-            width: "400px",
+            width: "auto",
             backgroundRepeat: "no-repeat",
             backgroundSize: "contain",
             cursor: "pointer",
@@ -136,7 +136,7 @@ const ExploreCategory = () => {
             </p>
           ) : null}
           {categories.length > 0 ? (
-            <div className="columns is-multiline pl-6 pr-6">
+            <div className="columns is-multiline pl-6 pr-6 has-text-center">
               {getCategoriesCards(categories)}
             </div>
           ) : null}

@@ -11,21 +11,31 @@ import { routes } from "../routes";
 const responsiveOptions = [
   {
     breakpoint: "10216px",
-    numVisible: 3,
+    numVisible: 5,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "1690x",
+    numVisible: 5,
     numScroll: 1,
   },
   {
     breakpoint: "1216px",
-    numVisible: 3,
+    numVisible: 4,
     numScroll: 1,
   },
   {
     breakpoint: "1215px",
+    numVisible: 3,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "700px",
     numVisible: 2,
     numScroll: 1,
   },
   {
-    breakpoint: "640px",
+    breakpoint: "440px",
     numVisible: 1,
     numScroll: 1,
   },

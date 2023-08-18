@@ -262,7 +262,7 @@
 
 .img-header{
   height: $text-240;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-size: cover; /* Hace que la imagen ocupe todo el div */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: top left; /* Posición de la imagen en la esquina superior izquierda */
 }

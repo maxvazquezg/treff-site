@@ -227,7 +227,7 @@ export default function Navbar(props) {
   return (
     <>
       <nav
-        className="navbar"
+        className="navbar is-fixed-top"
         role="navigation"
         aria-label="main navigation"
         style={{ height: "64px" }}
@@ -369,13 +369,13 @@ export default function Navbar(props) {
           )}
         </div>
       </nav>
-      {!isActive && (
+      {/* {!isActive && (
         <section
           id="top"
           className={`navbar is-hidden-desktop is-link`}
           style={{ height: "30px", minHeight: "30px" }}
         ></section>
-      )}
+      )} */}
 
       <Dialog
         visible={visibleCreate}
@@ -402,8 +402,8 @@ export default function Navbar(props) {
         className="overlaypanel-demo"
       >
         <div className="container is-vcentered">
-          <div className="columns">
-            <div className="column is-3">
+          <div className="columns mb-0">
+            <div className="column is-2 pb-1">
               <Avatar
                 image={
                   userData?.photo
@@ -413,11 +413,11 @@ export default function Navbar(props) {
                 shape="circle"
               />
             </div>
-            <div className="column pt-4">
+            <div className="column pt-4 pb-1">
               <p className="p-18-black">{userData?.name}</p>
             </div>
           </div>
-          <hr className="mt-0" />
+          <hr className="mt-0 mb-2" />
           {createMenuProfile()}
         </div>
       </OverlayPanel>

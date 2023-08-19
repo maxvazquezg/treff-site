@@ -72,7 +72,7 @@ export default function Footer(props) {
                     </div> */}
                   </div>
                 </div>
-                <div className="column is-6 has-text-right">
+                <div className="column is-6 has-text-right has-text-left-mobile">
                   <img
                     className="mr-5 img-33"
                     src={process.env.PUBLIC_URL + "/images/Group 46.png"}

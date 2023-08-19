@@ -175,7 +175,7 @@ const Service = () => {
                     <article className="message is-primary p-0">
                       <div
                         className="message-header"
-                        style={{ color: "#FFFFFF" }}
+                        style={{ color: "#FFFFFF", width: "100%" }}
                       >
                         <div className="columns is-vcentered is-multiline">
                           <div className="column is-2">

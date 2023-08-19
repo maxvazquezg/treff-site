@@ -4,6 +4,7 @@ import { FreelancerApi } from "../api";
 import { Toast } from 'primereact/toast';
 import { useDispatch } from 'react-redux'
 import { addUser } from '../redux/userReducer'
+import { getURLImage } from "../utils/images";
 
 const LoginModal = (props) => {
   const {

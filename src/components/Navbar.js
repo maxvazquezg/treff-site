@@ -330,13 +330,17 @@ export default function Navbar(props) {
                 className="navbar-item  is-vcentered"
                 onClick={(e) => {
                   // try {
-                    op.current.toggle(e);
+                  op.current.toggle(e);
                   // } catch {}
                 }}
               >
                 {userData.name}
                 <Avatar
-                  image={getURLImage(userData?.photo)}
+                  image={
+                    userData?.photo
+                      ? getURLImage(userData?.photo)
+                      : getURLImage("images/user_undefined.png", true)
+                  }
                   // size="large"
                   shape="circle"
                   className="ml-4"
@@ -400,7 +404,14 @@ export default function Navbar(props) {
         <div className="container is-vcentered">
           <div className="columns">
             <div className="column is-3">
-              <Avatar image={getURLImage(userData?.photo)} shape="circle" />
+              <Avatar
+                image={
+                  userData?.photo
+                    ? getURLImage(userData?.photo)
+                    : getURLImage("images/user_undefined.png", true)
+                }
+                shape="circle"
+              />
             </div>
             <div className="column pt-4">
               <p className="p-18-black">{userData?.name}</p>

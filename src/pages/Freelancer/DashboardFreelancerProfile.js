@@ -288,7 +288,7 @@ const DashboardFreelancerProfile = () => {
         <div className="hero-body has-text-centered pb-0">
           <Avatar
             className="ml-3 mt-2"
-            image={getURLImage(user?.photo)}
+            image={user?.photo ? getURLImage(user?.photo) : getURLImage("images/user_undefined.png", true)}
             size="xlarge"
             shape="circle"
             style={{ width: "150px", height: "150px" }}

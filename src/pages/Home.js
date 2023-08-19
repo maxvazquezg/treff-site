@@ -177,10 +177,10 @@ const getFreelancersRankingCards = () => {
   return freelancersRanking.map((s, index) => (
     <div key={index} className="column has-text-centered">
       <div
-      className="freelancer-card"
+        className="freelancer-card"
         style={{
           backgroundImage: s.image,
-          
+
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
           cursor: "pointer",
@@ -265,7 +265,7 @@ const Home = () => {
         >
           <div className="hero-body">
             <div className="columns">
-              <div className="column is-half is-offset-one-quarter mt-6">
+              <div className="column is-half is-offset-one-quarter mt-6 has-text-centered-mobile has-text-centered-tablet">
                 <img
                   src={
                     process.env.PUBLIC_URL +
@@ -277,7 +277,7 @@ const Home = () => {
             </div>
 
             <div className="columns">
-              <div className="column is-three-fifths is-offset-1 mt-6 has-text-left is-full-mobile">
+              <div className="column is-three-fifths is-offset-1 mt-4 has-text-left is-full-mobile">
                 <div className="columns">
                   <div className="column is-half is-four-fifths mt-6 has-text-left is-full-mobile">
                     <h1 className="has-text-white title has-text-centered-mobile">
@@ -289,7 +289,7 @@ const Home = () => {
                       forma amigable, ágil y segura.
                     </h2>
                     <div className="has-text-centered-mobile">
-                      <button className="button is-primary button-secondary mt-6 mb-6">
+                      <button className="button is-primary button-secondary mt-6 mb-0">
                         Contratar
                       </button>
                     </div>
@@ -430,7 +430,9 @@ const Home = () => {
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
               <p className="subtitle-light mb-6">Ranking</p>
-              <p className="text-light mb-6 size-20">Nuestros mejores freenlancer </p>
+              <p className="text-light mb-6 size-20">
+                Nuestros mejores freenlancer{" "}
+              </p>
               <ScrollingMenu items={getFreelancersRankingCards()} />
             </div>
           </div>
@@ -526,7 +528,8 @@ const Home = () => {
           <div className="columns is-multiline">
             <div className="column has-text-centered">
               <h1 className="has-text-white title">
-                <img className="img-footer"
+                <img
+                  className="img-footer"
                   src={
                     process.env.PUBLIC_URL +
                     "/images/Logo Treff blanco  2 (1).png"

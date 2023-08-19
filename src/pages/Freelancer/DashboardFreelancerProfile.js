@@ -279,7 +279,7 @@ const DashboardFreelancerProfile = () => {
   return (
     <>
       <section
-        className="hero is-info backgroud-wave-full has-text-right"
+        className="hero is-info backgroud-wave-full has-text-right mt-3"
         style={{
           backgroundImage: "url(" + coverUrl + ")",
           paddingBottom: "0px !important",

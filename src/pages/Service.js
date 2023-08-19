@@ -344,7 +344,7 @@ const Service = () => {
                     </div>
                     <div className="column is-10  is-12-tablet is-multiline">
                       <div className="columns is-multiline">
-                        <div className="column is-5-widescreen is-12-tablet has-text-left-widescreen has-text-centered-mobile has-text-centered-tablet">
+                        <div className="column is-8-widescreen is-12-tablet has-text-left-widescreen has-text-centered-mobile has-text-centered-tablet">
                           <Link
                             to={routes.FREELANCERPROFILE.replace(
                               ":id",
@@ -357,7 +357,7 @@ const Service = () => {
                             <p>{service.freelancer?.title}</p>
                             {service.freelancer?.score && (
                               <div className="has-text-centered-tablet has-text-centered-mobile columns">
-                                <div className="column is-full-widescreen is-5-desktop  is-offset-5-desktop is-5-tablet  is-offset-4-tablet is-5-mobile is-offset-3-mobile is-offset-0-widescreen">
+                                <div className="column is-full-widescreen is-8-desktop  is-offset-3-desktop is-8-tablet  is-offset-3-tablet is-full-mobile is-offset-2-mobile is-offset-0-widescreen">
                                   <ReactStars
                                     count={5}
                                     edit={false}
@@ -372,7 +372,7 @@ const Service = () => {
                             )}
                           </Link>
                         </div>
-                        <div className="column is-7-widescreen is-12-tablet">
+                        <div className="column is-3-widescreen is-12-tablet">
                           {userRedux?.id !== service.freelancerId && (
                             <button
                               className="button is-link"

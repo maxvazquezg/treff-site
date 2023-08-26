@@ -1,13 +1,13 @@
 export default function Footer(props) {
   return (
     <>
-      <footer className="footer hero is-link p-0">
-        <div className="hero-body pt-5 pb-3">
+      <footer className="footer hero is-link p-0" style={{overflowY: "clip"}}>
+        <div className="hero-body pt-1 pb-1">
           <div className="columns">
-            <div className="column is-10 is-offset-1 has-text-left">
+            <div className="column is-10 is-offset-1 has-text-left pb-0">
               <div className="columns">
-                <div className="column is-3  has-text-left">
-                  <p className="subtitle-light mb-4 size-20">Categorías</p>
+                <div className="column is-3  has-text-left pb-0">
+                  <p className="subtitle-light mb-1 size-20">Categorías</p>
                   <ul className="size-18">
                     <li>Artes graficas y diseño digital</li>
                     <li>Redacción y traducción</li>
@@ -19,8 +19,8 @@ export default function Footer(props) {
                     <li>Marketing digital</li>
                   </ul>
                 </div>
-                <div className="column is-3 has-text-left">
-                  <p className="subtitle-light mb-4 size-20">
+                <div className="column is-3 has-text-left pb-0">
+                  <p className="subtitle-light mb-1 size-20">
                     Acerca de nosotros{" "}
                   </p>
                   <ul className="size-18">
@@ -30,15 +30,15 @@ export default function Footer(props) {
                     <li>Privacidad</li>
                   </ul>
                 </div>
-                <div className="column is-3 has-text-left">
-                  <p className="subtitle-light mb-4 size-20">Soporte </p>
+                <div className="column is-3 has-text-left pb-0">
+                  <p className="subtitle-light mb-1 size-20">Soporte </p>
                   <ul className="size-18">
                     <li>¿Necesitas ayuda?</li>
                     <li>Centro de ayuda</li>
                   </ul>
                 </div>
-                <div className="column is-3 has-text-left">
-                  <p className="subtitle-light mb-4 size-20">Soporte </p>
+                <div className="column is-3 has-text-left pb-0">
+                  <p className="subtitle-light mb-1 size-20">Soporte </p>
                   <ul className="size-18">
                     <li>Marketing </li>
                     <li>Artes graficas y Diseño digital </li>
@@ -51,8 +51,8 @@ export default function Footer(props) {
                   </ul>
                 </div>
               </div>
-              <hr />
-              <div className="columns">
+              <hr className="mb-4 mt-0" />
+              <div className="columns pb-4">
                 <div className="column is-6">
                   <div className="columns is-vcentered">
                     <div className="column is-3">

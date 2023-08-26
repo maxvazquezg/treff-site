@@ -246,7 +246,12 @@ const getFreelancersCardsTheme = (s) => {
 const Home = () => {
   return (
     <>
-      <Parallax blur={0} bgImageAlt="Treff" strength={500}>
+      <Parallax
+        blur={0}
+        bgImageAlt="Treff"
+        // bgImage={process.env.PUBLIC_URL + "/images/pexels-adil-2726478 1.png"}
+        strength={500}
+      >
         <Background className="custom-bg">
           <div
             style={{
@@ -260,36 +265,37 @@ const Home = () => {
           />
         </Background>
         <section
-          className="hero pb-6"
+          className="hero pb-0"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
         >
           <div className="hero-body">
             <div className="columns">
-              <div className="column is-half is-offset-one-quarter mt-6 has-text-centered-mobile has-text-centered-tablet">
+              <div className="column is-half is-offset-one-quarter mt-2 has-text-centered-mobile has-text-centered-tablet">
                 <img
                   src={
                     process.env.PUBLIC_URL +
                     "/images/Treff_06_color_gradient 1.svg"
                   }
                   alt="logo"
+                  style={{ width: "5.5rem" }}
                 />
               </div>
             </div>
 
             <div className="columns">
-              <div className="column is-three-fifths is-offset-1 mt-4 has-text-left is-full-mobile">
+              <div className="column is-three-fifths is-offset-1 mt-2 has-text-left is-full-mobile">
                 <div className="columns">
-                  <div className="column is-half is-four-fifths mt-6 has-text-left is-full-mobile">
+                  <div className="column is-half is-four-fifths mt-3 has-text-left is-full-mobile">
                     <h1 className="has-text-white title has-text-centered-mobile">
                       Contrata un servicio
                     </h1>
-                    <h2 className="subtitle mt-6 has-text-justified-mobile">
+                    <h2 className="subtitle mt-3 has-text-justified-mobile">
                       Somos una herramienta confiable desarrollada para que
                       ofrezcas tus servicios como experto independiente de una
                       forma amigable, ágil y segura.
                     </h2>
                     <div className="has-text-centered-mobile">
-                      <button className="button is-primary button-secondary mt-6 mb-0">
+                      <button className="button is-primary button-secondary mt-3 mb-0">
                         Contratar
                       </button>
                     </div>
@@ -297,10 +303,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-
-            {/* </div> */}
           </div>
-          <br />
         </section>
       </Parallax>
 
@@ -336,17 +339,19 @@ const Home = () => {
             "url('" +
             process.env.PUBLIC_URL +
             "/images/Treff_textura02 (1) 1.png')",
+            height: "auto",
+            padding: "0px 0px 0px 0px",
         }}
       >
-        <div className="hero-body">
+        <div className="hero-body pt-5 pb-5">
           <div className="columns is-multiline">
             <div className="column is-7-desktop is-offset-1-desktop has-text-left-desktop has-text-centered-mobile  has-text-centered-tablet is-12-tablet">
-              <h1 className="has-text-white title size-45 ">
+              <h1 className="has-text-white title size-28 mt-3">
                 Publica un servicio
               </h1>
             </div>
             <div className="column is-3-desktop has-text-left is-full-tablet is-12-tablet has-text-centered-mobile has-text-centered-tablet">
-              <button className="button is-link button-publish size-25">
+              <button className="button is-link size-25" style={{width: "180px"}}>
                 Publicar
               </button>
             </div>

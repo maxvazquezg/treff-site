@@ -14,7 +14,7 @@
   color: #002541;
 }
 
-.freelancer-card{
+.freelancer-card {
   width: $text-228;
   height: $text-350;
 }
@@ -240,29 +240,41 @@
   padding-top: 20px;
 }
 
-.img-33{
-  width:auto !important;
+.img-33 {
+  width: auto !important;
   height: $text-33 !important;
 }
 
-.img-logo{
-  width:auto !important;
+.img-logo {
+  width: auto !important;
   height: $text-53 !important;
 }
 
-.img-logo-287{
+.img-logo-287 {
   width: $text-287 !important;
   height: auto !important;
 }
 
-.img-footer{
+.img-footer {
   width: $text-350;
   height: auto;
 }
 
-.img-header{
+.img-header {
   height: $text-240;
   background-size: cover; /* Hace que la imagen ocupe todo el div */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
   background-position: top left; /* Posición de la imagen en la esquina superior izquierda */
+}
+
+.img-parallax {
+  height: 800px;
+  width: 100vw;
+  background-position: top right;
+}
+
+@media screen and (max-width: 1100px) {
+  .img-parallax {
+    background-position: top left;
+  }
 }

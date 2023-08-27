@@ -254,9 +254,8 @@ const Home = () => {
       >
         <Background className="custom-bg">
           <div
+            className="img-parallax"
             style={{
-              height: "800px",
-              width: "100vw",
               backgroundImage:
                 "url('" +
                 process.env.PUBLIC_URL +
@@ -308,7 +307,7 @@ const Home = () => {
       </Parallax>
 
       <section className="hero is-white">
-        <div className="hero-body">
+        <div className="hero-body pt-3 pb-0">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
               <p className="subtitle-dark">Servicios a explorar</p>
@@ -325,7 +324,7 @@ const Home = () => {
               </p>
 
               <ScrollingMenu items={getServiceCards()} />
-              <div className="columns is-mobile mt-6 is-multiline "></div>
+              <div className="columns is-mobile mt-3 is-multiline "></div>
             </div>
           </div>
         </div>
@@ -339,8 +338,8 @@ const Home = () => {
             "url('" +
             process.env.PUBLIC_URL +
             "/images/Treff_textura02 (1) 1.png')",
-            height: "auto",
-            padding: "0px 0px 0px 0px",
+          height: "auto",
+          padding: "0px 0px 0px 0px",
         }}
       >
         <div className="hero-body pt-5 pb-5">
@@ -351,7 +350,10 @@ const Home = () => {
               </h1>
             </div>
             <div className="column is-3-desktop has-text-left is-full-tablet is-12-tablet has-text-centered-mobile has-text-centered-tablet">
-              <button className="button is-link size-25" style={{width: "180px"}}>
+              <button
+                className="button is-link size-25"
+                style={{ width: "180px" }}
+              >
                 Publicar
               </button>
             </div>
@@ -360,7 +362,7 @@ const Home = () => {
       </section>
 
       <section className="hero is-light">
-        <div className="hero-body">
+        <div className="hero-body pb-0">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
               <div className="has-text-centered">
@@ -368,8 +370,8 @@ const Home = () => {
                   A quien estamos dirgidos y por que hacemos la diferencia
                 </p>
               </div>
-              <div className="columns mt-6 is-multiline ">
-                <div className="column is-3">
+              <div className="columns mt-1 is-multiline ">
+                <div className="column is-2">
                   <img
                     src={
                       process.env.PUBLIC_URL +
@@ -378,35 +380,35 @@ const Home = () => {
                     alt="cliente"
                   />
                 </div>
-                <div className="column is-6">
+                <div className="column is-8">
                   <div>
                     <p className="subtitle-dark">Cliente</p>
-                    <p className="has-text-justified mt-6 size-18">
+                    <p className="has-text-justified mt-1 size-18">
                       Somos una plataforma donde encontraras una amplia gama de
                       servicios ofrecidos por freelancers comprometidos a
                       resolver tus necesidades.{" "}
                     </p>
-                    <p className="has-text-justified mt-5 size-18">
+                    <p className="has-text-justified mt-3 size-18">
                       Con TREFF evitaras la contratación de grandes empresas,
                       encontraras beneficios de precios competitivos, trato
                       personal y TREFF actuando como un mediador entre tus
                       necesidades y la entrega de un trabajo de calidad.
                     </p>
                   </div>
-                  <div className="mt-6 pt-6">
+                  <div className="mt-3 pt-1">
                     <p className="subtitle-dark has-text-right ">Freelancer</p>
-                    <p className="has-text-justified mt-6 size-18">
+                    <p className="has-text-justified mt-1 size-18">
                       Somos una herramienta confiable desarrollada para que
                       ofrezcas tus servicios como experto independiente de una
                       forma amigable, ágil y segura.
                     </p>
-                    <p className="has-text-justified mt-6 size-18">
+                    <p className="has-text-justified mt-3 size-18">
                       {" "}
                       Siempre contaras con el respaldo de TREFF, garantizando
                       tus pagos por los trabajos realizados ajustado a tus
                       tiempos, capacidades y precios. (*)
                     </p>
-                    <p className="has-text-justified mt-6 size-18">
+                    <p className="has-text-justified mt-3 size-18">
                       La plataforma reconoce la calidad y puntualidad de los
                       servicios que realizas por lo que el crecimiento de tus
                       ventas y tu exposición será consecuencia de la valoración
@@ -414,7 +416,7 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
-                <div className="column is-3 pt-6">
+                <div className="column is-2 pt-6">
                   <img
                     src={
                       process.env.PUBLIC_URL +
@@ -431,11 +433,11 @@ const Home = () => {
       </section>
 
       <section className="hero is-primary">
-        <div className="hero-body">
+        <div className="hero-body pb-0 pt-3">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
-              <p className="subtitle-light mb-6">Ranking</p>
-              <p className="text-light mb-6 size-20">
+              <p className="subtitle-light mb-1">Ranking</p>
+              <p className="text-light mb-3 size-20">
                 Nuestros mejores freenlancer{" "}
               </p>
               <ScrollingMenu items={getFreelancersRankingCards()} />
@@ -445,17 +447,17 @@ const Home = () => {
         <br />
       </section>
 
-      <section className="hero is-black">
-        <div className="hero-body">
+      <section className="hero is-black pb-0">
+        <div className="hero-body pt-5 pb-0">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
               <div className="columns is-vcentered">
-                <div className="column is-4 mt-6">
+                <div className="column is-3 mt-1">
                   <p className="subtitle-light">Ven y conoce mas de</p>
                 </div>
                 <div className="column is-4 is-vcentered">
                   <img
-                    className="pt-6"
+                    className="pt-1"
                     src={
                       process.env.PUBLIC_URL +
                       "/images/Logo Treff blanco  2.png"
@@ -464,13 +466,14 @@ const Home = () => {
                   />
                 </div>
               </div>
-              <p className="text-light mt-6 mb-6">
+              <p className="text-light mt-0 mb-0">
                 Miles de personas hacen parte de esta comunidad{" "}
               </p>
-              <div className="has-text-centered">
+              <div className="has-text-centered mt-4">
                 <img
                   src={process.env.PUBLIC_URL + "/images/Video.png"}
                   alt="video"
+                  className="video-presentation"
                 />
               </div>
             </div>
@@ -480,10 +483,10 @@ const Home = () => {
       </section>
 
       <section className="hero is-white">
-        <div className="hero-body">
+        <div className="hero-body pb-0 pt-4">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
-              <p className="subtitle-dark mb-6">Explorar freelancer</p>
+              <p className="subtitle-dark mb-3">Explorar freelancer</p>
 
               {/* <ScrollingMenu items={getFreelancersCards()} /> */}
               <div className="card">
@@ -504,14 +507,17 @@ const Home = () => {
       </section>
 
       <section className="hero is-light">
-        <div className="hero-body">
+        <div className="hero-body p-0 pt-5">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-centered">
               <p className="subtitle-dark mb-4">¿Necesitas ayuda ?</p>
-              <p className="text-light mb-5">
+              <p className="text-light mb-0">
                 Conoce aqui los centros de ayuda que tenemos disponibles para ti
               </p>
-              <button className="button is-link button-secondary">
+              <button
+                className="button is-link size-18 mt-3"
+                style={{ width: "180px" }}
+              >
                 Publicar
               </button>
             </div>
@@ -527,9 +533,10 @@ const Home = () => {
             "url('" +
             process.env.PUBLIC_URL +
             "/images/pexels-tima-miroshnichenko-5453824 1.png')",
+            backgroundPosition: "center",
         }}
       >
-        <div className="hero-body is-black">
+        <div className="hero-body is-black p-0 pt-3 pb-3">
           <div className="columns is-multiline">
             <div className="column has-text-centered">
               <h1 className="has-text-white title">

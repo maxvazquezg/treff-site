@@ -161,9 +161,10 @@ const Explore = () => {
               "url('" +
               process.env.PUBLIC_URL +
               "/images/pexels-alexander-dummer-134469 2.png')",
+              height: "150px"
           }}
         >
-          <div className="hero-body">
+          <div className="hero-body pb-1 pt-3">
             <div className="columns is-multiline">
               <div className="column is-7-desktop has-text-left has-text-left-mobile  has-text-left-tablet is-12-tablet">
                 <h1
@@ -189,13 +190,13 @@ const Explore = () => {
       </CustomSection>
 
       <CustomSection type="white">
-        <SectionContent type="light" className="pt-6 pl-2 pb-3">
+        <SectionContent type="light" className="pt-1 pl-2 pb-3">
           {byFreelancer ? (
             <p className="subtitle-dark">Explorar freelancer </p>
           ) : (
             <p className="subtitle-dark">Servicios / Marketing</p>
           )}
-          <div className="columns mt-3 is-multiline ">
+          <div className="columns mt-3 is-multiline size-16">
             <div className="column is-2 is-mobile">
               <div className="select">
                 <select onChange={setExploreOnSelect}>
@@ -265,7 +266,7 @@ const Explore = () => {
 
       <CustomSection type="white">
         <SectionContent type="white" className="pt-4 pl-2 pb-3">
-          <div className="columns mt-1 is-multiline">
+          <div className="columns mt-0 is-multiline">
             {services.map((s, index) => freelancerCard(s, index))}
           </div>
         </SectionContent>

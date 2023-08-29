@@ -260,12 +260,13 @@ const Home = () => {
                 "url('" +
                 process.env.PUBLIC_URL +
                 "/images/pexels-adil-2726478 1.png')",
+                backgroundColor: "rgba(0, 0, 0, 0.4)"
             }}
           />
         </Background>
         <section
           className="hero pb-0"
-          style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+          // style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
         >
           <div className="hero-body">
             <div className="columns">

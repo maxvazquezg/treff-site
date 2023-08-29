@@ -277,8 +277,58 @@
   background-position: top right;
 }
 
-@media screen and (max-width: 1100px) {
+.react-parallax {
+  height: 50vh !important;
+  min-height: 538px !important;
+}
+
+.react-parallax .react-parallax-content .hero {
+  height: 50vh !important;
+  background-color: rgba(0, 0, 0, 0.4);
+  min-height: 538px !important;
+}
+
+@media screen and (max-width: 1200px) {
   .img-parallax {
     background-position: top left;
+  }
+  .react-parallax {
+    height: 60vh !important;
+    min-height: 638px !important;
+  }
+  .react-parallax .react-parallax-content .hero {
+    height: 60vh !important;
+    background-color: rgba(0, 0, 0, 0.4);
+    min-height: 638px !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .img-parallax {
+    background-position: top left;
+  }
+  .react-parallax {
+    height: 60vh !important;
+    min-height: 438px !important;
+  }
+  .react-parallax .react-parallax-content .hero {
+    height: 60vh !important;
+    background-color: rgba(0, 0, 0, 0.4);
+    min-height: 438px !important;
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .img-parallax {
+    background-position: top left;
+  }
+  .react-parallax {
+    min-height: 550px !important;
+    height: 65vh !important;
+  }
+  .react-parallax .react-parallax-content .hero {
+    min-height: 550px !important;
+    height: 65vh !important;
+    background-color: rgba(0, 0, 0, 0.4);
   }
 }

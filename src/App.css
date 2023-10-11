@@ -347,3 +347,21 @@ div.overlay > div {
   font-weight: 400;
   margin: 0;
 }
+.facebook-login-button {
+  background-color: #1877f2; /* Color de fondo de Facebook */
+  color: #ffffff; /* Color del texto */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.facebook-login-button:hover {
+  background-color: #1656b7; /* Cambia el color de fondo al pasar el cursor sobre el botón */
+}
+
+/* Puedes ajustar el estilo según tus preferencias */

@@ -5,6 +5,7 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@greatsumini/react-facebook-login": "^3.3.3",
     "@microsoft/signalr": "^7.0.2",
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
@@ -24,6 +25,7 @@
     "react-dom": "^18.2.0",
     "react-drag-drop-files": "^2.3.8",
     "react-drag-reorder": "^1.2.0",
+    "react-facebook-login": "^4.1.1",
     "react-gallery-carousel": "^0.3.0",
     "react-hook-form": "^7.41.1",
     "react-horizontal-scrolling-menu": "^3.2.3",
@@ -44,7 +46,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -1,10 +1,11 @@
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FreelancerApi } from "../api";
-import { Toast } from 'primereact/toast';
-import { useDispatch } from 'react-redux'
-import { addUser } from '../redux/userReducer'
+import { Toast } from "primereact/toast";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userReducer";
 import { getURLImage } from "../utils/images";
+import FacebookLogin from 'react-facebook-login';
 
 const LoginModal = (props) => {
   const {
@@ -23,12 +24,24 @@ const LoginModal = (props) => {
       const userResponse = await FreelancerApi.loginFreelancer(data);
       dispatch(addUser(userResponse));
       setIsLoading(false);
-      toast.current.show({severity: 'success', summary: 'Bienvenido', detail: userResponse.name});
+      toast.current.show({
+        severity: "success",
+        summary: "Bienvenido",
+        detail: userResponse.name,
+      });
       props.onClose();
     } catch (e) {
       setIsLoading(false);
-      toast.current.show({severity: 'error', summary: 'Error', detail: 'Usuario incorrecto'});
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: "Usuario incorrecto",
+      });
     }
+  };
+
+  const responseFacebook = (response) => {
+    console.log(response);
   };
 
   return (
@@ -49,6 +62,18 @@ const LoginModal = (props) => {
         </div>
         <div className="mt-6">
           <p className="subtitle-2-dark">Inicia sesión</p>
+          <FacebookLogin
+            appId="903111254646485"
+            autoLoad={false}
+            // fields="name,email,picture"
+            onClick={(data) => console.log(data)}
+            callback={responseFacebook}
+            // render={(renderProps) => (
+            //   <button>
+            //     This is my custom FB button
+            //   </button>
+            // )}
+          />
 
           <form className="pt-6 login-form" onSubmit={handleSubmit(onSubmit)}>
             {/* register your input into the hook by invoking the "register" function */}

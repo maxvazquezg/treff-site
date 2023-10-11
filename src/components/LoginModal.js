@@ -5,7 +5,10 @@ import { Toast } from "primereact/toast";
 import { useDispatch } from "react-redux";
 import { addUser } from "../redux/userReducer";
 import { getURLImage } from "../utils/images";
-import FacebookLogin from 'react-facebook-login';
+import { LoginSocialFacebook } from "reactjs-social-login";
+import {
+  FacebookLoginButton,
+} from 'react-social-login-buttons';
 
 const LoginModal = (props) => {
   const {
@@ -62,18 +65,18 @@ const LoginModal = (props) => {
         </div>
         <div className="mt-6">
           <p className="subtitle-2-dark">Inicia sesión</p>
-          <FacebookLogin
-            appId="903111254646485"
-            autoLoad={false}
-            // fields="name,email,picture"
-            onClick={(data) => console.log(data)}
-            callback={responseFacebook}
-            // render={(renderProps) => (
-            //   <button>
-            //     This is my custom FB button
-            //   </button>
-            // )}
-          />
+          <LoginSocialFacebook
+            appId={process.env.REACT_APP_FB_APP_ID || ''}
+            onResolve={(response) => {
+              console.log(response);
+            }}
+            onReject={(error) => {
+              console.log(error);
+
+            }}
+            >
+            <FacebookLoginButton />
+          </LoginSocialFacebook>
 
           <form className="pt-6 login-form" onSubmit={handleSubmit(onSubmit)}>
             {/* register your input into the hook by invoking the "register" function */}

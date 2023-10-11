@@ -24,7 +24,7 @@
   color: white;
 } */
 
-body{
+body {
   overflow-x: hidden !important;
 }
 
@@ -42,7 +42,10 @@ body{
 }
 
 div.overlay {
-  display: table;
+  /* display: table; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -76,29 +79,29 @@ div.overlay > div {
   }
 } */
 
-@media screen and (max-width: 1216px){
-.p-menubar .p-menubar-button {
+@media screen and (max-width: 1216px) {
+  .p-menubar .p-menubar-button {
     display: flex !important;
     width: 2rem !important;
     height: 2rem !important;
     color: #6c757d !important;
     border-radius: 50% !important;
     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s !important;
-}
+  }
 }
 
-@media screen and (max-width: 1216px){
-.p-menubar.p-menubar-mobile-active .p-menubar-root-list {
+@media screen and (max-width: 1216px) {
+  .p-menubar.p-menubar-mobile-active .p-menubar-root-list {
     display: flex !important;
     flex-direction: column !important;
     top: 100% !important;
     left: 0 !important;
     z-index: 1 !important;
-}
+  }
 }
 
-@media screen and (max-width: 1216px){
-.p-menubar .p-menubar-root-list {
+@media screen and (max-width: 1216px) {
+  .p-menubar .p-menubar-root-list {
     position: absolute !important;
     display: none !important;
     padding: 0.25rem 0 !important;
@@ -106,36 +109,46 @@ div.overlay > div {
     border: 0 none !important;
     box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%) !important;
     width: 100% !important;
-}
+  }
 }
 
-@media screen and (max-width: 1216px){
-.p-menubar {
+@media screen and (max-width: 1216px) {
+  .p-menubar {
     position: relative !important;
-}
+  }
 }
 
-@media screen and (max-width: 960px){
-.p-menubar .p-menubar-root-list .p-menuitem {
+@media screen and (max-width: 960px) {
+  .p-menubar .p-menubar-root-list .p-menuitem {
     width: 100%;
     position: static;
-}
+  }
 }
 
-@media screen and (max-width: 1216px){
-.p-menubar .p-menubar-root-list .p-menuitem {
+@media screen and (max-width: 1216px) {
+  .p-menubar .p-menubar-root-list .p-menuitem {
     width: 100% !important;
     position: static !important;
-}
+  }
 }
 
-@media (max-width: 1216px){
-.blue > .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text {
+@media (max-width: 1216px) {
+  .blue
+    > .p-menubar
+    .p-menubar-root-list
+    > .p-menuitem
+    > .p-menuitem-link
+    .p-menuitem-text {
     color: #9f9d9d !important;
-}
-.blue > .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text{
-  color: #9f9d9d !important;
-}
+  }
+  .blue
+    > .p-menubar
+    .p-menubar-root-list
+    > .p-menuitem
+    > .p-menuitem-link
+    .p-menuitem-text {
+    color: #9f9d9d !important;
+  }
 }
 
 /* OPENPAY */
@@ -275,7 +288,7 @@ div.overlay > div {
   background-repeat: no-repeat;
   padding-bottom: 30px;
   background-position-y: 80px;
-    background-position-x: 0px;
+  background-position-x: 0px;
 }
 .pymnt-cntnt div.sctn-row div.sctn-col.cvv div.sctn-col.half input {
   width: 110px;

@@ -4,12 +4,7 @@ import { FreelancerApi } from "../api";
 import { Toast } from "primereact/toast";
 import { useDispatch } from "react-redux";
 import { addUser } from "../redux/userReducer";
-import { getURLImage } from "../utils/images";
-import { LoginSocialFacebook, LoginSocialGoogle } from "reactjs-social-login";
-import {
-  FacebookLoginButton,
-  GoogleLoginButton,
-} from "react-social-login-buttons";
+import SocialLogin from "./SocialLogin";
 
 const LoginModal = (props) => {
   const {
@@ -44,42 +39,6 @@ const LoginModal = (props) => {
     }
   };
 
-  const responseFacebook = async (response) => {
-    const data = response.data;
-    const request = {
-      mail: data.email,
-      name: data.name,
-      photo: data.picture.data.url,
-      facebookId: data.id,
-    };
-    var userResponse = await FreelancerApi.loginThirdParty(request);
-    dispatch(addUser(userResponse));
-    toast.current.show({
-      severity: "success",
-      summary: "Bienvenido",
-      detail: userResponse.name,
-    });
-    props.onClose();
-  };
-
-  const responseGoogle = async (response) => {
-    const data = response.data;
-    const request = {
-      mail: data.email,
-      name: data.name,
-      photo: data.picture,
-      facebookId: data.sub,
-    };
-    var userResponse = await FreelancerApi.loginThirdParty(request);
-    dispatch(addUser(userResponse));
-    toast.current.show({
-      severity: "success",
-      summary: "Bienvenido",
-      detail: userResponse.name,
-    });
-    props.onClose();
-  };
-
   return (
     <>
       {/* <CustomSection type="white"> */}
@@ -98,34 +57,8 @@ const LoginModal = (props) => {
         </div>
         <div className="mt-6">
           <p className="subtitle-2-dark">Inicia sesión</p>
-          <LoginSocialFacebook
-            appId={process.env.REACT_APP_FB_APP_ID || ""}
-            onResolve={(response) => {
-              console.log(response);
-              responseFacebook(response);
-            }}
-            onReject={(error) => {
-              console.log(error);
-            }}
-          >
-            <FacebookLoginButton />
-          </LoginSocialFacebook>
-
-          <LoginSocialGoogle
-            client_id={process.env.REACT_APP_GG_APP_ID || ''}
-            scope="openid profile email"
-            // discoveryDocs="claims_supported"
-            // access_type="offline"
-            onResolve={(response) => {
-              console.log(response);
-              responseGoogle(response);
-            }}
-            onReject={(error) => {
-              console.log(error);
-            }}
-          >
-            <GoogleLoginButton />
-          </LoginSocialGoogle>
+          <br />
+          <SocialLogin onClose={props.onClose}></SocialLogin>
 
           <form className="pt-6 login-form" onSubmit={handleSubmit(onSubmit)}>
             {/* register your input into the hook by invoking the "register" function */}

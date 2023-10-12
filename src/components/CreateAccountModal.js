@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { FreelancerApi } from "../api";
 import { addUser } from "../redux/userReducer";
+import SocialLogin from "./SocialLogin";
 
 const CreateAccountModal = (props) => {
   const {
@@ -41,6 +42,8 @@ const CreateAccountModal = (props) => {
         </div>
         <div className="mt-6">
           <p className="subtitle-2-dark">Registrarse</p>
+          <br />
+          <SocialLogin onClose={props.onClose}></SocialLogin>
 
           <form className="pt-6 login-form" onSubmit={handleSubmit(onSubmit)}>
             {/* register your input into the hook by invoking the "register" function */}

@@ -173,6 +173,18 @@ class FreelancerApi extends BaseApi {
       throw new Error(error);
     }
   }
+
+  async loginThirdParty(request) {
+    try {
+      const data = await this.post(
+        `${FREELANCER_ENDPOINT}/loginThirdParty`,
+        request
+      );
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 export default new FreelancerApi();

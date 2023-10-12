@@ -43,8 +43,22 @@ const LoginModal = (props) => {
     }
   };
 
-  const responseFacebook = (response) => {
-    console.log(response);
+  const responseFacebook = async(response) => {
+    const data = response.data;
+    const request = {
+      mail: data.email,
+      name: data.name,
+      photo: data.picture.data.url,
+      facebookId: data.id,
+    };
+    var userResponse = await FreelancerApi.loginThirdParty(request);
+    dispatch(addUser(userResponse));
+    toast.current.show({
+      severity: "success",
+      summary: "Bienvenido",
+      detail: userResponse.name,
+    });
+    props.onClose();
   };
 
   return (
@@ -69,6 +83,7 @@ const LoginModal = (props) => {
             appId={process.env.REACT_APP_FB_APP_ID || ''}
             onResolve={(response) => {
               console.log(response);
+              responseFacebook(response);
             }}
             onReject={(error) => {
               console.log(error);

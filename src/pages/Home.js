@@ -248,7 +248,7 @@ const getFreelancersCardsTheme = (s) => {
 
 const Home = () => {
   const userRedux = useSelector((state) => state.user.value);
-  const [userData, setUserData] = useState(userRedux);
+  const userData = useState(userRedux);
   const [visibleLogin, setVisibleLogin] = useState(false);
   const onCloseLogin = () => {
     setVisibleLogin(false);

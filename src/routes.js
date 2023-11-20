@@ -50,5 +50,6 @@ export const routes = {
   TECH_DATA: "/DatosTecnicos",
   ABOUT_US: "/AboutUs",
   POSTS: "/Blog",
+  HELP_CENTER: "/help-center"
 };
   

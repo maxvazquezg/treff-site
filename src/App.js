@@ -50,6 +50,8 @@ import CancelledProjects from "./components/Freelancer/Projects/CancelledProject
 import ContractedProjects from "./components/Freelancer/Projects/ContractedProjects";
 import DashboardFreelancer from "./components/Freelancer/Dashboard/DashboardFreelancer";
 import MessageComponent from "./components/Messages/MessageComponent";
+import AboutUs from "./pages/AboutUs";
+import HelpCenter from "./pages/HelpCenter";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -63,6 +65,8 @@ function App() {
         <ChatComponent />
         <Routes>
           <Route path={routes.HOME} element={<Home />} />
+          <Route path={routes.ABOUT_US} element={<AboutUs />} />
+          <Route path={routes.HELP_CENTER} element={<HelpCenter />} />
           <Route path={routes.EXPLORECATEGORY} element={<ExploreCategory />} />
           <Route path={routes.EXPLORE} element={<Explore />} />
           <Route path={routes.EXPLOREID} element={<Explore />} />

@@ -1,10 +1,13 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import React from "react";
+import React, { useState } from "react";
 import { Parallax, Background } from "react-parallax";
 import ScrollingMenu from "../components/ScrollingMenu";
 import { Link } from "react-router-dom";
 import { routes } from "../routes";
 import { Carousel } from "primereact/carousel";
+import { useSelector } from "react-redux";
+import { Dialog } from "primereact/dialog";
+import LoginModal from "../components/LoginModal";
 
 const responsiveOptions = [
   {
@@ -244,6 +247,12 @@ const getFreelancersCardsTheme = (s) => {
 };
 
 const Home = () => {
+  const userRedux = useSelector((state) => state.user.value);
+  const [userData, setUserData] = useState(userRedux);
+  const [visibleLogin, setVisibleLogin] = useState(false);
+  const onCloseLogin = () => {
+    setVisibleLogin(false);
+  };
   return (
     <>
       <Parallax
@@ -260,7 +269,7 @@ const Home = () => {
                 "url('" +
                 process.env.PUBLIC_URL +
                 "/images/pexels-adil-2726478 1.png')",
-                backgroundColor: "rgba(0, 0, 0, 0.4)"
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
             }}
           />
         </Background>
@@ -295,9 +304,11 @@ const Home = () => {
                       forma amigable, ágil y segura.
                     </h2>
                     <div className="has-text-centered-mobile">
-                      <button className="button is-primary button-secondary mt-3 mb-0">
-                        Contratar
-                      </button>
+                      <Link to={routes.EXPLORE}>
+                        <button className="button is-primary button-secondary mt-3 mb-0">
+                          Contratar
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -351,12 +362,28 @@ const Home = () => {
               </h1>
             </div>
             <div className="column is-3-desktop has-text-left is-full-tablet is-12-tablet has-text-centered-mobile has-text-centered-tablet">
-              <button
-                className="button is-link size-25"
-                style={{ width: "180px" }}
+              <Link
+                to={
+                  userData &&
+                  routes.DASHBOARD_FREELANCER +
+                    "/" +
+                    routes.DASHBOARD_SERVICES +
+                    "/" +
+                    routes.DASHBOARD_SERVICESACTIVE
+                }
+                onClick={() => {
+                  if (!userData) {
+                    setVisibleLogin(true);
+                  }
+                }}
               >
-                Publicar
-              </button>
+                <button
+                  className="button is-link size-25"
+                  style={{ width: "180px" }}
+                >
+                  Publicar
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -487,7 +514,7 @@ const Home = () => {
         <div className="hero-body pb-0 pt-4">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
-              <p className="subtitle-dark mb-3">Explorar freelancer</p>
+              <p className="subtitle-dark mb-3">Explorar Servicios</p>
 
               {/* <ScrollingMenu items={getFreelancersCards()} /> */}
               <div className="card">
@@ -515,12 +542,14 @@ const Home = () => {
               <p className="text-light mb-0">
                 Conoce aqui los centros de ayuda que tenemos disponibles para ti
               </p>
-              <button
-                className="button is-link size-18 mt-3"
-                style={{ width: "180px" }}
-              >
-                Publicar
-              </button>
+              <Link to={routes.HELP_CENTER}>
+                <button
+                  className="button is-link size-18 mt-3"
+                  style={{ width: "180px" }}
+                >
+                  Solicitar Ayuda
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -534,7 +563,7 @@ const Home = () => {
             "url('" +
             process.env.PUBLIC_URL +
             "/images/pexels-tima-miroshnichenko-5453824 1.png')",
-            backgroundPosition: "center",
+          backgroundPosition: "center",
         }}
       >
         <div className="hero-body is-black p-0 pt-3 pb-3">
@@ -554,6 +583,14 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <Dialog
+        visible={visibleLogin}
+        onHide={() => setVisibleLogin(false)}
+        breakpoints={{ "1024px": "75vw", "960px": "75vw", "640px": "100vw" }}
+        // style={{ width: "50vw" }}
+      >
+        <LoginModal onClose={() => onCloseLogin()} />
+      </Dialog>
     </>
   );
 };

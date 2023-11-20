@@ -276,36 +276,41 @@ export default function Navbar(props) {
               Explora
             </Link>
             <Link
-              to={routes.PRODUCTS}
-              className="navbar-item"
-              onClick={() => clickMenuHandler()}
-            >
-              Acerca de nosotros
-            </Link>
-            <Link
-              to={routes.TECH_DATA}
-              className="navbar-item"
-              onClick={() => clickMenuHandler()}
-            >
-              Contacto
-            </Link>
-            <Link
-              to={routes.POSTS}
-              className="navbar-item"
-              onClick={() => clickMenuHandler()}
-            >
-              Privacidad
-            </Link>
-            <Link
               to={routes.ABOUT_US}
               className="navbar-item"
               onClick={() => clickMenuHandler()}
             >
-              Sobre Nosotros
+              Sobre Treff
+            </Link>
+            <Link
+              to={routes.HELP_CENTER}
+              className="navbar-item"
+              onClick={() => clickMenuHandler()}
+            >
+              Centro de ayuda
             </Link>
           </div>
           {userData ? (
             <div className="navbar-end">
+              <Link
+                className="navbar-item"
+                to={
+                  routes.DASHBOARD_FREELANCER +
+                  "/" +
+                  routes.DASHBOARD_SERVICES +
+                  "/" +
+                  routes.DASHBOARD_SERVICESACTIVE
+                }
+                // onClick={() => setVisibleLogin(true)}
+              >
+                <span className="icon mr-3">
+                  <i
+                    className="pi pi-plus-circle p-overlay-badge"
+                    style={{ fontSize: "1.5rem" }}
+                  />
+                </span>
+                Publicar servicio
+              </Link>
               <Link
                 className="navbar-item  is-vcentered"
                 onClick={(e) => {
@@ -349,6 +354,25 @@ export default function Navbar(props) {
             </div>
           ) : (
             <div className="navbar-end">
+              <Link
+                className="navbar-item"
+                // to={
+                //   routes.DASHBOARD_FREELANCER +
+                //   "/" +
+                //   routes.DASHBOARD_SERVICES +
+                //   "/" +
+                //   routes.DASHBOARD_SERVICESACTIVE
+                // }
+                onClick={() => setVisibleLogin(true)}
+              >
+                <span className="icon mr-3">
+                  <i
+                    className="pi pi-plus-circle p-overlay-badge"
+                    style={{ fontSize: "1.5rem" }}
+                  />
+                </span>
+                Publicar servicio
+              </Link>
               <Link
                 className="navbar-item"
                 onClick={() => setVisibleLogin(true)}

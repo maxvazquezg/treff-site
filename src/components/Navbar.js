@@ -240,7 +240,7 @@ export default function Navbar(props) {
           >
             <img
               src={
-                process.env.PUBLIC_URL + "/images/Treff_03_color_gradient 2.svg"
+                process.env.PUBLIC_URL + "/images/Treff_01_color_gradient-2.png"
               }
               alt="Logo"
               className="img-logo ml-2 ml-0-is-mobile"

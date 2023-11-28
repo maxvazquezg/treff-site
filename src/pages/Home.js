@@ -364,15 +364,16 @@ const Home = () => {
             <div className="column is-3-desktop has-text-left is-full-tablet is-12-tablet has-text-centered-mobile has-text-centered-tablet">
               <Link
                 to={
-                  userData &&
+                  userRedux?.id ?
                   routes.DASHBOARD_FREELANCER +
                     "/" +
                     routes.DASHBOARD_SERVICES +
                     "/" +
-                    routes.DASHBOARD_SERVICESACTIVE
+                    routes.DASHBOARD_SERVICESACTIVE :
+                    ""
                 }
                 onClick={() => {
-                  if (!userData) {
+                  if (!userRedux?.id) {
                     setVisibleLogin(true);
                   }
                 }}
@@ -497,12 +498,21 @@ const Home = () => {
               <p className="text-light mt-0 mb-0">
                 Miles de personas hacen parte de esta comunidad{" "}
               </p>
-              <div className="has-text-centered mt-4">
-                <img
+              <div className="has-text-centered m-6 video-container">
+                {/* <img
                   src={process.env.PUBLIC_URL + "/images/Video.png"}
                   alt="video"
                   className="video-presentation"
-                />
+                /> */}
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/bPhMhD8kemo?si=HQ4Y3CNaPdba2BIz"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
               </div>
             </div>
           </div>

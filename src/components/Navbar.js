@@ -303,12 +303,14 @@ export default function Navbar(props) {
                 }
                 // onClick={() => setVisibleLogin(true)}
               >
-                <span className="icon mr-3">
-                  <i
-                    className="pi pi-plus-circle p-overlay-badge"
-                    style={{ fontSize: "1.5rem" }}
-                  />
-                </span>
+                <img
+                  src={
+                    process.env.PUBLIC_URL +
+                    "/images/Treff_06_color_solid_darkBlue.png"
+                  }
+                  alt="logo"
+                  style={{ height: "50%", marginRight: "10px" }}
+                />
                 Publicar servicio
               </Link>
               <Link
@@ -365,12 +367,14 @@ export default function Navbar(props) {
                 // }
                 onClick={() => setVisibleLogin(true)}
               >
-                <span className="icon mr-3">
-                  <i
-                    className="pi pi-plus-circle p-overlay-badge"
-                    style={{ fontSize: "1.5rem" }}
-                  />
-                </span>
+                <img
+                  src={
+                    process.env.PUBLIC_URL +
+                    "/images/Treff_06_color_solid_darkBlue.png"
+                  }
+                  alt=""
+                  style={{ height: "20px", marginRight: "10px" }}
+                />
                 Publicar servicio
               </Link>
               <Link

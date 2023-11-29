@@ -34,7 +34,7 @@ const Explore = () => {
     getServicesHighLight();
     getServices();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryIdState, byFreelancer]);
+  }, [categoryIdState, byFreelancer, id]);
 
   const getServicesHighLightAsync = async (categoryId) => {
     if (!(categoryId || categoryIdState)) {

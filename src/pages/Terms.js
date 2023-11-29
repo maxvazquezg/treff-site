@@ -325,7 +325,7 @@ const Terms = () => {
           Todos los Freelancers pasaran por un proceso de validación de
           información personal, mismo que se realiza al amparo del aviso de
           Privacidad contenido en:{" "}
-          <a href="https://treff-site.azurewebsites.net/terms">
+          <a className="has-text-link" href="https://treff-site.azurewebsites.net/terms">
             https://treff-site.azurewebsites.net/terms
           </a>
           .{" "}

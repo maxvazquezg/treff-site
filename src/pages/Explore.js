@@ -267,6 +267,11 @@ const Explore = () => {
       <CustomSection type="white">
         <SectionContent type="white" className="pt-4 pl-2 pb-3">
           <div className="columns mt-0 is-multiline">
+            {services.length === 0 && (
+              <div className="column is-12 has-text-centered">
+                <p className="subtitle-dark my-6">No hay servicios en este momento con los filtros aplicados.</p>
+              </div>
+            )}
             {services.map((s, index) => freelancerCard(s, index))}
           </div>
         </SectionContent>

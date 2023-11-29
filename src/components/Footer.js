@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
+import { routes } from "../routes";
+
 export default function Footer(props) {
   return (
     <>
-      <footer className="footer hero is-link p-0" style={{overflowY: "clip"}}>
+      <footer className="footer hero is-link p-0" style={{ overflowY: "clip" }}>
         <div className="hero-body pt-1 pb-1">
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left pb-0">
@@ -24,17 +27,28 @@ export default function Footer(props) {
                     Acerca de nosotros{" "}
                   </p>
                   <ul className="size-18">
-                    <li>Explora</li>
-                    <li>Acerca de nosotros</li>
+                    <Link to={routes.EXPLORE}>
+                      <li>Explora</li>
+                    </Link>
+                    <Link to={routes.ABOUT_US}>
+                      <li>Acerca de nosotros</li>
+                    </Link>
                     <li>Contacto</li>
-                    <li>Privacidad</li>
+                    <Link to={routes.PRIVACITY}>
+                      <li>Privacidad</li>
+                    </Link>
+                    <Link to={routes.TERMS}>
+                      <li>Terminos y condiciones</li>
+                    </Link>
                   </ul>
                 </div>
                 <div className="column is-3 has-text-left pb-0">
                   <p className="subtitle-light mb-1 size-20">Soporte </p>
                   <ul className="size-18">
                     <li>¿Necesitas ayuda?</li>
-                    <li>Centro de ayuda</li>
+                    <Link to={routes.HELP_CENTER}>
+                      <li>Centro de ayuda</li>
+                    </Link>
                   </ul>
                 </div>
                 <div className="column is-3 has-text-left pb-0">

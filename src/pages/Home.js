@@ -364,13 +364,13 @@ const Home = () => {
             <div className="column is-3-desktop has-text-left is-full-tablet is-12-tablet has-text-centered-mobile has-text-centered-tablet">
               <Link
                 to={
-                  userRedux?.id ?
-                  routes.DASHBOARD_FREELANCER +
-                    "/" +
-                    routes.DASHBOARD_SERVICES +
-                    "/" +
-                    routes.DASHBOARD_SERVICESACTIVE :
-                    ""
+                  userRedux?.id
+                    ? routes.DASHBOARD_FREELANCER +
+                      "/" +
+                      routes.DASHBOARD_SERVICES +
+                      "/" +
+                      routes.DASHBOARD_SERVICESACTIVE
+                    : ""
                 }
                 onClick={() => {
                   if (!userRedux?.id) {
@@ -413,35 +413,50 @@ const Home = () => {
                   <div>
                     <p className="subtitle-dark">Cliente</p>
                     <p className="has-text-justified mt-1 size-18">
-                      Somos una plataforma donde encontraras una amplia gama de
-                      servicios ofrecidos por freelancers comprometidos a
-                      resolver tus necesidades.{" "}
-                    </p>
-                    <p className="has-text-justified mt-3 size-18">
-                      Con TREFF evitaras la contratación de grandes empresas,
-                      encontraras beneficios de precios competitivos, trato
-                      personal y TREFF actuando como un mediador entre tus
-                      necesidades y la entrega de un trabajo de calidad.
+                      Somos una plataforma única donde tendrás acceso a una
+                      variada oferta de servicios brindados por freelancers
+                      comprometidos y altamente capacitados para satisfacer tus
+                      necesidades. <br />
+                      <br />
+                      Al elegir TREFF, evitarás la complejidad de contratar
+                      grandes empresas. En cambio, te beneficiarás de precios
+                      competitivos, un trato personalizado y la seguridad de que
+                      cada proyecto será gestionado con profesionalismo.
+                      Actuamos como mediadores entre tus requerimientos y la
+                      entrega de trabajos de calidad, garantizando que tu
+                      experiencia sea eficiente, satisfactoria y libre de
+                      complicaciones.
+                      <br />
+                      <br />
+                      Bienvenido a TREFF, donde la contratación se vuelve
+                      simple, personal y centrada en tus objetivos. Tu próximo
+                      proyecto merece la atención de freelancers comprometidos,
+                      y nosotros estamos aquí para hacerlo posible.
                     </p>
                   </div>
                   <div className="mt-3 pt-1">
                     <p className="subtitle-dark has-text-right ">Freelancer</p>
                     <p className="has-text-justified mt-1 size-18">
-                      Somos una herramienta confiable desarrollada para que
-                      ofrezcas tus servicios como experto independiente de una
-                      forma amigable, ágil y segura.
+                      En TREFF, te proporcionamos una herramienta confiable
+                      diseñada para que ofrezcas tus servicios como experto
+                      independiente de manera amigable, ágil y segura.
                     </p>
                     <p className="has-text-justified mt-3 size-18">
                       {" "}
-                      Siempre contaras con el respaldo de TREFF, garantizando
-                      tus pagos por los trabajos realizados ajustado a tus
-                      tiempos, capacidades y precios. (*)
+                      Nuestro compromiso es brindarte un respaldo constante,
+                      asegurando tus pagos por los trabajos realizados de
+                      acuerdo con tus tiempos, capacidades y tarifas . Nosotros
+                      reconocemos y valoramos la calidad y puntualidad de los
+                      servicios que ofreces. Esto significa que tu crecimiento
+                      en ventas y exposición será una consecuencia directa de la
+                      apreciación de tu trabajo por parte del cliente y tus
+                      propios méritos.
                     </p>
                     <p className="has-text-justified mt-3 size-18">
-                      La plataforma reconoce la calidad y puntualidad de los
-                      servicios que realizas por lo que el crecimiento de tus
-                      ventas y tu exposición será consecuencia de la valoración
-                      de tu trabajo por parte del cliente y tus propios méritos.
+                      Únete a TREFF, donde tu talento no solo es reconocido,
+                      sino también recompensado. Aquí, tu camino hacia el éxito
+                      como freelancer comienza con el respaldo y la plataforma
+                      adecuada para destacar en el mercado.
                     </p>
                   </div>
                 </div>

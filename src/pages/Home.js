@@ -1,13 +1,15 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Parallax, Background } from "react-parallax";
 import ScrollingMenu from "../components/ScrollingMenu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { routes } from "../routes";
 import { Carousel } from "primereact/carousel";
 import { useSelector } from "react-redux";
 import { Dialog } from "primereact/dialog";
 import LoginModal from "../components/LoginModal";
+import { CategoryApi } from "../api";
+import { getURLImage } from "../utils/images";
 
 const responsiveOptions = [
   {
@@ -153,13 +155,17 @@ const freelancersRanking = [
   },
 ];
 
-const getServiceCards = () => {
+const getServiceCards = (services, navigate) => {
   return services.map((s, index) => (
-    <div key={index} className="column has-text-centered">
+    <div
+      key={index}
+      className="column has-text-centered"
+      onClick={() => navigate(routes.EXPLORE + s.id)}
+    >
       <div
         className="service-card"
         style={{
-          backgroundImage: s.image,
+          backgroundImage: "url('" + getURLImage(s.image) + "')",
 
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -250,9 +256,42 @@ const Home = () => {
   const userRedux = useSelector((state) => state.user.value);
   const userData = useState(userRedux);
   const [visibleLogin, setVisibleLogin] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
+  const iframeRef = useRef(null);
   const onCloseLogin = () => {
     setVisibleLogin(false);
   };
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const cat = await CategoryApi.getCategories();
+      setCategories(cat);
+    };
+    getCategories();
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          iframeRef.current.src += "&autoplay=1";
+        }
+      },
+      { threshold: 0.5 } // Se activa cuando el 50% del iframe está visible
+    );
+
+    if (iframeRef.current) {
+      observer.observe(iframeRef.current);
+    }
+
+    return () => {
+      if (iframeRef.current) {
+        observer.unobserve(iframeRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
       <Parallax
@@ -335,7 +374,7 @@ const Home = () => {
                 </Link>
               </p>
 
-              <ScrollingMenu items={getServiceCards()} />
+              <ScrollingMenu items={getServiceCards(categories, navigate)} />
               <div className="columns is-mobile mt-3 is-multiline "></div>
             </div>
           </div>
@@ -520,6 +559,7 @@ const Home = () => {
                   className="video-presentation"
                 /> */}
                 <iframe
+                  ref={iframeRef}
                   width="560"
                   height="315"
                   src="https://www.youtube.com/embed/bPhMhD8kemo?si=HQ4Y3CNaPdba2BIz"

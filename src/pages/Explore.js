@@ -64,7 +64,7 @@ const Explore = () => {
 
   const getServicesOnSelect = async (e) => {
     const catId = e.target.value !== "0" ? e.target.value : null;
-
+    // TODO: setear el estado de la categoria seleccionada
     setCategoryIdState(catId);
 
     await getServicesAsync(catId);

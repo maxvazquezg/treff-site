@@ -54,6 +54,7 @@ import AboutUs from "./pages/AboutUs";
 import HelpCenter from "./pages/HelpCenter";
 import Privacity from "./pages/Privacity";
 import Terms from "./pages/Terms";
+import Contact from "./pages/Contact";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -69,6 +70,7 @@ function App() {
           <Route path={routes.HOME} element={<Home />} />
           <Route path={routes.ABOUT_US} element={<AboutUs />} />
           <Route path={routes.HELP_CENTER} element={<HelpCenter />} />
+          <Route path={routes.CONTACT} element={<Contact />} />
           <Route path={routes.PRIVACITY} element={<Privacity />} />
           <Route path={routes.TERMS} element={<Terms />} />
           <Route path={routes.EXPLORECATEGORY} element={<ExploreCategory />} />

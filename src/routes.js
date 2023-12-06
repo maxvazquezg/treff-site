@@ -51,6 +51,7 @@ export const routes = {
   ABOUT_US: "/AboutUs",
   POSTS: "/Blog",
   HELP_CENTER: "/help-center",
+  CONTACT: "/contact",
   PRIVACITY: "/Privacity",
   TERMS: "/Terms",
 };

@@ -27,14 +27,6 @@ export default function Footer(props) {
                         <li>{category.name}</li>
                       </Link>
                     ))}
-                    {/* <li>Artes graficas y diseño digital</li>
-                    <li>Redacción y traducción</li>
-                    <li>Video y animación </li>
-                    <li>Musica y audio</li>
-                    <li>Negocio</li>
-                    <li>Programación y tecnologia</li>
-                    <li>Datos</li>
-                    <li>Marketing digital</li> */}
                   </ul>
                 </div>
                 <div className="column is-4 has-text-left pb-0">
@@ -48,7 +40,6 @@ export default function Footer(props) {
                     <Link to={routes.ABOUT_US}>
                       <li>Acerca de nosotros</li>
                     </Link>
-                    <li>Contacto</li>
                     <Link to={routes.PRIVACITY}>
                       <li>Privacidad</li>
                     </Link>
@@ -60,25 +51,14 @@ export default function Footer(props) {
                 <div className="column is-4 has-text-left pb-0">
                   <p className="subtitle-light mb-1 size-20">Soporte </p>
                   <ul className="size-18">
-                    <li>¿Necesitas ayuda?</li>
+                  <Link to={routes.CONTACT}>
+                      <li>Contacto</li>
+                    </Link>
                     <Link to={routes.HELP_CENTER}>
                       <li>Centro de ayuda</li>
                     </Link>
                   </ul>
                 </div>
-                {/* <div className="column is-3 has-text-left pb-0">
-                  <p className="subtitle-light mb-1 size-20">Soporte </p>
-                  <ul className="size-18">
-                    <li>Marketing </li>
-                    <li>Artes graficas y Diseño digital </li>
-                    <li>Escritura y traduccion </li>
-                    <li>Video y animacion </li>
-                    <li>Musica y audio</li>
-                    <li>Programación</li>
-                    <li>Negocios </li>
-                    <li>Negocios </li>
-                  </ul>
-                </div> */}
               </div>
               <hr className="mb-4 mt-0" />
               <div className="columns pb-4">

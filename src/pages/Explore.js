@@ -36,6 +36,10 @@ const Explore = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryIdState, byFreelancer, id]);
 
+  useEffect(() => {
+    setCategoryIdState(id);
+  }, [id]);
+
   const getServicesHighLightAsync = async (categoryId) => {
     if (!(categoryId || categoryIdState)) {
       const ser = await ServiceApi.getHighlightServices(100, byFreelancer);
@@ -161,7 +165,7 @@ const Explore = () => {
               "url('" +
               process.env.PUBLIC_URL +
               "/images/pexels-alexander-dummer-134469 2.png')",
-              height: "150px"
+            height: "150px",
           }}
         >
           <div className="hero-body pb-1 pt-3">
@@ -194,7 +198,20 @@ const Explore = () => {
           {byFreelancer ? (
             <p className="subtitle-dark">Explorar freelancer </p>
           ) : (
-            <p className="subtitle-dark">Servicios / Marketing</p>
+            <p className="subtitle-dark">
+              Servicios{" "}
+              {categoryIdState && categories && (
+                <span>
+                  {" "}
+                  /{" "}
+                  {
+                    categories.filter(
+                      (c) => c.id === parseInt(categoryIdState)
+                    )[0]?.name
+                  }
+                </span>
+              )}{" "}
+            </p>
           )}
           <div className="columns mt-3 is-multiline size-16">
             <div className="column is-2 is-mobile">
@@ -210,7 +227,7 @@ const Explore = () => {
             </div>
             <div className="column is-2">
               <div className="select">
-                <select onChange={getServicesOnSelect}>
+                <select value={categoryIdState} onChange={getServicesOnSelect}>
                   <option value={0}>Categorías</option>
                   {categories.map((c, i) => (
                     <option key={i} value={c.id}>
@@ -252,11 +269,15 @@ const Explore = () => {
       </CustomSection>
 
       <CustomSection type="white">
-        <SectionContent type="white"  className="pt-4 pl-2 pb-3">
+        <SectionContent type="white" className="pt-4 pl-2 pb-3">
           <p className="subtitle-dark">Destacados</p>
         </SectionContent>
         {servicesHighLight.length > 0 && (
-          <SectionContent type="light" className="pt-3 pl-3 pb-3" style={{border: "0.5px solid #C2C2C2"}}>
+          <SectionContent
+            type="light"
+            className="pt-3 pl-3 pb-3"
+            style={{ border: "0.5px solid #C2C2C2" }}
+          >
             <div className="columns mt-1 is-multiline">
               {servicesHighLight.map((s, index) => freelancerCard(s, index))}
             </div>
@@ -269,7 +290,9 @@ const Explore = () => {
           <div className="columns mt-0 is-multiline">
             {services.length === 0 && (
               <div className="column is-12 has-text-centered">
-                <p className="subtitle-dark my-6">No hay servicios en este momento con los filtros aplicados.</p>
+                <p className="subtitle-dark my-6">
+                  No hay servicios en este momento con los filtros aplicados.
+                </p>
               </div>
             )}
             {services.map((s, index) => freelancerCard(s, index))}

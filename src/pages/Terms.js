@@ -1,9 +1,12 @@
 import React from "react";
 import CustomSection from "../components/CustomSection";
+import BackButton from "../components/BackButton";
+
 
 const Terms = () => {
   return (
     <CustomSection type="white">
+      <BackButton />
       <div className="m-6 has-text-justified">
         <h1>TÉRMINOS Y CONDICIONES TREFF</h1>
         <br />
@@ -325,7 +328,10 @@ const Terms = () => {
           Todos los Freelancers pasaran por un proceso de validación de
           información personal, mismo que se realiza al amparo del aviso de
           Privacidad contenido en:{" "}
-          <a className="has-text-link" href="https://treff-site.azurewebsites.net/terms">
+          <a
+            className="has-text-link"
+            href="https://treff-site.azurewebsites.net/terms"
+          >
             https://treff-site.azurewebsites.net/terms
           </a>
           .{" "}

@@ -1,9 +1,11 @@
 import React from "react";
 import CustomSection from "../components/CustomSection";
+import BackButton from "../components/BackButton";
 
 const AboutUs = () => {
   return (
     <CustomSection type="white">
+      <BackButton />
       <div className="m-6 has-text-justified">
         <h1>Sobre TREFF</h1>
         <br />

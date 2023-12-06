@@ -1,3 +1,4 @@
+import BackButton from "../components/BackButton";
 import CustomSection from "../components/CustomSection";
 import React, { useState } from 'react';
 
@@ -13,6 +14,7 @@ const Contact = () => {
 
   return (
     <CustomSection type="white">
+      <BackButton />
       <div className="m-6">
         <h1>Contacto</h1>
         <form onSubmit={handleSubmit}>

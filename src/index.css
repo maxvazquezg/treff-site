@@ -60,7 +60,7 @@ code {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   height: 0;
-  text-align: center;
+  /* text-align: center; */
 }
 .video-container iframe {
   position: absolute;

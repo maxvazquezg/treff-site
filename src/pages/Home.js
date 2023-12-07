@@ -275,7 +275,8 @@ const Home = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          iframeRef.current.src += "&autoplay=1";
+          if (iframeRef.current.src.indexOf("&autoplay=1") === -1)
+            iframeRef.current.src += "&autoplay=1";
         }
       },
       { threshold: 0.5 } // Se activa cuando el 50% del iframe está visible
@@ -552,22 +553,29 @@ const Home = () => {
               <p className="text-light mt-0 mb-0">
                 Miles de personas hacen parte de esta comunidad{" "}
               </p>
-              <div className="has-text-centered m-6 video-container">
-                {/* <img
+              <div style={{textAlign: "center"}}>
+                <div
+                  className="video-container"
+                  // style={{ textAlign: "center" }}
+                >
+                  {/* <img
                   src={process.env.PUBLIC_URL + "/images/Video.png"}
                   alt="video"
                   className="video-presentation"
                 /> */}
-                <iframe
-                  ref={iframeRef}
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/bPhMhD8kemo?si=HQ4Y3CNaPdba2BIz"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
+                  {/* <p style={{ textAlign: "center" }}> */}
+                  <iframe
+                    ref={iframeRef}
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/bPhMhD8kemo?si=HQ4Y3CNaPdba2BIz"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  ></iframe>
+                  {/* </p> */}
+                </div>
               </div>
             </div>
           </div>

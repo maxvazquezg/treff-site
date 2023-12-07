@@ -16,6 +16,7 @@ import { Dialog } from "primereact/dialog";
 import LoginModal from "../components/LoginModal";
 import { useDispatch, useSelector } from "react-redux";
 import { setIdsChat, toggleChat } from "../redux/chatReducer";
+import BackButton from "../components/BackButton";
 
 const Service = () => {
   const { id } = useParams();
@@ -223,6 +224,7 @@ const Service = () => {
   return (
     <>
       <CustomSection type="white">
+      <BackButton back={true} />
         <SectionContent type="light">
           <div className="columns is-multiline">
             <div className="column  is-6-widescreen is-12-tablet">

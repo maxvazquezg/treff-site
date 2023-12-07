@@ -8,6 +8,7 @@ import SectionContent from "../components/SectionContent";
 import { Link, useParams } from "react-router-dom";
 import { routes } from "../routes";
 import { Avatar } from "primereact/avatar";
+import BackButton from "../components/BackButton";
 
 const Explore = () => {
   const { id } = useParams();
@@ -158,6 +159,7 @@ const Explore = () => {
   return (
     <>
       <CustomSection type="white">
+        <BackButton />
         <section
           className="hero is-primary img-header"
           style={{

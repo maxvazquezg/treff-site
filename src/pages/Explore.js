@@ -221,7 +221,7 @@ const Explore = () => {
                 <select onChange={setExploreOnSelect}>
                   <option value={0}>Explora por</option>
                   {/* {categories.map((c) => ( */}
-                  <option value={false}>Explora categorias</option>
+                  <option value={false}>Explora servicios</option>
                   <option value={true}>Explora freelancers</option>
                   {/* ))} */}
                 </select>

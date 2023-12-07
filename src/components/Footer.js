@@ -3,6 +3,15 @@ import { routes } from "../routes";
 import { useEffect, useState } from "react";
 import { CategoryApi } from "../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faInstagram,
+  faTiktok,
+  faTwitter,
+  faXTwitter,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Footer(props) {
   const [allCategories, setAllCategories] = useState([]);
@@ -84,30 +93,51 @@ export default function Footer(props) {
                 </div>
                 <div className="column is-6 has-text-right has-text-left-mobile">
                   <a
-                    href="https://www.facebook.com/Hola.TREFF"
+                    href="https://www.instagram.com/holatreff/"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <img
+                    {/* <img
                       className="mr-5 img-33"
                       src={process.env.PUBLIC_URL + "/images/Group 46.png"}
                       alt="instagram"
+                    /> */}
+                    <FontAwesomeIcon
+                      className="mr-5 img-33"
+                      icon={faInstagram}
+                      color="#002541"
                     />
                   </a>
-                  <img
-                    className="mr-5 img-33"
-                    src={process.env.PUBLIC_URL + "/images/Vector (1).png"}
-                    alt="instagram"
-                  />
+                  <a
+                    href="https://twitter.com/HolaTreff"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {/* <img
+                      className="mr-5 img-33"
+                      src={process.env.PUBLIC_URL + "/images/Vector (1).png"}
+                      alt="X"
+                    /> */}
+                    <FontAwesomeIcon
+                      className="mr-5 img-33"
+                      icon={faXTwitter}
+                      color="#002541"
+                    />
+                  </a>
                   <a
                     href="https://www.facebook.com/Hola.TREFF"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <img
+                    {/* <img
                       className="mr-5 img-33"
                       src={process.env.PUBLIC_URL + "/images/Vector (2).png"}
                       alt="facebook"
+                    /> */}
+                    <FontAwesomeIcon
+                      className="mr-5 img-33"
+                      icon={faFacebook}
+                      color="#002541"
                     />
                   </a>
                   <a
@@ -115,15 +145,26 @@ export default function Footer(props) {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <img
+                    <FontAwesomeIcon
                       className="mr-5 img-33"
-                      src={process.env.PUBLIC_URL + "/images/Vector (3).png"}
-                      alt="youtube"
+                      icon={faYoutube}
+                      color="#002541"
                     />
                   </a>
-                  <span className="mr-5 img-33">
-                    <FontAwesomeIcon icon="fa-brands fa-square-twitter" />
-                  </span>
+                  <a
+                    href="https://www.youtube.com/channel/UCTDqgr4LRgl98m7o2ewe0iQ"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <FontAwesomeIcon
+                      className="mr-5 img-33"
+                      icon={faTiktok}
+                      color="#002541"
+                    />
+                  </a>
+                  {/* <span className="mr-5 img-33"> */}
+
+                  {/* </span> */}
                 </div>
               </div>
             </div>

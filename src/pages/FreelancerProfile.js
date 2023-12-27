@@ -97,7 +97,7 @@ const FreelancerProfile = () => {
                   <p>
                     <b>{freelancer?.name}</b>
                     <p>{freelancer?.title}</p>
-                    {freelancer?.score && (
+                    {freelancer?.score > 0 && (
                       <div className="has-text-centered-tablet has-text-centered-mobile columns">
                         <div className="column">
                           <ReactStars
@@ -206,7 +206,6 @@ const FreelancerProfile = () => {
         </SectionContent>
       </CustomSection>
       <CustomSection type="white">
-        
         <ServicesByFreelancer freelancerId={freelancer?.id} />
       </CustomSection>
     </>

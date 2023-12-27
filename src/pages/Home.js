@@ -8,7 +8,7 @@ import { Carousel } from "primereact/carousel";
 import { useSelector } from "react-redux";
 import { Dialog } from "primereact/dialog";
 import LoginModal from "../components/LoginModal";
-import { CategoryApi } from "../api";
+import { CategoryApi, ServiceApi } from "../api";
 import { getURLImage } from "../utils/images";
 
 const responsiveOptions = [
@@ -26,58 +26,6 @@ const responsiveOptions = [
     breakpoint: "480px",
     numVisible: 1,
     numScroll: 1,
-  },
-];
-
-const services = [
-  {
-    image:
-      "url('" +
-      process.env.PUBLIC_URL +
-      "/images/pexels-designecologist-1779487 1.png')",
-    name: "Artes graficas y diseño digital",
-  },
-  {
-    image:
-      "url('" +
-      process.env.PUBLIC_URL +
-      "/images/pexels-todoran-bogdan-783737 1.png')",
-    name: "Artes graficas y diseño digital",
-  },
-  {
-    image:
-      "url('" +
-      process.env.PUBLIC_URL +
-      "/images/pexels-martin-lopez-1117132 1.png')",
-    name: "Artes graficas y diseño digital",
-  },
-  {
-    image:
-      "url('" +
-      process.env.PUBLIC_URL +
-      "/images/pexels-harry-cunningham-harrydigital-7383471 1.png')",
-    name: "Artes graficas y diseño digital",
-  },
-  {
-    image:
-      "url('" +
-      process.env.PUBLIC_URL +
-      "/images/pexels-antoni-shkraba-4348403 (1) 1.png')",
-    name: "Artes graficas y diseño digital",
-  },
-  {
-    image:
-      "url('" +
-      process.env.PUBLIC_URL +
-      "/images/pexels-designecologist-1779487 1.png')",
-    name: "Artes graficas y diseño digital",
-  },
-  {
-    image:
-      "url('" +
-      process.env.PUBLIC_URL +
-      "/images/pexels-harry-cunningham-harrydigital-7383471 1.png')",
-    name: "Artes graficas y diseño digital",
   },
 ];
 
@@ -121,11 +69,13 @@ const freelancers = [
 
 const freelancersRanking = [
   {
+    id: 14,
     image:
       "url('" + process.env.PUBLIC_URL + "/images/pexels-pixabay-38289 2.png')",
     name: "Andrea Mendes",
   },
   {
+    id: 2,
     image:
       "url('" +
       process.env.PUBLIC_URL +
@@ -133,6 +83,7 @@ const freelancersRanking = [
     name: "Karen Buitrago",
   },
   {
+    id: 15,
     image:
       "url('" +
       process.env.PUBLIC_URL +
@@ -140,6 +91,7 @@ const freelancersRanking = [
     name: "Carlos Fajardo ",
   },
   {
+    id: 16,
     image:
       "url('" +
       process.env.PUBLIC_URL +
@@ -147,6 +99,7 @@ const freelancersRanking = [
     name: "Maria Jose Diaz",
   },
   {
+    id: 17,
     image:
       "url('" +
       process.env.PUBLIC_URL +
@@ -184,71 +137,83 @@ const getServiceCards = (services, navigate) => {
 
 const getFreelancersRankingCards = () => {
   return freelancersRanking.map((s, index) => (
-    <div key={index} className="column has-text-centered">
-      <div
-        className="freelancer-card"
-        style={{
-          backgroundImage: s.image,
+    <Link to={routes.FREELANCERPROFILE.replace(":id", s.id)}>
+      <div key={index} className="column has-text-centered">
+        <div
+          className="freelancer-card"
+          style={{
+            backgroundImage: s.image,
 
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          cursor: "pointer",
-        }}
-      ></div>
-      <div
-        className="button-ranking has-text-centered size-18"
-        style={{ cursor: "pointer" }}
-      >
-        {s.name}
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+            cursor: "pointer",
+          }}
+        ></div>
+        <div
+          className="button-ranking has-text-centered size-18"
+          style={{ cursor: "pointer" }}
+        >
+          {s.name}
+        </div>
       </div>
-    </div>
+    </Link>
   ));
 };
 
 const getFreelancersCardsTheme = (s) => {
   return (
-    <div
-      className="card ml-3 card-freelancer"
-      style={{
-        // width: "400px",
-        // height: "280px",
-
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
-        cursor: "pointer",
-        padding: "10px 0px 0px 0px",
-      }}
-    >
+    <Link to={routes.SERVICE.replace(":id", s.id)}>
       <div
-        className="card-content"
-        style={{
-          padding: "0px 0px 0px 0px",
-        }}
-      >
-        <div className="content">
-          <img
-            src={s.backgroundImage}
-            style={{ width: "100%" }}
-            alt="servicio"
-          />
-        </div>
-      </div>
-      <footer
-        className="card-footer has-text-left pb-3"
+        className="card ml-3 card-freelancer"
         style={{
           // width: "400px",
-          height: "auto",
+          // height: "280px",
+
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          cursor: "pointer",
+          padding: "10px 0px 0px 0px",
         }}
       >
-        <img className="rounded ml-4 mt-2" src={s.image} alt="freelancer" />
-        <p className="ml-4">
-          <br />
-          <b>{s.service}</b>
-          <br />
-          de {s.name}
-        </p>
-      </footer>
-    </div>
+        <div
+          className="card-content"
+          style={{
+            padding: "0px 0px 0px 0px",
+          }}
+        >
+          <div className="content">
+            <img
+              src={getURLImage(s.category?.image)}
+              style={{ width: "100%" }}
+              alt="servicio"
+            />
+          </div>
+        </div>
+        <footer
+          className="card-footer has-text-left pb-3"
+          style={{
+            // width: "400px",
+            height: "auto",
+          }}
+        >
+          <img
+            className="rounded ml-4 mt-2"
+            src={
+              s.freelancer?.photo
+                ? getURLImage(s.freelancer?.photo)
+                : getURLImage("images/user_undefined.png", true)
+            }
+            alt="freelancer"
+          />
+          <p className="ml-4">
+            <br />
+            <b>{s.name}</b>
+            <br />
+            de {s.freelancer.name}
+          </p>
+        </footer>
+      </div>
+    </Link>
   );
 };
 
@@ -259,9 +224,14 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
   const iframeRef = useRef(null);
+  const [services, setServices] = useState([]);
   const onCloseLogin = () => {
     setVisibleLogin(false);
   };
+
+  useEffect(() => {
+    getHighlightServices();
+  }, []);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -292,6 +262,11 @@ const Home = () => {
       }
     };
   }, []);
+
+  const getHighlightServices = async (byFreelancer = false) => {
+    const response = await ServiceApi.getHighlightServices(10, byFreelancer);
+    setServices(response);
+  };
 
   return (
     <>
@@ -553,7 +528,7 @@ const Home = () => {
               <p className="text-light mt-0 mb-0">
                 Miles de personas hacen parte de esta comunidad{" "}
               </p>
-              <div style={{textAlign: "center"}}>
+              <div style={{ textAlign: "center" }}>
                 <div
                   className="video-container"
                   // style={{ textAlign: "center" }}
@@ -592,7 +567,7 @@ const Home = () => {
               {/* <ScrollingMenu items={getFreelancersCards()} /> */}
               <div className="card">
                 <Carousel
-                  value={freelancers}
+                  value={services}
                   numVisible={3}
                   numScroll={1}
                   showIndicators={false}

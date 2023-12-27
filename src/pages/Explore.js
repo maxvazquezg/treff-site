@@ -91,7 +91,13 @@ const Explore = () => {
         key={index}
         className={"column is-3-widescreen is-6-desktop is-6 has-text-centered"}
       >
-        <Link to={routes.SERVICE.replace(":id", service.id)}>
+        <Link
+          to={
+            byFreelancer
+              ? routes.FREELANCERPROFILE.replace(":id", service.freelancerId)
+              : routes.SERVICE.replace(":id", service.id)
+          }
+        >
           <div
             className="card"
             style={{

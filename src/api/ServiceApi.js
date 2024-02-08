@@ -101,10 +101,27 @@ class ServiceApi extends BaseApi {
     const request = {
       id: serviceId,
       userId,
-    }
+    };
     try {
       const data = await trackPromise(
         this.post(CATEGORY_ENDPOINT + "/views", request)
+      );
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async filterServices(serviceName, categoryId, byFreelancer, expressDelivery) {
+    const filter = {
+      serviceName,
+      categoryId,
+      byFreelancer,
+      expressDelivery,
+    };
+    try {
+      const data = await trackPromise(
+        this.post(CATEGORY_ENDPOINT + "/filter", filter)
       );
       return data.data;
     } catch (error) {

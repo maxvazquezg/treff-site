@@ -9,6 +9,8 @@ import { Link, useParams } from "react-router-dom";
 import { routes } from "../routes";
 import { Avatar } from "primereact/avatar";
 import BackButton from "../components/BackButton";
+import { InputAdornment, TextField } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Explore = () => {
   const { id } = useParams();
@@ -17,6 +19,10 @@ const Explore = () => {
   const [services, setServices] = useState([]);
   const [byFreelancer, setByFreelancer] = useState(false);
   const [categoryIdState, setCategoryIdState] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+  const [verified, setVerified] = useState(false);
+  const [invoice, setInvoice] = useState(false);
+  const [expressDelivery, setExpressDelivery] = useState(false);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -24,65 +30,74 @@ const Explore = () => {
       setCategories(cat);
     };
 
-    const getServicesHighLight = async () => {
-      await getServicesHighLightAsync(id);
-    };
+    // const getServicesHighLight = async () => {
+    //   await getServicesHighLightAsync(id);
+    // };
 
-    const getServices = async () => {
-      await getServicesAsync(id);
-    };
+    // const getServices = async () => {
+    //   await getServicesAsync(id);
+    // };
     getCategories();
-    getServicesHighLight();
-    getServices();
+    // filter();
+    // getServicesHighLight();
+    // getServices();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryIdState, byFreelancer, id]);
+  }, []);
 
   useEffect(() => {
     setCategoryIdState(id);
   }, [id]);
 
-  const getServicesHighLightAsync = async (categoryId) => {
-    if (!(categoryId || categoryIdState)) {
-      const ser = await ServiceApi.getHighlightServices(100, byFreelancer);
-      setServicesHighLight(ser);
-    } else {
-      const ser = await ServiceApi.getHighlightServicesByCategoryId(
-        parseInt(categoryId || categoryIdState),
-        byFreelancer
-      );
-      setServicesHighLight(ser);
-    }
-  };
+  // const getServicesHighLightAsync = async (categoryId) => {
+  //   if (!(categoryId || categoryIdState)) {
+  //     const ser = await ServiceApi.getHighlightServices(100, byFreelancer);
+  //     setServicesHighLight(ser);
+  //   } else {
+  //     const ser = await ServiceApi.getHighlightServicesByCategoryId(
+  //       parseInt(categoryId || categoryIdState),
+  //       byFreelancer
+  //     );
+  //     setServicesHighLight(ser);
+  //   }
+  // };
 
-  const getServicesAsync = async (categoryId) => {
-    if (!(categoryId || categoryIdState)) {
-      const ser = await ServiceApi.getServices(100, byFreelancer);
-      setServices(ser);
-    } else {
-      const ser = await ServiceApi.getServicesByCategoryId(
-        parseInt(categoryId || categoryIdState),
-        byFreelancer
-      );
-      setServices(ser);
-    }
-  };
+  // const getServicesAsync = async (categoryId) => {
+  //   if (!(categoryId || categoryIdState)) {
+  //     const ser = await ServiceApi.getServices(100, byFreelancer);
+  //     setServices(ser);
+  //   } else {
+  //     const ser = await ServiceApi.getServicesByCategoryId(
+  //       parseInt(categoryId || categoryIdState),
+  //       byFreelancer
+  //     );
+  //     setServices(ser);
+  //   }
+  // };
 
   const getServicesOnSelect = async (e) => {
     const catId = e.target.value !== "0" ? e.target.value : null;
     // TODO: setear el estado de la categoria seleccionada
-    setCategoryIdState(catId);
+    setCategoryIdState(parseInt(catId));
 
-    await getServicesAsync(catId);
-    await getServicesHighLightAsync(catId);
+    // await getServicesAsync(catId);
+    // await getServicesHighLightAsync(catId);
   };
+
+  useEffect(() => {
+    const getServices = async () => {
+      await filter();
+    };
+    getServices();
+  }, [categoryIdState, byFreelancer, verified, invoice, expressDelivery]);
 
   const setExploreOnSelect = async (e) => {
     const exploreOption = e.target.value === "true";
 
     setByFreelancer(exploreOption);
 
-    await getServicesAsync();
-    await getServicesHighLightAsync();
+    // await getServicesAsync();
+    // await getServicesHighLightAsync();
+    await filter();
   };
 
   const freelancerCard = (service, index) => {
@@ -162,6 +177,28 @@ const Explore = () => {
     );
   };
 
+  const filter = async () => {
+    const ser = await ServiceApi.filterServices(
+      inputValue,
+      categoryIdState || 0,
+      byFreelancer,
+      expressDelivery === "true"
+        ? true
+        : expressDelivery === "false"
+        ? false
+        : null
+    );
+    const servicesHighLight = ser.filter((s) => s.highlight);
+    setServicesHighLight(servicesHighLight);
+    const services = ser.filter((s) => !s.highlight);
+    setServices(services);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    filter();
+  };
+
   return (
     <>
       <CustomSection type="white">
@@ -222,6 +259,27 @@ const Explore = () => {
             </p>
           )}
           <div className="columns mt-3 is-multiline size-16">
+            <div className="column is-10 is-mobile">
+              <form onSubmit={handleSubmit}>
+                <TextField
+                  className="w-1/2"
+                  // label="Buscador"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  placeholder="Busca un servicio"
+                  style={{ width: "100%" }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </form>
+            </div>
+          </div>
+          <div className="columns mt-3 is-multiline size-16">
             <div className="column is-2 is-mobile">
               <div className="select">
                 <select onChange={setExploreOnSelect}>
@@ -247,10 +305,15 @@ const Explore = () => {
             </div>
             <div className="column is-2">
               <div className="select">
-                <select>
+                <select
+                  value={verified}
+                  onChange={(e) => {
+                    setVerified(e.target.value);
+                  }}
+                >
                   <option>Verificado</option>
-                  <option>Si</option>
-                  <option>No</option>
+                  <option value={true}>Si</option>
+                  <option value={false}>No</option>
                 </select>
               </div>
             </div>
@@ -265,10 +328,15 @@ const Explore = () => {
             </div>
             <div className="column is-3">
               <div className="select">
-                <select>
-                  <option>Entrega Express</option>
-                  <option>Si</option>
-                  <option>No</option>
+                <select
+                  value={expressDelivery}
+                  onChange={(e) => {
+                    setExpressDelivery(e.target.value);
+                  }}
+                >
+                  <option value={null}>Entrega Express</option>
+                  <option value={true}>Si</option>
+                  <option value={false}>No</option>
                 </select>
               </div>
             </div>

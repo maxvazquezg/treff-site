@@ -9,7 +9,14 @@ import { Link, useParams } from "react-router-dom";
 import { routes } from "../routes";
 import { Avatar } from "primereact/avatar";
 import BackButton from "../components/BackButton";
-import { InputAdornment, TextField } from "@mui/material";
+import {
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 const Explore = () => {
@@ -23,6 +30,7 @@ const Explore = () => {
   const [verified, setVerified] = useState(false);
   const [invoice, setInvoice] = useState(false);
   const [expressDelivery, setExpressDelivery] = useState(false);
+  const [filterOption, setFilterOption] = useState(5);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -48,39 +56,10 @@ const Explore = () => {
     setCategoryIdState(id);
   }, [id]);
 
-  // const getServicesHighLightAsync = async (categoryId) => {
-  //   if (!(categoryId || categoryIdState)) {
-  //     const ser = await ServiceApi.getHighlightServices(100, byFreelancer);
-  //     setServicesHighLight(ser);
-  //   } else {
-  //     const ser = await ServiceApi.getHighlightServicesByCategoryId(
-  //       parseInt(categoryId || categoryIdState),
-  //       byFreelancer
-  //     );
-  //     setServicesHighLight(ser);
-  //   }
-  // };
-
-  // const getServicesAsync = async (categoryId) => {
-  //   if (!(categoryId || categoryIdState)) {
-  //     const ser = await ServiceApi.getServices(100, byFreelancer);
-  //     setServices(ser);
-  //   } else {
-  //     const ser = await ServiceApi.getServicesByCategoryId(
-  //       parseInt(categoryId || categoryIdState),
-  //       byFreelancer
-  //     );
-  //     setServices(ser);
-  //   }
-  // };
-
   const getServicesOnSelect = async (e) => {
     const catId = e.target.value !== "0" ? e.target.value : null;
     // TODO: setear el estado de la categoria seleccionada
     setCategoryIdState(parseInt(catId));
-
-    // await getServicesAsync(catId);
-    // await getServicesHighLightAsync(catId);
   };
 
   useEffect(() => {
@@ -88,15 +67,19 @@ const Explore = () => {
       await filter();
     };
     getServices();
-  }, [categoryIdState, byFreelancer, verified, invoice, expressDelivery]);
+  }, [
+    categoryIdState,
+    byFreelancer,
+    verified,
+    invoice,
+    expressDelivery,
+    filterOption,
+  ]);
 
   const setExploreOnSelect = async (e) => {
     const exploreOption = e.target.value === "true";
 
     setByFreelancer(exploreOption);
-
-    // await getServicesAsync();
-    // await getServicesHighLightAsync();
     await filter();
   };
 
@@ -186,7 +169,10 @@ const Explore = () => {
         ? true
         : expressDelivery === "false"
         ? false
-        : null
+        : null,
+      filterOption,
+      verified === "true" ? true : verified === "false" ? false : null,
+      invoice === "true" ? true : invoice === "false" ? false : null
     );
     const servicesHighLight = ser.filter((s) => s.highlight);
     setServicesHighLight(servicesHighLight);
@@ -259,7 +245,7 @@ const Explore = () => {
             </p>
           )}
           <div className="columns mt-3 is-multiline size-16">
-            <div className="column is-10 is-mobile">
+            <div className="column is-12 is-mobile">
               <form onSubmit={handleSubmit}>
                 <TextField
                   className="w-1/2"
@@ -280,7 +266,7 @@ const Explore = () => {
             </div>
           </div>
           <div className="columns mt-3 is-multiline size-16">
-            <div className="column is-2 is-mobile">
+            <div className="column is-6 is-12-mobile is-2-desktop">
               <div className="select">
                 <select onChange={setExploreOnSelect}>
                   <option value={0}>Explora por</option>
@@ -291,7 +277,7 @@ const Explore = () => {
                 </select>
               </div>
             </div>
-            <div className="column is-2">
+            <div className="column is-6 is-12-mobile is-2-desktop">
               <div className="select">
                 <select value={categoryIdState} onChange={getServicesOnSelect}>
                   <option value={0}>Categorías</option>
@@ -303,7 +289,7 @@ const Explore = () => {
                 </select>
               </div>
             </div>
-            <div className="column is-2">
+            <div className="column is-6 is-12-mobile is-2-desktop">
               <div className="select">
                 <select
                   value={verified}
@@ -317,16 +303,21 @@ const Explore = () => {
                 </select>
               </div>
             </div>
-            <div className="column is-2">
+            <div className="column is-6 is-12-mobile is-2-desktop">
               <div className="select">
-                <select>
+                <select
+                  value={invoice}
+                  onChange={(e) => {
+                    setInvoice(e.target.value);
+                  }}
+                >
                   <option>Factura</option>
-                  <option>Si</option>
-                  <option>No</option>
+                  <option value={true}>Si</option>
+                  <option value={false}>No</option>
                 </select>
               </div>
             </div>
-            <div className="column is-3">
+            <div className="column is-6 is-12-mobile is-3-desktop">
               <div className="select">
                 <select
                   value={expressDelivery}
@@ -342,6 +333,28 @@ const Explore = () => {
             </div>
           </div>
         </SectionContent>
+      </CustomSection>
+      <CustomSection type="white">
+        <div className="column is-4 is-offset-8 has-text-right">
+          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-standard-label">
+              Filtro
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+              value={filterOption}
+              onChange={(e) => setFilterOption(e.target.value)}
+              label="Filtro"
+            >
+              <MenuItem value={1}>Mayor a menor precio</MenuItem>
+              <MenuItem value={2}>Menor a mayor precio</MenuItem>
+              <MenuItem value={3}>Mayor Ranking</MenuItem>
+              <MenuItem value={4}>Más reciente primero</MenuItem>
+              <MenuItem value={5}>Más antiguo primero</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
       </CustomSection>
 
       <CustomSection type="white">

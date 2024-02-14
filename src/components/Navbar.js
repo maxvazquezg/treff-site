@@ -309,7 +309,7 @@ export default function Navbar(props) {
                     "/images/Treff_06_color_solid_darkBlue.png"
                   }
                   alt="logo"
-                  style={{ height: "50%", marginRight: "10px" }}
+                  style={{ height: "20px", marginRight: "10px" }}
                 />
                 Publicar servicio
               </Link>

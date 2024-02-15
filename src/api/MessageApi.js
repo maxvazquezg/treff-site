@@ -29,6 +29,15 @@ class MessageApi extends BaseApi {
       throw new Error(error);
     }
   }
+
+  async sendMail(request) {
+    try {
+      const data = await this.post(`${MESSAGE_ENDPOINT}/help`, request);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 export default new MessageApi();

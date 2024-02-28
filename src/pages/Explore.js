@@ -25,7 +25,7 @@ const Explore = () => {
   const [servicesHighLight, setServicesHighLight] = useState([]);
   const [services, setServices] = useState([]);
   const [byFreelancer, setByFreelancer] = useState(false);
-  const [categoryIdState, setCategoryIdState] = useState(null);
+  const [categoryIdState, setCategoryIdState] = useState(id || undefined);
   const [inputValue, setInputValue] = useState("");
   const [verified, setVerified] = useState(false);
   const [invoice, setInvoice] = useState(false);

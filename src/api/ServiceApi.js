@@ -112,7 +112,7 @@ class ServiceApi extends BaseApi {
     }
   }
 
-  async filterServices(serviceName, categoryId, byFreelancer, expressDelivery, filterOption, verified, invoice) {
+  async filterServices(serviceName, categoryId, byFreelancer, expressDelivery, filterOption, verified, invoice, byService) {
     const filter = {
       serviceName,
       categoryId,
@@ -120,7 +120,8 @@ class ServiceApi extends BaseApi {
       expressDelivery,
       filterOption,
       verified,
-      invoice
+      invoice,
+      byService
     };
     try {
       const data = await trackPromise(

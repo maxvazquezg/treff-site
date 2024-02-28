@@ -30,7 +30,7 @@ const Explore = () => {
   const [verified, setVerified] = useState(false);
   const [invoice, setInvoice] = useState(false);
   const [expressDelivery, setExpressDelivery] = useState(false);
-  const [filterOption, setFilterOption] = useState(5);
+  const [filterOption, setFilterOption] = useState(1);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -80,7 +80,7 @@ const Explore = () => {
     const exploreOption = e.target.value === "true";
 
     setByFreelancer(exploreOption);
-    await filter();
+    // await filter();
   };
 
   const freelancerCard = (service, index) => {
@@ -129,10 +129,10 @@ const Explore = () => {
                     <div className="column is-8-mobile">
                       {byFreelancer ? (
                         <p className="ml-2">
+                          <b>{service.freelancer.name}</b>
                           <br />
-                          {service.freelancer.name}
-                          <br />
-                          <b>{service.name}</b>
+                          {/* <br />
+                          {service.name} */}
                         </p>
                       ) : (
                         <p className="ml-1 pt-0 pr-4 pl-4">
@@ -172,7 +172,8 @@ const Explore = () => {
         : null,
       filterOption,
       verified === "true" ? true : verified === "false" ? false : null,
-      invoice === "true" ? true : invoice === "false" ? false : null
+      invoice === "true" ? true : invoice === "false" ? false : null,
+      !byFreelancer
     );
     const servicesHighLight = ser.filter((s) => s.highlight);
     setServicesHighLight(servicesHighLight);
@@ -347,11 +348,11 @@ const Explore = () => {
               onChange={(e) => setFilterOption(e.target.value)}
               label="Filtro"
             >
-              <MenuItem value={1}>Mayor a menor precio</MenuItem>
-              <MenuItem value={2}>Menor a mayor precio</MenuItem>
+              <MenuItem value={1}>Mayor precio</MenuItem>
+              <MenuItem value={2}>Menor precio</MenuItem>
               <MenuItem value={3}>Mayor Ranking</MenuItem>
-              <MenuItem value={4}>Más reciente primero</MenuItem>
-              <MenuItem value={5}>Más antiguo primero</MenuItem>
+              <MenuItem value={4}>Más reciente</MenuItem>
+              <MenuItem value={5}>Más antiguo</MenuItem>
             </Select>
           </FormControl>
         </div>

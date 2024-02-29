@@ -10,6 +10,7 @@ import { Dialog } from "primereact/dialog";
 import LoginModal from "../components/LoginModal";
 import { CategoryApi, ServiceApi } from "../api";
 import { getURLImage } from "../utils/images";
+import { ReactImageAccordion } from "react-image-accordion";
 
 const responsiveOptions = [
   {
@@ -26,6 +27,27 @@ const responsiveOptions = [
     breakpoint: "480px",
     numVisible: 1,
     numScroll: 1,
+  },
+];
+
+const accordionData = [
+  {
+    id: 1,
+    title: "Boating",
+    image: "https://picsum.photos/400/600",
+    alt: "first panel image",
+    content:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe id numquam ab molestias sint beatae provident possimus doloribus autem repudiandae!",
+    svg: "aa (1).svg",
+  },
+  {
+    id: 2,
+    title: "Fishing",
+    image: "https://picsum.photos/400/600",
+    alt: "second panel image",
+    content:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe id numquam ab molestias sint beatae provident possimus doloribus autem repudiandae!",
+    svg: "aa (2).svg",
   },
 ];
 
@@ -407,6 +429,14 @@ const Home = () => {
 
       <section className="hero is-light">
         <div className="hero-body pb-0">
+          {/* <ReactImageAccordion
+            accordionData={accordionData}
+            AccordionWidth={"1000px"}
+            AccordionHeight={"500px"}
+            // ContentSize=[ContentSize]
+            // onClick={}
+            ShowButton={true / false}
+          /> */}
           <div className="columns">
             <div className="column is-10 is-offset-1 has-text-left">
               <div className="has-text-centered">

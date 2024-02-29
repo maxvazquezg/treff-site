@@ -34,6 +34,7 @@
     "react-gallery-carousel": "^0.3.0",
     "react-hook-form": "^7.41.1",
     "react-horizontal-scrolling-menu": "^3.2.3",
+    "react-image-accordion": "^1.2.2",
     "react-loader-spinner": "^5.3.4",
     "react-parallax": "^3.5.1",
     "react-promise-tracker": "^2.1.1",

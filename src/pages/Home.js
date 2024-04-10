@@ -33,21 +33,60 @@ const responsiveOptions = [
 const accordionData = [
   {
     id: 1,
-    title: "Boating",
-    image: "https://picsum.photos/400/600",
+    title: "Cliente",
+    image: process.env.PUBLIC_URL + "/images/pexels-fauxels-3184611 1.png",
     alt: "first panel image",
-    content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe id numquam ab molestias sint beatae provident possimus doloribus autem repudiandae!",
-    svg: "aa (1).svg",
+    content: (
+      <p className="has-text-justified mt-1 size-18 has-text-white">
+        Somos una plataforma única donde tendrás acceso a una variada oferta de
+        servicios brindados por freelancers comprometidos y altamente
+        capacitados para satisfacer tus necesidades. <br />
+        <br />
+        Al elegir TREFF, evitarás la complejidad de contratar grandes empresas.
+        En cambio, te beneficiarás de precios competitivos, un trato
+        personalizado y la seguridad de que cada proyecto será gestionado con
+        profesionalismo. Actuamos como mediadores entre tus requerimientos y la
+        entrega de trabajos de calidad, garantizando que tu experiencia sea
+        eficiente, satisfactoria y libre de complicaciones.
+        <br />
+        <br />
+        Bienvenido a TREFF, donde la contratación se vuelve simple, personal y
+        centrada en tus objetivos. Tu próximo proyecto merece la atención de
+        freelancers comprometidos, y nosotros estamos aquí para hacerlo posible.
+      </p>
+    ),
+    // svg: "aa (1).svg",
   },
   {
     id: 2,
-    title: "Fishing",
-    image: "https://picsum.photos/400/600",
+    title: "Freelancer",
+    image:
+      process.env.PUBLIC_URL + "/images/pexels-pavel-danilyuk-6764185 1.png",
     alt: "second panel image",
-    content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe id numquam ab molestias sint beatae provident possimus doloribus autem repudiandae!",
-    svg: "aa (2).svg",
+    content: (
+      <div className="has-text-white">
+        <p className="has-text-justified mt-1 size-18 has-text-white">
+          En TREFF, te proporcionamos una herramienta confiable diseñada para
+          que ofrezcas tus servicios como experto independiente de manera
+          amigable, ágil y segura.
+        </p>
+        <p className="has-text-justified mt-3 size-18 has-text-white">
+          {" "}
+          Nuestro compromiso es brindarte un respaldo constante, asegurando tus
+          pagos por los trabajos realizados de acuerdo con tus tiempos,
+          capacidades y tarifas . Nosotros reconocemos y valoramos la calidad y
+          puntualidad de los servicios que ofreces. Esto significa que tu
+          crecimiento en ventas y exposición será una consecuencia directa de la
+          apreciación de tu trabajo por parte del cliente y tus propios méritos.
+        </p>
+        <p className="has-text-justified mt-3 size-18 has-text-white">
+          Únete a TREFF, donde tu talento no solo es reconocido, sino también
+          recompensado. Aquí, tu camino hacia el éxito como freelancer comienza
+          con el respaldo y la plataforma adecuada para destacar en el mercado.
+        </p>
+      </div>
+    ),
+    // svg: <p>Hola</p>,
   },
 ];
 
@@ -444,7 +483,7 @@ const Home = () => {
                   A quien estamos dirgidos y por que hacemos la diferencia
                 </p>
               </div>
-              <div className="columns mt-1 is-multiline ">
+              {/* <div className="columns mt-1 is-multiline ">
                 <div className="column is-2">
                   <img
                     src={
@@ -514,7 +553,15 @@ const Home = () => {
                     alt="freelancer"
                   />
                 </div>
-              </div>
+              </div> */}
+              <ReactImageAccordion
+                accordionData={accordionData}
+                // AccordionWidth={AccordionWidth}
+                // AccordionHeight={AccordionHeight}
+                ContentSize={[100,200]}
+                // onClick={}
+                ShowButton={false}
+              />
             </div>
           </div>
         </div>

@@ -15,14 +15,14 @@ const CreateAccountModal = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
+    console.log(data);
     setIsLoading(true);
     const userResponse = await FreelancerApi.createFreelancer(data);
     dispatch(addUser(userResponse));
     props.onClose();
     setIsLoading(false);
-  }
-
+  };
 
   return (
     <>
@@ -77,12 +77,39 @@ const CreateAccountModal = (props) => {
               {/* errors will return when field validation fails  */}
               {errors.password && <span>Este campo es requerido</span>}
             </div>
+
+            <div className="control">
+              <label className="radio">
+                <input
+                  type="radio"
+                  name="answer"
+                  checked
+                  value={true}
+                  {...register("isFreelancer")}
+                />
+                Freelancer
+              </label>
+              <label className="radio">
+                <input
+                  type="radio"
+                  name="answer"
+                  value={false}
+                  {...register("isFreelancer")}
+                />
+                Contratar
+              </label>
+            </div>
+
             <div className="control">
               <button
-                className={`button is-success is-medium is-fullwidth ${isLoading ? "is-loading" : ""}`}
+                className={`button is-success is-medium is-fullwidth ${
+                  isLoading ? "is-loading" : ""
+                }`}
                 type="submit"
                 // value={"Aceptar"}
-              >Aceptar</button>
+              >
+                Aceptar
+              </button>
             </div>
           </form>
         </div>

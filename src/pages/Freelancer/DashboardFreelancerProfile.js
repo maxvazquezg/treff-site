@@ -71,7 +71,7 @@ const DashboardFreelancerProfile = () => {
   };
 
   const items = [
-    {
+    userRedux?.isFreelancer && {
       label: "Perfil",
       command: (e) => {
         highlightElement(
@@ -103,12 +103,12 @@ const DashboardFreelancerProfile = () => {
         ? "blue-back"
         : "",
     },
+    // {
+    //   label: "Configuración Freelancer",
+    //   // icon: "pi pi-fw pi-power-off",
+    // },
     {
-      label: "Configuración Freelancer",
-      // icon: "pi pi-fw pi-power-off",
-    },
-    {
-      label: "Proyectos",
+      label: userRedux?.isFreelancer ? "Proyectos" : "Servicios",
       command: (e) => {
         highlightElement(
           e,
@@ -123,18 +123,18 @@ const DashboardFreelancerProfile = () => {
         ? "blue-back"
         : "",
     },
-    {
-      label: "Servicios",
-      command: (e) => {
-        highlightElement(
-          e,
-          routes.DASHBOARD_SERVICES + "/" + routes.DASHBOARD_SERVICESACTIVE
-        );
-      },
-      className: location.pathname.includes(routes.DASHBOARD_SERVICES)
-        ? "blue-back"
-        : "",
-    },
+    // {
+    //   label: "Servicios",
+    //   command: (e) => {
+    //     highlightElement(
+    //       e,
+    //       routes.DASHBOARD_SERVICES + "/" + routes.DASHBOARD_SERVICESACTIVE
+    //     );
+    //   },
+    //   className: location.pathname.includes(routes.DASHBOARD_SERVICES)
+    //     ? "blue-back"
+    //     : "",
+    // },
     {
       label: "Configuración de cuenta",
       command: (e) => {
@@ -171,7 +171,7 @@ const DashboardFreelancerProfile = () => {
         highlightElement(e, routes.DASHBOARD_FREELANCER_FINANCE);
       },
       className: location.pathname.includes(
-        routes.DASHBOARD_FREELANCER_VERIFICATION
+        routes.DASHBOARD_FREELANCER_FINANCE
       )
         ? "blue-back"
         : "",

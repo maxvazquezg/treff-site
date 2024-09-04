@@ -79,9 +79,10 @@ export default function Navbar(props) {
   };
 
   const menuProfile = [
-    {
+    userRedux?.isFreelancer && {
       text: "Perfil",
       image: "/images/profile.svg",
+      isFreelancer: true,
       target:
         routes.DASHBOARD_FREELANCER +
         "/" +
@@ -98,11 +99,11 @@ export default function Navbar(props) {
       image: "/images/dashboard.svg",
       target: "",
     },
-    {
-      text: "Configuración Freelancer",
-      image: "/images/configFreelancer.svg",
-      target: "",
-    },
+    // {
+    //   text: "Configuración Freelancer",
+    //   image: "/images/configFreelancer.svg",
+    //   target: "",
+    // },
     {
       text: "Proyectos",
       image: "/images/project.svg",
@@ -163,8 +164,7 @@ export default function Navbar(props) {
       text: "Dashboard Admin",
       image: "/images/dashboard.svg",
       isAdmin: true,
-      target:
-        routes.DASHBOARD_ADMIN,
+      target: routes.DASHBOARD_ADMIN,
       action: () => {
         clickMenuHandler();
         op.current.toggle();
@@ -191,18 +191,26 @@ export default function Navbar(props) {
     return (
       <ul className="menu-list">
         {menuProfile.map((o, i) => {
-          if (o.isAdmin && userRedux?.isAdmin) {
+          if (o?.isAdmin && userRedux?.isAdmin) {
             return (
               <li key={i}>
-                {profileOption(o.text, o.image, o.target, o.action)}
+                {profileOption(o?.text, o?.image, o?.target, o?.action)}
               </li>
             );
-          } else if (!o.isAdmin) {
-            return (
-              <li key={i}>
-                {profileOption(o.text, o.image, o.target, o.action)}
-              </li>
-            );
+          } else if (!o?.isAdmin) {
+            if (o?.isFreelancer && userRedux?.isFreelancer) {
+              return (
+                <li key={i}>
+                  {profileOption(o?.text, o?.image, o?.target, o?.action)}
+                </li>
+              );
+            } else if (!o?.isFreelancer) {
+              return (
+                <li key={i}>
+                  {profileOption(o?.text, o?.image, o?.target, o?.action)}
+                </li>
+              );
+            }
           }
         })}
       </ul>

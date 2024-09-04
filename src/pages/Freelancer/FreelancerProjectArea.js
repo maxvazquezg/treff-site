@@ -43,7 +43,7 @@ const FreelancerProjectArea = (props) => {
       },
       className: "gray-back",
     },
-    {
+    userRedux.isFreelancer && {
       label: "Proyectos en proceso",
       command: (e) => {
         highlightElement(e, routes.DASHBOARD_FREELANCER_PROJECTS_INPROGRESS);

@@ -185,6 +185,15 @@ class FreelancerApi extends BaseApi {
       throw new Error(error);
     }
   }
+
+  async getAdmins() {
+    try {
+      const data = await this.get(`${FREELANCER_ENDPOINT}/admin`);
+      return data.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 export default new FreelancerApi();

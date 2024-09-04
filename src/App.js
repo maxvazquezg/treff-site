@@ -57,12 +57,13 @@ import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import FreelancerFinanceArea from "./pages/Freelancer/FreelancerFinanceArea";
 import AdminPage from "./pages/AdminPage";
+import NewAdminPage from "./pages/Admin/NewAdminPage";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
 function App() {
   return (
-    <div className="App" style={{maxWidth: "100vw"}}>
+    <div className="App" style={{ maxWidth: "100vw" }}>
       <LoadingIndicator />
       <Navbar />
       <ScrollTop />
@@ -71,7 +72,9 @@ function App() {
         <Routes>
           <Route path={routes.HOME} element={<Home />} />
           <Route path={routes.ABOUT_US} element={<AboutUs />} />
-          <Route path={routes.DASHBOARD_ADMIN} element={<AdminPage />} />
+          <Route path={routes.DASHBOARD_ADMIN} element={<AdminPage />}></Route>
+          <Route path={routes.DASHBOARD_ADMIN_NEW} element={<NewAdminPage />} />
+
           <Route path={routes.HELP_CENTER} element={<HelpCenter />} />
           <Route path={routes.CONTACT} element={<Contact />} />
           <Route path={routes.PRIVACITY} element={<Privacity />} />

@@ -165,6 +165,17 @@ const DashboardFreelancerProfile = () => {
         ? "blue-back"
         : "",
     },
+    {
+      label: "Finanzas",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_FREELANCER_FINANCE);
+      },
+      className: location.pathname.includes(
+        routes.DASHBOARD_FREELANCER_VERIFICATION
+      )
+        ? "blue-back"
+        : "",
+    },
   ];
 
   const onCameraClick = () => {
@@ -288,7 +299,11 @@ const DashboardFreelancerProfile = () => {
         <div className="hero-body has-text-centered pb-0">
           <Avatar
             className="ml-3 mt-2"
-            image={user?.photo ? getURLImage(user?.photo) : getURLImage("images/user_undefined.png", true)}
+            image={
+              user?.photo
+                ? getURLImage(user?.photo)
+                : getURLImage("images/user_undefined.png", true)
+            }
             size="xlarge"
             shape="circle"
             style={{ width: "150px", height: "150px" }}

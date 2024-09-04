@@ -55,6 +55,8 @@ import HelpCenter from "./pages/HelpCenter";
 import Privacity from "./pages/Privacity";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
+import FreelancerFinanceArea from "./pages/Freelancer/FreelancerFinanceArea";
+import AdminPage from "./pages/AdminPage";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -69,6 +71,7 @@ function App() {
         <Routes>
           <Route path={routes.HOME} element={<Home />} />
           <Route path={routes.ABOUT_US} element={<AboutUs />} />
+          <Route path={routes.DASHBOARD_ADMIN} element={<AdminPage />} />
           <Route path={routes.HELP_CENTER} element={<HelpCenter />} />
           <Route path={routes.CONTACT} element={<Contact />} />
           <Route path={routes.PRIVACITY} element={<Privacity />} />
@@ -140,6 +143,10 @@ function App() {
                 element={<DesactiveAccount />}
               ></Route>
             </Route>
+            <Route
+              path={routes.DASHBOARD_FREELANCER_FINANCE}
+              element={<FreelancerFinanceArea />}
+            ></Route>
             <Route
               path={routes.DASHBOARD_FREELANCER_VERIFICATION}
               element={<FreelancerVerificationArea />}

@@ -160,6 +160,17 @@ export default function Navbar(props) {
       },
     },
     {
+      text: "Dashboard Admin",
+      image: "/images/dashboard.svg",
+      isAdmin: true,
+      target:
+        routes.DASHBOARD_ADMIN,
+      action: () => {
+        clickMenuHandler();
+        op.current.toggle();
+      },
+    },
+    {
       text: "Cerrar sesión",
       image: "",
       target: "",
@@ -179,9 +190,21 @@ export default function Navbar(props) {
   const createMenuProfile = () => {
     return (
       <ul className="menu-list">
-        {menuProfile.map((o, i) => (
-          <li key={i}>{profileOption(o.text, o.image, o.target, o.action)}</li>
-        ))}
+        {menuProfile.map((o, i) => {
+          if (o.isAdmin && userRedux?.isAdmin) {
+            return (
+              <li key={i}>
+                {profileOption(o.text, o.image, o.target, o.action)}
+              </li>
+            );
+          } else if (!o.isAdmin) {
+            return (
+              <li key={i}>
+                {profileOption(o.text, o.image, o.target, o.action)}
+              </li>
+            );
+          }
+        })}
       </ul>
     );
   };

@@ -30,6 +30,11 @@ export const getUser  = (data) => async(dispatch) =>{
     dispatch(setUser(user));
 }
 
+export const updateUser = (data) => async(dispatch) =>{
+    dispatch(setUser(data));
+}
+
+
 // Action creators are generated for each case reducer function
 export const { addUser, setUser, removeUser } = userManageSlice.actions;
 

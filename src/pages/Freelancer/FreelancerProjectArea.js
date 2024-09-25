@@ -42,12 +42,14 @@ const FreelancerProjectArea = (props) => {
         highlightElement(e, routes.DASHBOARD_FREELANCER_PROJECTS_CONTRACTED);
       },
       className: "gray-back",
+      isFreelancer: false,
     },
-    userRedux.isFreelancer && {
+    {
       label: "Proyectos en proceso",
       command: (e) => {
         highlightElement(e, routes.DASHBOARD_FREELANCER_PROJECTS_INPROGRESS);
       },
+      isFreelancer: true,
     },
     {
       label: "Completados",
@@ -68,7 +70,7 @@ const FreelancerProjectArea = (props) => {
       {/* <section className={"hero is-white"}>
         <div className="hero-body pb-0 pt-0 gray"> */}
       <div className="gray">
-        <Menubar model={items} />
+        <Menubar model={items.filter(i => i.isFreelancer === userRedux?.isFreelancer || i.isFreelancer === undefined)} />
       </div>
       <CustomSection type="light">
         <Outlet />

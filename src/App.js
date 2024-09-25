@@ -58,6 +58,14 @@ import Contact from "./pages/Contact";
 import FreelancerFinanceArea from "./pages/Freelancer/FreelancerFinanceArea";
 import AdminPage from "./pages/AdminPage";
 import NewAdminPage from "./pages/Admin/NewAdminPage";
+import UserAdmin from "./pages/Admin/UserAdmin";
+import Messages from "./pages/Admin/Messages";
+import AdminFreelancers from "./pages/Admin/AdminFreelancers";
+import AdminClients from "./pages/Admin/AdminClients";
+import AdminProfile from "./pages/Admin/AdminProfile";
+import AdminCollaborator from "./pages/Admin/AdminCollaborator";
+import AdminFinances from "./pages/Admin/AdminFinances";
+import AdminHighlight from "./pages/Admin/AdminHighlight";
 // import 'primeflex/primeflex.css';
 // import '../../index.css';
 
@@ -72,7 +80,40 @@ function App() {
         <Routes>
           <Route path={routes.HOME} element={<Home />} />
           <Route path={routes.ABOUT_US} element={<AboutUs />} />
-          <Route path={routes.DASHBOARD_ADMIN} element={<AdminPage />}></Route>
+          <Route path={routes.DASHBOARD_ADMIN} element={<AdminPage />}>
+            <Route
+              path={routes.DASHBOARD_ADMIN_NEW}
+              element={<UserAdmin />}
+            ></Route>
+            <Route
+              path={routes.DASHBOARD_ADMIN_MESSAGES}
+              element={<Messages />}
+            ></Route>
+            <Route
+              path={routes.DASHBOARD_ADMIN_FREELANCERS}
+              element={<AdminFreelancers />}
+            ></Route>
+            <Route
+              path={routes.DASHBOARD_ADMIN_CLIENTS}
+              element={<AdminClients />}
+            ></Route>
+            <Route
+              path={routes.DASHBOARD_ADMIN_PROFILE}
+              element={<AdminProfile />}
+            ></Route>
+            <Route
+              path={routes.DASHBOARD_ADMIN_COLLABORATOR}
+              element={<AdminCollaborator />}
+            ></Route>
+            <Route
+              path={routes.DASHBOARD_ADMIN_FINANCES}
+              element={<AdminFinances />}
+            ></Route>
+            <Route
+              path={routes.DASHBOARD_ADMIN_HIGHLIGHT}
+              element={<AdminHighlight />}
+            ></Route>
+          </Route>
           <Route path={routes.DASHBOARD_ADMIN_NEW} element={<NewAdminPage />} />
 
           <Route path={routes.HELP_CENTER} element={<HelpCenter />} />

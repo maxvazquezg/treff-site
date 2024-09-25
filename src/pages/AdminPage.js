@@ -5,13 +5,125 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Toast } from "primereact/toast";
 import { InputText } from "primereact/inputtext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import CustomSection from "../components/CustomSection";
 import { routes } from "../routes";
+import { Menubar } from "primereact/menubar";
 
 const AdminPage = () => {
+  const location = useLocation();
+  const highlightElement = (e, route) => {
+    navigate(route);
+  };
+  const items = [
+    {
+      label: "Dashboard",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_ADMIN_NEW);
+      },
+      className: location.pathname.includes(
+        routes.DASHBOARD_ADMIN_NEW
+      )
+        ? "blue-back"
+        : "",
+    },
 
+    {
+      label: "Mensajes",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_ADMIN_MESSAGES);
+      },
+      className: location.pathname.includes(
+        routes.DASHBOARD_ADMIN_MESSAGES
+      )
+        ? "blue-back"
+        : "",
+      // icon: "pi pi-fw pi-power-off",
+    },
+
+    // {
+    //   label: "Configuración Freelancer",
+    //   // icon: "pi pi-fw pi-power-off",
+    // },
+    {
+      label: "Freelancers",
+      command: (e) => {
+        highlightElement(
+          e,
+          routes.DASHBOARD_ADMIN_FREELANCERS
+        );
+      },
+      className: location.pathname.includes(
+        routes.DASHBOARD_FREELANCER_PROJECTS
+      )
+        ? "blue-back"
+        : "",
+    },
+    // {
+    //   label: "Servicios",
+    //   command: (e) => {
+    //     highlightElement(
+    //       e,
+    //       routes.DASHBOARD_SERVICES + "/" + routes.DASHBOARD_SERVICESACTIVE
+    //     );
+    //   },
+    //   className: location.pathname.includes(routes.DASHBOARD_SERVICES)
+    //     ? "blue-back"
+    //     : "",
+    // },
+
+    {
+      label: "Contratantes",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_ADMIN_CLIENTS);
+      },
+      className: location.pathname.includes(routes.DASHBOARD_FREELANCER_FINANCE)
+        ? "blue-back"
+        : "",
+    },
+    {
+      label: "Perfil",
+      isFreelancer: true,
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_ADMIN_PROFILE);
+      },
+      className: location.pathname.includes(routes.DASHBOARD_FREELANCERPROFILE)
+        ? "blue-back"
+        : "",
+    },
+    {
+      label: "Colaboradores",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_ADMIN_COLLABORATOR);
+      },
+      className: location.pathname.includes(routes.DASHBOARD_FREELANCER_ACCOUNT)
+        ? "blue-back"
+        : "",
+    },
+    {
+      label: "Finanzas",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_ADMIN_FINANCES);
+      },
+      className: location.pathname.includes(
+        routes.DASHBOARD_FREELANCER_VERIFICATION
+      )
+        ? "blue-back"
+        : "",
+    },
+    {
+      label: "Destacados y promociones",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_ADMIN_HIGHLIGHT);
+      },
+      className: location.pathname.includes(
+        routes.DASHBOARD_FREELANCER_VERIFICATION
+      )
+        ? "blue-back"
+        : "",
+    },
+  ];
   const [users, setUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState(null);
   const toast = useRef(null);
@@ -94,71 +206,23 @@ const AdminPage = () => {
     <>
       <CustomSection type="white">
         {/* <SectionContent type="light" className="pt-1 pl-2 pb-3"> */}
+        <section className="hero is-white blue">
+          <Menubar
+            model={
+              items
+              //   .filter(
+              //   (i) =>
+              //     i.isFreelancer === userRedux?.isFreelancer ||
+              //     i.isFreelancer === undefined
+              // )
+            }
+          />
+          <div className="hero-body has-text-centered pb-0 is-light">
+          <Outlet />
+        </div>
+        </section>
         <BackButton />
-        <p className="subtitle-dark">ADMIN Dashboard </p>
-        <div className="columns mt-1 is-multiline">
-          <div
-            className={
-              "column is-3-widescreen is-3-desktop is-12 has-text-centered"
-            }
-          >
-            <button
-              className="button is-link"
-              style={{ width: "100%" }}
-              onClick={() => navigate("/" + routes.DASHBOARD_ADMIN_NEW)}
-            >
-              Nuevo Usuario Admin
-            </button>
-          </div>
-        </div>
-        <div className="columns mt-1 is-multiline">
-          <div
-            className={
-              "column is-12-widescreen is-12-desktop is-12 has-text-centered"
-            }
-          >
-            <div className="card p-fluid mb-4">
-              <DataTable
-                selectionMode="checkbox"
-                value={users}
-                selection={selectedUsers}
-                onSelectionChange={(e) => setSelectedUsers(e.value)}
-                editMode="row"
-                dataKey="id"
-                onRowEditComplete={onRowEditComplete1}
-                responsiveLayout="scroll"
-              >
-                {/* <Column
-              selectionMode="multiple"
-              headerStyle={{ width: "3em" }}
-            ></Column> */}
-                <Column
-                  rowEditor
-                  headerStyle={{ width: "8%", minWidth: "8rem" }}
-                  bodyStyle={{ textAlign: "center" }}
-                ></Column>
-                <Column
-                  headerStyle={{ width: "6%", minWidth: "5rem" }}
-                  body={deleteTemplate}
-                />
-                <Column
-                  field="name"
-                  header="Nombre"
-                  editor={(options) => textEditor(options)}
-                  style={{ width: "20%" }}
-                ></Column>
-                <Column
-                  field="mail"
-                  header="email"
-                  editor={(options) => textEditor(options)}
-                  style={{ width: "20%" }}
-                ></Column>
-              </DataTable>
-            </div>
-            <ConfirmDialog />
-            <Toast ref={toast}></Toast>
-          </div>
-        </div>
+        
         {/* </SectionContent> */}
       </CustomSection>
     </>

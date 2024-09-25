@@ -14,9 +14,10 @@ import { useState } from "react";
 import ImageEditor from "../../components/ImageEditor";
 import { Dialog } from "primereact/dialog";
 import { FreelancerApi } from "../../api";
-import { addUser } from "../../redux/userReducer";
+import { addUser, updateUser } from "../../redux/userReducer";
 import { Toast } from "primereact/toast";
 import { getUser } from "../../redux/serviceReducer";
+import { Switch } from "@mui/material";
 
 const DashboardFreelancerProfile = () => {
   const dispatch = useDispatch();
@@ -71,31 +72,10 @@ const DashboardFreelancerProfile = () => {
   };
 
   const items = [
-    userRedux?.isFreelancer && {
-      label: "Perfil",
-      command: (e) => {
-        highlightElement(
-          e,
-          routes.DASHBOARD_FREELANCERPROFILE +
-            "/" +
-            routes.DASHBOARD_FREELANCERDESCRIPTION
-        );
-      },
-      className: location.pathname.includes(routes.DASHBOARD_FREELANCERPROFILE)
-        ? "blue-back"
-        : "",
-    },
-    {
-      label: "Mensajes",
-      command: (e) => {
-        highlightElement(e, routes.DASHBOARD_FREELANCER_MESSAGES);
-      },
-      // icon: "pi pi-fw pi-power-off",
-    },
     {
       label: "Dashboard",
       command: (e) => {
-        highlightElement(e, routes.DASHBOARD_Dashboard);
+        highlightElement(e, routes.DASHBOARD_FREELANCER_PROJECTS);
       },
       className: location.pathname.includes(
         routes.DASHBOARD_FREELANCER_PROJECTS
@@ -103,12 +83,21 @@ const DashboardFreelancerProfile = () => {
         ? "blue-back"
         : "",
     },
+
+    {
+      label: "Mensajes",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_FREELANCER_MESSAGES);
+      },
+      // icon: "pi pi-fw pi-power-off",
+    },
+
     // {
     //   label: "Configuración Freelancer",
     //   // icon: "pi pi-fw pi-power-off",
     // },
     {
-      label: userRedux?.isFreelancer ? "Proyectos" : "Servicios",
+      label: !userRedux?.isFreelancer ? "Proyectos" : "Servicios",
       command: (e) => {
         highlightElement(
           e,
@@ -135,6 +124,31 @@ const DashboardFreelancerProfile = () => {
     //     ? "blue-back"
     //     : "",
     // },
+
+    {
+      label: "Finanzas",
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_FREELANCER_FINANCE);
+      },
+      className: location.pathname.includes(routes.DASHBOARD_FREELANCER_FINANCE)
+        ? "blue-back"
+        : "",
+    },
+    {
+      label: "Perfil",
+      isFreelancer: true,
+      command: (e) => {
+        highlightElement(
+          e,
+          routes.DASHBOARD_FREELANCERPROFILE +
+            "/" +
+            routes.DASHBOARD_FREELANCERDESCRIPTION
+        );
+      },
+      className: location.pathname.includes(routes.DASHBOARD_FREELANCERPROFILE)
+        ? "blue-back"
+        : "",
+    },
     {
       label: "Configuración de cuenta",
       command: (e) => {
@@ -161,17 +175,6 @@ const DashboardFreelancerProfile = () => {
       },
       className: location.pathname.includes(
         routes.DASHBOARD_FREELANCER_VERIFICATION
-      )
-        ? "blue-back"
-        : "",
-    },
-    {
-      label: "Finanzas",
-      command: (e) => {
-        highlightElement(e, routes.DASHBOARD_FREELANCER_FINANCE);
-      },
-      className: location.pathname.includes(
-        routes.DASHBOARD_FREELANCER_FINANCE
       )
         ? "blue-back"
         : "",
@@ -373,7 +376,18 @@ const DashboardFreelancerProfile = () => {
       <CustomSection type="primary">
         <div className="has-text-centered p-4">
           <p className="text-light">{user.name}</p>
-          <p className="text-light">{user.country}</p>
+          {/* <p className="text-light">{user.country}</p> */}
+          <p className="text-16-gray">
+            {user?.isFreelancer ? "Freelancer" : "Contratante"}
+          </p>
+          <Switch
+            onChange={() => {
+              const userData = { ...user };
+              userData.isFreelancer = !userData.isFreelancer;
+              dispatch(updateUser(userData));
+            }}
+            checked={user?.isFreelancer}
+          />
           <p className="text-16-gray">
             Activo desde el {setDateString(user?.activeDate)}
           </p>
@@ -381,7 +395,13 @@ const DashboardFreelancerProfile = () => {
       </CustomSection>
       <CustomSection type="light">
         <section className="hero is-white blue">
-          <Menubar model={items} />
+          <Menubar
+            model={items.filter(
+              (i) =>
+                i.isFreelancer === userRedux?.isFreelancer ||
+                i.isFreelancer === undefined
+            )}
+          />
           <div className="hero-body has-text-centered pb-0 is-light">
             <Outlet />
           </div>

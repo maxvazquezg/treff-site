@@ -3,10 +3,13 @@ import { useForm } from "react-hook-form";
 import { FreelancerApi } from "../../api";
 import CustomSection from "../../components/CustomSection";
 import BackButton from "../../components/BackButton";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { routes } from "../../routes";
+import { Menubar } from "primereact/menubar";
 
 const NewAdminPage = () => {
+  const location = useLocation();
+ 
   const {
     register,
     handleSubmit,

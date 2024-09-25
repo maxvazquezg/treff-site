@@ -164,7 +164,7 @@ export default function Navbar(props) {
       text: "Dashboard Admin",
       image: "/images/dashboard.svg",
       isAdmin: true,
-      target: routes.DASHBOARD_ADMIN,
+      target: routes.DASHBOARD_ADMIN + "/" + routes.DASHBOARD_ADMIN_NEW,
       action: () => {
         clickMenuHandler();
         op.current.toggle();

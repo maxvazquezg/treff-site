@@ -22,9 +22,7 @@ const AdminPage = () => {
       command: (e) => {
         highlightElement(e, routes.DASHBOARD_ADMIN_NEW);
       },
-      className: location.pathname.includes(
-        routes.DASHBOARD_ADMIN_NEW
-      )
+      className: location.pathname.includes(routes.DASHBOARD_ADMIN_NEW)
         ? "blue-back"
         : "",
     },
@@ -34,9 +32,7 @@ const AdminPage = () => {
       command: (e) => {
         highlightElement(e, routes.DASHBOARD_ADMIN_MESSAGES);
       },
-      className: location.pathname.includes(
-        routes.DASHBOARD_ADMIN_MESSAGES
-      )
+      className: location.pathname.includes(routes.DASHBOARD_ADMIN_MESSAGES)
         ? "blue-back"
         : "",
       // icon: "pi pi-fw pi-power-off",
@@ -49,10 +45,7 @@ const AdminPage = () => {
     {
       label: "Freelancers",
       command: (e) => {
-        highlightElement(
-          e,
-          routes.DASHBOARD_ADMIN_FREELANCERS
-        );
+        highlightElement(e, routes.DASHBOARD_ADMIN_FREELANCERS);
       },
       className: location.pathname.includes(
         routes.DASHBOARD_FREELANCER_PROJECTS
@@ -82,16 +75,7 @@ const AdminPage = () => {
         ? "blue-back"
         : "",
     },
-    {
-      label: "Perfil",
-      isFreelancer: true,
-      command: (e) => {
-        highlightElement(e, routes.DASHBOARD_ADMIN_PROFILE);
-      },
-      className: location.pathname.includes(routes.DASHBOARD_FREELANCERPROFILE)
-        ? "blue-back"
-        : "",
-    },
+
     {
       label: "Colaboradores",
       command: (e) => {
@@ -120,6 +104,16 @@ const AdminPage = () => {
       className: location.pathname.includes(
         routes.DASHBOARD_FREELANCER_VERIFICATION
       )
+        ? "blue-back"
+        : "",
+    },
+    {
+      label: "Perfil",
+      isFreelancer: true,
+      command: (e) => {
+        highlightElement(e, routes.DASHBOARD_ADMIN_PROFILE);
+      },
+      className: location.pathname.includes(routes.DASHBOARD_FREELANCERPROFILE)
         ? "blue-back"
         : "",
     },
@@ -218,11 +212,11 @@ const AdminPage = () => {
             }
           />
           <div className="hero-body has-text-centered pb-0 is-light">
-          <Outlet />
-        </div>
+            <Outlet />
+          </div>
         </section>
         <BackButton />
-        
+
         {/* </SectionContent> */}
       </CustomSection>
     </>

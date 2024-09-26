@@ -150,7 +150,7 @@ const DashboardFreelancerProfile = () => {
         : "",
     },
     {
-      label: "Configuración de cuenta",
+      label: "Mi cuenta",
       command: (e) => {
         highlightElement(
           e,
@@ -164,7 +164,7 @@ const DashboardFreelancerProfile = () => {
         : "",
     },
     {
-      label: "Verificar cuenta",
+      label: "Verificación",
       command: (e) => {
         highlightElement(
           e,
